@@ -1,0 +1,14 @@
+.menu-controls {
+    padding: 5px;
+    top: 40px;
+    right: 10px;
+    display: flex;
+    gap: 5px;
+}
+.ol-control button {
+    cursor: pointer;
+}
+.menu-controls button.active {
+    background-color: var(--gray100);
+    color: var(--black);
+}

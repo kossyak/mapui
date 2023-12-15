@@ -1,0 +1,46 @@
+.switcher-controls {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--ol-partial-background-color);
+    top: 80px;
+    right: 10px;
+    width: 210px;
+}
+
+.switcher-controls button {
+    background-color: unset;
+    backdrop-filter: blur(4px);
+    margin: 0;
+    font-weight: normal;
+    text-align: left;
+    border: none;
+    height: unset;
+    line-height: 1;
+    padding: 8px 8px 8px 30px;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    position: relative;
+}
+.switcher-controls button.active:before {
+    position: absolute;
+    content: '';
+    display: block;
+    border-radius: 10px;
+    height: 11px;
+    width: 11px;
+    left: 10px;
+    top: 10px;
+    background-color: var(--color);
+}
+.switcher-controls button.active {
+    color: var(--black);
+}
+.switcher-controls button:hover {
+    background-color: var(--ol-subtle-background-color);
+    outline: 0;
+}
+.switcher-controls button:focus {
+    outline: 0;
+}
