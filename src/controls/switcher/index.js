@@ -3,20 +3,24 @@ import tap from '../../ui/components/tap'
 import accordion from '../../ui/components/accordion'
 
 export default {
-  create(groups, colors) {
+  create(options) {
     const controls = document.createElement('div')
-    controls.className = 'switcher-controls'
-    for (const key in groups) {
-      const t = tap.create({
-        parent: controls,
-        text: groups[key].values_.title,
-        active: groups[key].values_.visible,
-        onclick: (v) => groups[key].setVisible(v)
+    options.forEach((item) => {
+      const div = document.createElement('div')
+      div.className = 'switcher-controls'
+      item.children?.forEach(child => {
+        const t = tap.create({
+          parent: div,
+          text: child.title,
+          active: child.visible,
+          onclick: child.onclick
+        })
+        t.style.cssText = `--color: rgba(${child.color || [255, 255, 255, 0.21]})`
       })
-      t.style.cssText = `--color: rgba(${colors[key]?.color})`
-    }
-    const a = accordion.create({ text: 'title', active: true })
-    a.content(controls)
-    return a
+      const a = accordion.create({ text: item.title, active: item.visible })
+      a.content(div)
+      controls.append(a)
+    })
+    return controls
   }
 }

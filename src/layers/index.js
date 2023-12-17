@@ -34,10 +34,11 @@ export default {
   },
   create(pointSource, wells) {
     const layers = {}
-    for (const key in wells) {
-      layers[key] = new VectorLayer({ source: pointSource[key], style: this.pointStyle(wells[key].color) })
+    wells.forEach(item => {
+      const key = item.key
+      layers[key] = new VectorLayer({ source: pointSource[key], style: this.pointStyle(item.color) })
       layers[key + 'Label'] = new VectorLayer({ source: pointSource[key], style: this.labelStyle(), visible: false })
-    }
+    })
     return {
       ...layers,
       terrain: new TileLayer({

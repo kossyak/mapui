@@ -4,8 +4,19 @@
 .mui-accordion > .mui-tap {
   display: flex;
   justify-content: space-between;
-  padding: 12px 8px;
+  padding: 16px 8px;
   border-bottom: 1px solid var(--white100);
+}
+.mui-accordion > .mui-tap span {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.mui-accordion > .mui-tap i:before {
+  rotate: 135deg
+}
+.mui-accordion > .mui-tap.active i:before {
+  rotate: -45deg
 }
 .mui-accordion > .mui-tap .mui-arrow{
   margin: 1px 5px;

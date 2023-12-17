@@ -21,9 +21,7 @@ export default {
   },
   getPointSource(wells) {
     const pointSource = {}
-    for (const key in wells) {
-      pointSource[key] = this.getSource(wells[key].typo)
-    }
+    wells.forEach(item => pointSource[item.key] = this.getSource(item.typo))
     return pointSource
   }
 }

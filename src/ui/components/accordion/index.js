@@ -6,7 +6,8 @@ export default {
   create({ parent, text, active }) {
     const el = element.create({ parent, tag: 'div', name: 'accordion', content: true })
     const t = tap.create({
-      text: text + '<i class="mui-arrow bottom"></i>',
+      text: `<span>${text}</span><i class="mui-arrow"></i>`,
+      title: text,
       active,
       onclick: (v) => {
         el.children[1].hidden = !v

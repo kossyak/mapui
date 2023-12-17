@@ -20,6 +20,9 @@
 .switcher-controls button:focus {
     outline: 0;
 }
+.switcher-controls button:first-child {
+  margin-top: 10px;
+}
 .switcher-controls .mui-tap {
     padding-left: 30px;
 }

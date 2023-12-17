@@ -34,33 +34,33 @@ export default {
     const ui = UI.create(target) // { navigate, info }
     const zoom = 12
     const zoomLabel = 13
-    const wellsOption = {
-      explo: {
+    const wellsOption = [
+      {
+        key: 'explo',
         typo: 'эксплуатационный',
         color: [17, 30, 108, 0.7]
       },
-      razv: {
+      {
+        key: 'razv',
         typo: 'разведочный',
         color: [14, 77, 146, 0.7]
       },
-      reg: {
+      {
+        key: 'reg',
         typo: 'режимный',
         color: [0, 128, 255, 0.7]
       },
-      razvexp: {
+       {
+        key: 'razvexp',
         typo: 'разведочно-эксплуатационный',
         color: [0, 49, 82, 0.7]
       },
-      min: {
+      {
+        key: 'min',
         typo: 'минеральный',
         color: [0, 128, 129, 0.7]
       }
-    }
-    const switcherOptions = [
-      { title: 'Подразделение данных', children: wellsOption },
-      { title: 'Геологические и гидрогеологические карты' },
-      { title: 'Абсолютные отметки' },
-      { title: 'Спутниковые карты' }]
+    ]
     
     const fieldsPolygon = polygons.create({
       getUrl: 'app/map/fields',
@@ -80,11 +80,47 @@ export default {
     const layers = layersModule.create(pointSource, wellsOption)
     const allLayers = { fields: fieldsPolygon.layer, VZU: VZUPolygon.layer, ...layers }
     const groups = groupsModule.create(allLayers)
-    const { OSM, terrain, snapshots, fields, VZU, explo, razv, reg, razvexp, min } = groups
-    
+    const switcherOptions = [
+      {
+        title: 'Подразделение данных',
+        visible: true,
+        children: []
+      },
+      { title: 'Геологические и гидрогеологические карты' },
+      {
+        title: 'Абсолютные отметки',
+        visible: true,
+        children: [
+          {
+            title: groups.terrain.values_.title,
+            visible: groups.terrain.values_.visible,
+            onclick: (v) => groups.terrain.setVisible(v)
+          }
+        ]
+      },
+      {
+        title: 'Спутниковые карты',
+        children: [
+          {
+            title: groups.snapshots.values_.title,
+            visible: groups.snapshots.values_.visible,
+            onclick: (v) => groups.snapshots.setVisible(v)
+          }
+        ]
+      }
+    ]
+    wellsOption.forEach(item => {
+      switcherOptions[0].children.push({
+        title: groups[item.key]?.values_.title,
+        visible: groups[item.key]?.values_.visible,
+        color: item.color,
+        onclick: (v) => groups[item.key].setVisible(v)
+      })
+    })
+    console.log(switcherOptions)
     const { mousePositionControl, scaleLineControl, selectControlModule } = controls
     
-    const switcherElement = switcherModule.create({snapshots, terrain, fields, VZU, explo, razv, reg, razvexp, min}, wellsOption, ui)
+    const switcherElement = switcherModule.create(switcherOptions)
     
     const menuElement = menuModule.create({
       editBtn: {
@@ -124,7 +160,7 @@ export default {
     const map = new Map({
       interactions: defaultInteractions().extend([VZUPolygon.interaction, fieldsPolygon.interaction, select, translate]),
       controls: defaults().extend([mousePositionControl, scaleLineControl, menuControl, infoControl]),
-      layers: [OSM, terrain, snapshots, fields, VZU, explo, razv, reg, razvexp, min],
+      layers: Object.values(groups),
       view: new View({ center: transform(coordinate || [36.1874, 51.7373], 'EPSG:4326', 'EPSG:3857'), zoom }),
       target: ui.map
     })
@@ -134,10 +170,10 @@ export default {
       const visibleLabels = (v) => {
         if (visible !== v) {
           visible = v
-          for (const key in wellsOption) {
-            const layers = groups[key].getLayers()
+          wellsOption.forEach(item => {
+            const layers = groups[item.key].getLayers()
             layers.array_[1].setVisible(v)
-          }
+          })
         }
       }
       visibleLabels(currentZoom > zoomLabel)
@@ -148,7 +184,7 @@ export default {
     const tooltip = tooltipOverlay.create(map)
     map.addInteraction(dragBox)
     map.addOverlay(tooltip)
-    this.animate(map)
+    // this.animate(map)
   }
 }
 
