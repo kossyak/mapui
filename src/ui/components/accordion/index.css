@@ -1,0 +1,27 @@
+.mui-accordion {
+
+}
+.mui-accordion > .mui-tap {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--white100);
+}
+.mui-accordion > .mui-tap .mui-arrow{
+  margin: 1px 5px;
+}
+.mui-accordion > .mui-tap .mui-arrow:before{
+  border-color: var(--white200);
+}
+.mui-accordion .mui-content {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows .4s;
+}
+.mui-accordion .mui-content[hidden] {
+  display: grid;
+  grid-template-rows: 0fr;
+}
+.mui-accordion .mui-content > div {
+  overflow: hidden;
+}

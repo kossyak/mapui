@@ -1,32 +1,22 @@
 import './style.css'
+import tap from '../../ui/components/tap'
+import accordion from '../../ui/components/accordion'
 
 export default {
-  create(groups, wells) {
-    const btns = {}
-    const customControls = this.customControls()
+  create(groups, colors) {
+    const controls = document.createElement('div')
+    controls.className = 'switcher-controls'
     for (const key in groups) {
-      const btn = this.btn(groups[key], wells[key])
-      if (groups[key].values_.visible) btn.classList.add('active')
-      customControls.appendChild(btn)
-      btns[key] = btn
+      const t = tap.create({
+        parent: controls,
+        text: groups[key].values_.title,
+        active: groups[key].values_.visible,
+        onclick: (v) => groups[key].setVisible(v)
+      })
+      t.style.cssText = `--color: rgba(${colors[key]?.color})`
     }
-    return customControls
-  },
-  customControls() {
-    const customControls = document.createElement('div')
-    customControls.className = 'ol-control switcher-controls'
-    customControls.hidden = true
-    return customControls
-  },
-  btn(group, well) {
-    const btn = document.createElement('button')
-    btn.innerHTML = group.values_.title
-    btn.title = group.values_.title
-    if (well) btn.style.cssText = `--color: rgba(${well.color})`
-    btn.addEventListener('click', () => {
-      btn.classList.toggle('active')
-      group.setVisible(btn.classList.contains('active'))
-    })
-    return btn
+    const a = accordion.create({ text: 'title', active: true })
+    a.content(controls)
+    return a
   }
 }

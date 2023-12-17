@@ -84,12 +84,13 @@ export default {
     
     const { mousePositionControl, scaleLineControl, selectControlModule } = controls
     
-    const switcherElement = switcherModule.create({snapshots, terrain, fields, VZU, explo, razv, reg, razvexp, min}, wellsOption)
+    const switcherElement = switcherModule.create({snapshots, terrain, fields, VZU, explo, razv, reg, razvexp, min}, wellsOption, ui)
     
     const menuElement = menuModule.create({
       editBtn: {
         content: '✎', // svg,
         title: 'Редактировать',
+        toggle: true,
         onclick: (isActive) => {
           if (isActive) {
             translate.setActive(true)
@@ -103,13 +104,12 @@ export default {
           }
         }
       },
-      bar: {
-        content: '☰',
-        title: '',
-      },
       switchBtn: {
-        content: '…',
-        onclick: (isActive) => switcherElement.hidden = !isActive
+        content: '☰',
+        onclick: (isActive) => {
+          ui.info.content(switcherElement)
+          ui.info.visible(true)
+        }
       }
     })
     
@@ -118,13 +118,12 @@ export default {
     const translate = translateModule.create(select)
     const infoElement = selectControlModule.create(select, ui)
     const menuControl = new Control({ element: menuElement })
-    const switcherControl = new Control({ element: switcherElement })
     const infoControl = new Control({ element: infoElement })
     select.setActive(true)
     
     const map = new Map({
       interactions: defaultInteractions().extend([VZUPolygon.interaction, fieldsPolygon.interaction, select, translate]),
-      controls: defaults().extend([mousePositionControl, scaleLineControl, menuControl, switcherControl, infoControl]),
+      controls: defaults().extend([mousePositionControl, scaleLineControl, menuControl, infoControl]),
       layers: [OSM, terrain, snapshots, fields, VZU, explo, razv, reg, razvexp, min],
       view: new View({ center: transform(coordinate || [36.1874, 51.7373], 'EPSG:4326', 'EPSG:3857'), zoom }),
       target: ui.map

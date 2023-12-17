@@ -1,11 +1,10 @@
-import './index.css'
-
 export default {
   create(select, ui) {
     const infoPanel = this.infoElement()
     const update = () => this.update(select, infoPanel, ui)
     select.getFeatures().on('add', update)
-    select.getFeatures().on('remove', update)
+    ui.info.on('close', () => select.getFeatures().clear())
+    // select.getFeatures().on('remove', update)
     return infoPanel
   },
   infoElement() {
@@ -19,7 +18,6 @@ export default {
     if (selectedFeatures.length > 0) {
       const infoHTML = `
       <h2>Информация:</h2>
-      <hr>
       ${selectedFeatures.map((selectedFeature) => {
         const featureProperties = selectedFeature.getProperties()
         let nameGwk = featureProperties.extra && featureProperties.extra.name_gwk ? featureProperties.extra.name_gwk : 'Н/Д'
@@ -33,8 +31,7 @@ export default {
             <strong>Тип:</strong> ${featureProperties.typo}<br>
             <strong>А.О. устья:</strong> ${featureProperties.head}<br>
             <strong>Водозабор:</strong> ${featureProperties.intake}<br>
-            <strong>Месторождение:</strong> ${featureProperties.field}<br>
-            <hr>`
+            <strong>Месторождение:</strong> ${featureProperties.field}<br>`
         } else if (featureProperties.geometry.getType() === 'Polygon' || featureProperties.geometry.getType() === 'MultiPolygon') {
           // Если полигон
           if ('field_name' in featureProperties) {
@@ -46,10 +43,10 @@ export default {
           }
         }
         return info}).join('')}`
-      ui.info.innerHTML = infoHTML
-      ui.info.visible = true
+      ui.info.content(infoHTML)
+      ui.info.visible(true)
     } else {
-      ui.info.visible = false
+      ui.info.visible(false)
     }
   }
 }

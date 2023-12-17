@@ -7,3 +7,10 @@ npm i
 npm run dev
 ```
 
+```js
+// sidebar navigate + extantion / info
+ui.info.on('close', () => {...}) // by click on close
+ui.info.content(html / element)
+ui.info.visible(true / false)
+```
+

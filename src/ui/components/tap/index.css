@@ -1,0 +1,17 @@
+.mui-tap {
+  background-color: transparent;
+  text-align: left;
+  border: none;
+  line-height: 1;
+  padding: 8px;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  position: relative;
+  color: inherit;
+  cursor: pointer;
+}
+.mui-tap.active {
+  color: var(--white300);
+}
