@@ -123,6 +123,14 @@ export default {
     const switcherElement = switcherModule.create(switcherOptions)
     
     const menuElement = menuModule.create({
+      navigate: {
+        content: '☰',
+        onclick: (active) => {
+          // ui.navigate.content(switcherElement)
+          ui.navigate.visible(true)
+          ui.navigate.extension('text')
+        }
+      },
       editBtn: {
         content: '✎', // svg,
         title: 'Редактировать',
@@ -141,8 +149,8 @@ export default {
         }
       },
       switchBtn: {
-        content: '☰',
-        onclick: (isActive) => {
+        content: '︙',
+        onclick: (active) => {
           ui.info.content(switcherElement)
           ui.info.visible(true)
         }

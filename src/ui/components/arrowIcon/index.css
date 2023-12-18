@@ -10,11 +10,11 @@
   border-top: 2px solid var(--black);
   border-right: 2px solid var(--black);
 }
+.mui-arrow.left:before {
+  rotate: -135deg;
+}
 .mui-arrow.top:before {
   rotate: -45deg;
-}
-.mui-arrow.bottom:before {
-  rotate: -135deg;
 }
 .mui-arrow.right:before {
   rotate: 45deg;

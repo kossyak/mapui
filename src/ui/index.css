@@ -18,21 +18,24 @@
   position: relative;
   background-color: #26282b;
 }
+.mui-map {
+  flex: 1;
+}
 .mui [hidden] {
   display: none;
 }
 .mui aside {
   flex-basis: 0;
+  overflow-x: hidden;
   overflow-y: auto;
   transition: flex-basis .3s ease-in-out;
-  position: relative;
   color: #9a9e9c;
   box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
 }
 
 .mui aside > .mui-content {
   /*white-space: nowrap;*/
-  width: 300px;
+  width: 280px;
   position: absolute;
   overflow: hidden;
   opacity: 0;
@@ -41,7 +44,7 @@
 }
 
 .mui aside[visible] {
-  flex-basis: 300px;
+  flex-basis: 280px;
 }
 .mui aside[visible] > .mui-content {
   opacity: 1;
@@ -74,11 +77,35 @@
 .mui aside .mui-close:hover {
   background-color: var(--white200);
 }
+aside.mui-navigate .mui-close {
+  margin-left: auto;
+  position: relative;
+}
+.mui-navigate[visible] {
+  overflow: visible;
+}
 
-.mui-map {
-  flex: 1;
+.mui-extension {
+  display: none;
+  opacity: 0;
+  position: absolute;
+  width: 200px;
+  height: 100%;
+  top: 0;
+  left: 280px;
+  background-color: white;
+  z-index: 10;
+  transition: opacity .2s ease 1s;
+}
+.mui-navigate[visible] .mui-extension {
+  display: block;
+  opacity: 1;
+}
+.mui-extension.full {
+  width: 200px;
 }
 .mui-info {
+  position: relative;
   /*position: absolute;*/
   /*right: 0;*/
   /*height: 100%;*/
