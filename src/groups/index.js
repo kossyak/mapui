@@ -22,38 +22,34 @@ export default {
     } = layers
     return {
       OSM: new TileLayer({ source: new OSM() }),
-      snapshots: new GroupLayer({
-        title: 'Спутниковые снимки',
+      arcgis_sp: new TileLayer({
+        title: 'ArcGIS',
         visible: false,
-        layers: [
-          new TileLayer({
-            title: 'ArcGIS',
-            source: new XYZ({
-              url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-              maxZoom: 19, // Уровень максимального масштаба
-            })
-          }),
-          new TileLayer({
-            title: 'Google',
-            source: new XYZ({
-              url: 'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
-              maxZoom: 20,
-            })
-          })
-        ]
+        source: new XYZ({
+          url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+          maxZoom: 19, // Уровень максимального масштаба
+        })
+      }),
+      google_sp: new TileLayer({
+        title: 'Google',
+        visible: false,
+        source: new XYZ({
+          url: 'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
+          maxZoom: 20,
+        })
       }),
       terrain: new GroupLayer({
-        title: 'Абсолютные отметки',
+        title: 'MapBox',
         visible: false,
         layers: [terrain]
       }),
       fields: new GroupLayer({
-        title: 'fields',
+        title: 'Меторождения',
         visible: true,
         layers: [fields]
       }),
       VZU: new GroupLayer({
-        title: 'VZU',
+        title: 'Водозаборы',
         visible: true,
         layers: [VZU]
       }),
