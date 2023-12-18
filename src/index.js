@@ -82,14 +82,31 @@ export default {
     const groups = groupsModule.create(allLayers)
     const switcherOptions = [
       {
-        title: 'Подразделение данных',
+        title: 'Скважины',
         visible: true,
         children: []
       },
-      { title: 'Геологические и гидрогеологические карты' },
+      {
+        title: 'Полигоны',
+        visible: true,
+        children: [
+          {
+            title: groups.fields.values_.title,
+            visible: groups.fields.values_.visible,
+            onclick: (v) => groups.fields.setVisible(v)
+          },
+          {
+            title: groups.VZU.values_.title,
+            visible: groups.VZU.values_.visible,
+            onclick: (v) => groups.VZU.setVisible(v)
+          }
+        ]
+      },
+      { title: 'Геологические и гидрогеологические карты',
+        visible: false },
       {
         title: 'Абсолютные отметки',
-        visible: true,
+        visible: false,
         children: [
           {
             title: groups.terrain.values_.title,
@@ -99,12 +116,18 @@ export default {
         ]
       },
       {
-        title: 'Спутниковые карты',
+        title: 'Спутниковые снимки',
+        visible: false,
         children: [
           {
-            title: groups.snapshots.values_.title,
-            visible: groups.snapshots.values_.visible,
-            onclick: (v) => groups.snapshots.setVisible(v)
+            title: groups.arcgis_sp.values_.title,
+            visible: groups.arcgis_sp.values_.visible,
+            onclick: (v) => groups.arcgis_sp.setVisible(v)
+          },
+          {
+            title: groups.google_sp.values_.title,
+            visible: groups.google_sp.values_.visible,
+            onclick: (v) => groups.google_sp.setVisible(v)
           }
         ]
       }
