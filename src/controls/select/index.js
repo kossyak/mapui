@@ -37,9 +37,6 @@ export default {
       title: 'Данные по ОФР'
     },
     {
-      title: 'Разрез скважины'
-    },
-    {
       title: 'Химический анализ'
     },
     {
@@ -73,9 +70,9 @@ export default {
       const nameGwk = extra?.name_gwk || 'Н/Д'
       list.push({
         selected,
-        title: `<div><span>Номер </span>${name}</div>
-                 <div><span>Номер ГВК </span>${nameGwk}</div>
-                 <div><span>Тип </span>${typo}</div>`,
+        title: `<div><span>Номер: </span>${name}</div>
+                 <div><span>Номер ГВК: </span>${nameGwk}</div>
+                 <div><span>Тип: </span>${typo}</div>`,
       })
     })
     return list
