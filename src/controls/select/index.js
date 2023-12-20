@@ -10,7 +10,11 @@ export default {
     // select.on('select', () => {
     //   ui.navigate.content('')
     // })
-    ui.navigate.on('close', () => select.getFeatures().clear())
+    ui.navigate.classList.add('info')
+    ui.navigate.on('close', () => {
+      select.getFeatures().clear()
+      ui.navigate.classList.remove('info')
+    })
     ui.navigate.on('back', () => {
       ui.navigate.extension.setTitle('')
       this.openEx(ui)
@@ -113,7 +117,6 @@ export default {
         }
       })
       ui.navigate.content(l)
-      ui.navigate.classList.add('info')
       ui.navigate.visible(true)
     } else {
       ui.navigate.content('')
