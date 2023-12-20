@@ -41,9 +41,6 @@ export default {
       title: 'Данные по ОФР'
     },
     {
-      title: 'Разрез скважины'
-    },
-    {
       title: 'Химический анализ'
     },
     {
@@ -63,7 +60,7 @@ export default {
        + add('Месторождение', field)
     } else if (geometry.getType() === 'Polygon' || geometry.getType() === 'MultiPolygon') {
       if (field_name) {
-        html += `<div><span>есторождение: </span><b>${field_name}</b></div>`
+        html += `<div><span>Месторождение: </span><b>${field_name}</b></div>`
       } else if (intake_name) {
         html += `<div><span>Владелец ВЗУ: </span><b>${intake_name}</b></div>`
       }
@@ -77,9 +74,9 @@ export default {
       const nameGwk = extra?.name_gwk || 'Н/Д'
       list.push({
         selected,
-        title: `<div><span>Номер </span>${name}</div>
-                 <div><span>Номер ГВК </span>${nameGwk}</div>
-                 <div><span>Тип </span>${typo}</div>`,
+        title: `<div><span>Номер: </span>${name}</div>
+                 <div><span>Номер ГВК: </span>${nameGwk}</div>
+                 <div><span>Тип: </span>${typo}</div>`,
       })
     })
     return list
