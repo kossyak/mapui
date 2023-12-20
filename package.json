@@ -2,9 +2,9 @@
   "name": "static",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "dev": "parcel index.html"
+    "dev": "npm run build-img && parcel index.html",
+    "build-img": "parcel build image/* --no-cache"
   },
   "author": "",
   "license": "ISC",

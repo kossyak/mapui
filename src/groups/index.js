@@ -2,6 +2,8 @@ import GroupLayer from 'ol/layer/Group'
 import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ'
 import OSM from 'ol/source/OSM'
+import secret from '../../secret.js'
+import { pointStyle } from '../pointLayers/style'
 
 export default {
   create(layers) {
@@ -16,14 +18,12 @@ export default {
       reg,
       razvexp,
       min,
-      terrain,
       fields,
       VZU
     } = layers
     return {
       OSM: new TileLayer({ source: new OSM() }),
       arcgis_sp: new TileLayer({
-        title: 'ArcGIS',
         visible: false,
         source: new XYZ({
           url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
@@ -31,50 +31,45 @@ export default {
         })
       }),
       google_sp: new TileLayer({
-        title: 'Google',
         visible: false,
         source: new XYZ({
           url: 'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
           maxZoom: 20,
         })
       }),
-      terrain: new GroupLayer({
-        title: 'MapBox',
+      terrain: new TileLayer({
         visible: false,
-        layers: [terrain]
+        source: new XYZ({
+          url: `https://api.mapbox.com/v4/mapbox.mapbox-terrain-v2/{z}/{x}/{y}.pngraw?access_token=${ secret?.mapboxAccessToken || '' }`,
+          attributions: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a>',
+        }),
+        style: pointStyle([66, 100, 251, 0.3], [66, 100, 251, 1])
       }),
       fields: new GroupLayer({
-        title: 'Меторождения',
         visible: true,
         layers: [fields]
       }),
       VZU: new GroupLayer({
-        title: 'Водозаборы',
         visible: true,
         layers: [VZU]
       }),
       explo: new GroupLayer({
-        title: 'Эксплуатационные',
         visible: true,
         layers: [explo, exploLabel]
       }),
       razv: new GroupLayer({
-        title: 'Разведочные',
         visible: true,
         layers: [razv, razvLabel]
       }),
       razvexp: new GroupLayer({
-        title: 'Разведочно-эксплуатационные',
         visible: true,
         layers: [razvexp, razvexpLabel]
       }),
       reg: new GroupLayer({
-        title: 'Режимные',
         visible: true,
         layers: [reg, regLabel]
       }),
       min: new GroupLayer({
-        title: 'Минеральные',
         visible: true,
         layers: [min, minLabel]
       })

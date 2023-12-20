@@ -1,28 +1,44 @@
-.switcher-controls button.active:before {
+.switcher-controls .mui-content button.active:before {
     position: absolute;
     content: '';
     display: block;
+    height: 7px;
+    width: 10px;
+    left: 5px;
+    top: 10px;
+    rotate: -45deg;
+    border-left: 3px solid;
+    border-bottom: 3px solid;
+    border-color: var(--white200);
+}
+
+.switcher-controls .mui-accordion:nth-child(1) .mui-content button.active:before {
     border-radius: 10px;
     height: 11px;
     width: 11px;
-    left: 5px;
-    top: 10px;
     background-color: var(--color);
     outline: 1px solid var(--white100);
+    border: 0;
 }
-.switcher-controls button.active {
+.switcher-controls .mui-accordion:nth-child(2) .mui-content button.active:before {
+    height: 11px;
+    width: 11px;
+    background-color: var(--color);
+    outline: 1px solid var(--white100);
+    border: 0;
+    rotate: 0deg;
+}
 
-}
-.switcher-controls button:hover {
+.switcher-controls .mui-content button:hover {
     background-color: var(--ol-subtle-background-color);
     outline: 0;
 }
-.switcher-controls button:focus {
+.switcher-controls .mui-content button:focus {
     outline: 0;
 }
-.switcher-controls button:first-child {
+.switcher-controls .mui-content button:first-child {
   margin-top: 10px;
 }
-.switcher-controls .mui-tap {
+.switcher-controls .mui-content .mui-tap {
     padding-left: 30px;
 }

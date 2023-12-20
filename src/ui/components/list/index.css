@@ -1,0 +1,20 @@
+.mui .mui-li {
+  padding: 12px 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--gray600);
+}
+.mui-li:hover .mui-arrow {
+  opacity: 1;
+}
+.mui-li .mui-arrow {
+  opacity: .5;
+}
+.mui-li.active {
+
+}
+.mui-li.active .mui-arrow {
+  opacity: 1;
+}

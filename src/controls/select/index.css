@@ -1,0 +1,51 @@
+.info > .mui-content .mui-li {
+  line-height: 1.4;
+  padding: 10px 16px;
+  color: var(--white200);
+}
+
+.info .mui-li.active {
+  color: var(--white200);
+  font-weight: normal;
+  background-color: var(--white100);
+}
+.info > .mui-content span {
+  color: var(--white100);
+}
+.mui-extension {
+  height: 100%;
+  color: var(--black)
+}
+.mui-extension .info-text {
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--gray200);
+}
+.mui-extension .info-text > div {
+  display: flex;
+  justify-content: space-between;
+}
+.mui-extension .info-text span {
+  color: var(--gray300);
+}
+.mui-extension .info-text b {
+  text-align: right;
+}
+.mui-extension .mui-list {
+  margin-top: 16px;
+}
+.mui-extension .mui-list .mui-li {
+  padding-left: 0;
+}
+.mui-extension .mui-li.active {
+  font-weight: bold;
+  color: var(--black);
+}
+.mui-extension .mui-li:hover {
+  color: var(--black);
+}
+.mui-extension .mui-content {
+  height: calc(100% - 62px);
+}
+.mui-extension .mui-content img {
+  max-height: 100%;
+}

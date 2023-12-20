@@ -7,6 +7,8 @@
     gap: 5px;
 }
 .ol-control button {
+    width: 28px;
+    height: 28px;
     cursor: pointer;
 }
 .menu-controls button.active {

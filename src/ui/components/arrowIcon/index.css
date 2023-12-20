@@ -7,8 +7,8 @@
   display: block;
   height: 8px;
   width: 8px;
-  border-top: 2px solid var(--black);
-  border-right: 2px solid var(--black);
+  border-top: 2px solid;
+  border-right: 2px solid;
 }
 .mui-arrow.left:before {
   rotate: -135deg;

@@ -2,14 +2,15 @@ import element from '../element'
 import './index.css'
 
 export default {
-  create({ parent, text, title, active, onclick }) {
+  create({ parent, html, title, active, onclick }) {
     const el = element.create({ parent, tag: 'button', name: 'tap' })
-    el.innerHTML = text || ''
-    el.title = title || text || ''
+    el.innerHTML = html || ''
+    el.title = title || ''
     if (active) el.classList.add('active')
-    el.addEventListener('click', () => {
+    el.addEventListener('click', (event) => {
+      const v = onclick(!el.classList.contains('active'), event)
+      if (v) return
       el.classList.toggle('active')
-      onclick(el.classList.contains('active'))
     })
     return el
   }

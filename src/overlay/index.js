@@ -29,7 +29,6 @@ export default {
       let tooltipText = '<b>Краткая информация:</b><br>'
       features.forEach((feature) => {
         const type = feature.getGeometry().getType()
-        console.log(type)
         if (type === 'Point') {
           // if (this.coordinates && this.coordinates === tooltip.getPosition()) return
           this.coordinates = feature.getGeometry().getCoordinates()

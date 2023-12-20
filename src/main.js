@@ -16,12 +16,15 @@ import VZUJson from './interactions/polygons/VZU.json'
 import polygons from './interactions/polygons'
 import controls from './controls'
 
-import pointSourceModule from './pointSource'
-import layersModule from './layers'
+import pointSource from './pointSource'
+import pointLayers from './pointLayers'
 import groupsModule from './groups'
 
 import menuModule from './controls/munu'
 import switcherModule from './controls/switcher'
+
+import wells from './options/wells'
+import switcher from './options/switcher'
 
 import UI from './ui'
 
@@ -34,33 +37,6 @@ export default {
     const ui = UI.create(target) // { navigate, info }
     const zoom = 12
     const zoomLabel = 13
-    const wellsOption = [
-      {
-        key: 'explo',
-        typo: 'эксплуатационный',
-        color: [17, 30, 108, 0.7]
-      },
-      {
-        key: 'razv',
-        typo: 'разведочный',
-        color: [14, 77, 146, 0.7]
-      },
-      {
-        key: 'reg',
-        typo: 'режимный',
-        color: [0, 128, 255, 0.7]
-      },
-       {
-        key: 'razvexp',
-        typo: 'разведочно-эксплуатационный',
-        color: [0, 49, 82, 0.7]
-      },
-      {
-        key: 'min',
-        typo: 'минеральный',
-        color: [0, 128, 129, 0.7]
-      }
-    ]
     
     const fieldsPolygon = polygons.create({
       getUrl: 'app/map/fields',
@@ -76,82 +52,22 @@ export default {
         fillColor: [0, 0, 128, 0.4]
       }
     })
-    const pointSource = pointSourceModule.getPointSource(wellsOption)
-    const layers = layersModule.create(pointSource, wellsOption)
+    
+    const pointSrc = pointSource.getPointSource(wells)
+    const layers = pointLayers.create(pointSrc, wells)
     const allLayers = { fields: fieldsPolygon.layer, VZU: VZUPolygon.layer, ...layers }
     const groups = groupsModule.create(allLayers)
-    const switcherOptions = [
-      {
-        title: 'Скважины',
-        visible: true,
-        children: []
-      },
-      {
-        title: 'Полигоны',
-        visible: true,
-        children: [
-          {
-            title: groups.fields.values_.title,
-            visible: groups.fields.values_.visible,
-            onclick: (v) => groups.fields.setVisible(v)
-          },
-          {
-            title: groups.VZU.values_.title,
-            visible: groups.VZU.values_.visible,
-            onclick: (v) => groups.VZU.setVisible(v)
-          }
-        ]
-      },
-      { title: 'Геологические и гидрогеологические карты',
-        visible: false },
-      {
-        title: 'Абсолютные отметки',
-        visible: false,
-        children: [
-          {
-            title: groups.terrain.values_.title,
-            visible: groups.terrain.values_.visible,
-            onclick: (v) => groups.terrain.setVisible(v)
-          }
-        ]
-      },
-      {
-        title: 'Спутниковые снимки',
-        visible: false,
-        children: [
-          {
-            title: groups.arcgis_sp.values_.title,
-            visible: groups.arcgis_sp.values_.visible,
-            onclick: (v) => groups.arcgis_sp.setVisible(v)
-          },
-          {
-            title: groups.google_sp.values_.title,
-            visible: groups.google_sp.values_.visible,
-            onclick: (v) => groups.google_sp.setVisible(v)
-          }
-        ]
-      }
-    ]
-    wellsOption.forEach(item => {
-      switcherOptions[0].children.push({
-        title: groups[item.key]?.values_.title,
-        visible: groups[item.key]?.values_.visible,
-        color: item.color,
-        onclick: (v) => groups[item.key].setVisible(v)
-      })
-    })
-    console.log(switcherOptions)
     const { mousePositionControl, scaleLineControl, selectControlModule } = controls
+  
+    // switcher
+    wells.forEach((item, i) => { switcher[0].children[i].key = item.key, switcher[0].children[i].color = item.color })
+    const switcherElement = switcherModule.create(switcher, groups)
     
-    const switcherElement = switcherModule.create(switcherOptions)
-    
+    // menu
     const menuElement = menuModule.create({
-      navigate: {
-        content: '☰',
+      ruler: {
+        content: '📏',
         onclick: (active) => {
-          // ui.navigate.content(switcherElement)
-          ui.navigate.visible(true)
-          ui.navigate.extension('text')
         }
       },
       editBtn: {
@@ -163,23 +79,24 @@ export default {
             translate.setActive(true)
             fieldsPolygon.interaction.setActive(true)
             VZUPolygon.interaction.setActive(true)
+            map.removeOverlay(tooltip)
           } else {
             translate.setActive(false)
             fieldsPolygon.interaction.setActive(false)
             VZUPolygon.interaction.setActive(false)
             select.getFeatures().clear()
+            map.addOverlay(tooltip)
           }
         }
       },
       switchBtn: {
-        content: '︙',
+        content: '☰',
         onclick: (active) => {
           ui.info.content(switcherElement)
           ui.info.visible(true)
         }
       }
     })
-    
     
     const select = new Select()
     const translate = translateModule.create(select)
@@ -195,13 +112,21 @@ export default {
       view: new View({ center: transform(coordinate || [36.1874, 51.7373], 'EPSG:4326', 'EPSG:3857'), zoom }),
       target: ui.map
     })
+    
+    // map.on('click', function(e) {
+    //   if (e.originalEvent.ctrlKey && select.getFeatures().array_.length > 0) {
+    //     console.log(222)
+    //   }
+    // })
+    
+    // zoom
     let visible = false
     map.getView().on('change:resolution', () => {
       const currentZoom = map.getView().getZoom()
       const visibleLabels = (v) => {
         if (visible !== v) {
           visible = v
-          wellsOption.forEach(item => {
+          wells.forEach(item => {
             const layers = groups[item.key].getLayers()
             layers.array_[1].setVisible(v)
           })
@@ -211,7 +136,7 @@ export default {
     })
     map.getView().dispatchEvent('change:resolution')
     
-    const dragBox = dragBoxModule.create(map, pointSource, select)
+    const dragBox = dragBoxModule.create(map, pointSrc, select)
     const tooltip = tooltipOverlay.create(map)
     map.addInteraction(dragBox)
     map.addOverlay(tooltip)

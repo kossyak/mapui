@@ -24,15 +24,15 @@
 .mui-accordion > .mui-tap .mui-arrow:before{
   border-color: var(--white200);
 }
-.mui-accordion .mui-content {
+.mui-accordion .mui-wrapper {
   display: grid;
   grid-template-rows: 1fr;
   transition: grid-template-rows .4s;
 }
-.mui-accordion .mui-content[hidden] {
+.mui-accordion .mui-wrapper[hidden] {
   display: grid;
   grid-template-rows: 0fr;
 }
-.mui-accordion .mui-content > div {
+.mui-accordion .mui-content {
   overflow: hidden;
 }
