@@ -25,26 +25,20 @@ export default {
   },
   update(event, map, tooltip, container, content) {
     const features = map.getFeaturesAtPixel(event.pixel)
-    if (features && features.length > 0) {
-      let tooltipText = '<b>Краткая информация:</b><br>'
+    if (features && features.length > 0 && features.__id === 'measure') {
+      const add = (label, text) => text ? `<b>${label}: </b>${text}<br>` : ''
+      let tooltipText = ''
       features.forEach((feature) => {
-        const type = feature.getGeometry().getType()
+        const { geometry, name, typo, extra, field_name, intake_name } = feature.getProperties()
+        const type = geometry.getType()
         if (type === 'Point') {
           // if (this.coordinates && this.coordinates === tooltip.getPosition()) return
-          this.coordinates = feature.getGeometry().getCoordinates()
-          const extra = feature.get('extra')
+          this.coordinates = geometry.getCoordinates()
           const nameGwk = extra?.name_gwk || 'Н/Д'
-          tooltipText += '<b>Номер:</b> ' + feature.get('name') + '<br>' +
-            '<b>Тип:</b> ' + feature.get('typo') + '<br>' +
-            '<b>ГВК:</b> ' + nameGwk + '<br>'
+          tooltipText += add('Номер', name) + add('Тип', typo) + add('ГВК', nameGwk)
         } else if (type === 'Polygon' || type === 'MultiPolygon') {
           this.coordinates = event.coordinate
-          const properties = feature.getProperties()
-          if ('field_name' in properties) {
-            tooltipText += '<b>Месторождение:</b> ' + (feature.get('field_name') || '-') + '<br>'
-          } else if ('intake_name' in properties) {
-            tooltipText += '<b>Владелец ВЗУ:</b> ' + feature.get('intake_name') + '<br>'
-          }
+          tooltipText += add('Месторождение', field_name || '-') + add('Владелец ВЗУ', intake_name)
         }
         tooltip.setPosition(this.coordinates)
       })

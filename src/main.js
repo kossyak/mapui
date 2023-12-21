@@ -1,4 +1,5 @@
 import 'ol/ol.css'
+import './style.css'
 import Map from 'ol/Map'
 import View from 'ol/View'
 import { defaults as defaultInteractions } from 'ol/interaction'
@@ -15,6 +16,7 @@ import VZUJson from './interactions/polygons/VZU.json'
 
 import polygons from './interactions/polygons'
 import controls from './controls'
+import measureModule from './measure'
 
 import pointSource from './pointSource'
 import pointLayers from './pointLayers'
@@ -27,6 +29,7 @@ import wells from './options/wells'
 import switcher from './options/switcher'
 
 import UI from './ui'
+
 
 export default {
   animate(map) {
@@ -67,7 +70,9 @@ export default {
     const menuElement = menuModule.create({
       ruler: {
         content: '📏',
+        toggle: true,
         onclick: (active) => {
+          active ? measure.init() : measure.destroy()
         }
       },
       editBtn: {
@@ -98,7 +103,9 @@ export default {
       }
     })
     
-    const select = new Select()
+    const select = new Select({
+      layers: Object.values(allLayers)
+    })
     const translate = translateModule.create(select)
     const infoElement = selectControlModule.create(select, ui)
     const menuControl = new Control({ element: menuElement })
@@ -112,6 +119,7 @@ export default {
       view: new View({ center: transform(coordinate || [36.1874, 51.7373], 'EPSG:4326', 'EPSG:3857'), zoom }),
       target: ui.map
     })
+    const measure = measureModule.create(map)
     
     // map.on('click', function(e) {
     //   if (e.originalEvent.ctrlKey && select.getFeatures().array_.length > 0) {

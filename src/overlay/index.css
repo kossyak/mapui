@@ -1,17 +1,16 @@
-.ol-tooltip {
+.tooltip-content {
     position: absolute;
     background-color: white;
-    -webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
     filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 4px;
     outline: 1px solid #cccccc;
     bottom: 17px;
     left: -50px;
     min-width: 200px;
 }
-.ol-tooltip:after,
-.ol-tooltip:before {
+.tooltip-content:after,
+.tooltip-content:before {
     top: 100%;
     border: solid transparent;
     content: ' ';
@@ -21,21 +20,21 @@
     pointer-events: none;
 }
 
-.ol-tooltip:after {
+.tooltip-content:after {
     border-top-color: white;
     border-width: 10px;
     left: 48px;
     margin-left: -10px;
 }
 
-.ol-tooltip:before {
+.tooltip-content:before {
     border-top-color: #cccccc;
     border-width: 11px;
     left: 48px;
     margin-left: -11px;
 }
 
-.ol-tooltip p {
+.tooltip-content p {
     margin-top: 0;
     margin-bottom: 0;
 }

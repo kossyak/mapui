@@ -13,7 +13,6 @@
   color: var(--white100);
 }
 .mui-extension {
-  height: 100%;
   color: var(--black)
 }
 .mui-extension .info-text {
@@ -43,9 +42,21 @@
 .mui-extension .mui-li:hover {
   color: var(--black);
 }
-.mui-extension .mui-content {
-  height: calc(100% - 62px);
-}
 .mui-extension .mui-content img {
+  display: block;
   max-height: 100%;
+}
+.mui-extension .mui-content .mui-tap {
+  width: auto;
+  padding: 8px 0;
+  margin-left: auto;
+  margin-top: -20px;
+  margin-bottom: 20px;
+  display: block;
+  font-weight: bold;
+}
+.mui-extension .mui-content .mui-tap:hover {
+  color: var(--black);
+  text-decoration: underline dotted var(--gray200);
+  text-underline-offset: .6em;
 }

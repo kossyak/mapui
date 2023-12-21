@@ -7,11 +7,11 @@ export default {
     el.innerHTML = html || ''
     el.title = title || ''
     if (active) el.classList.add('active')
-    el.addEventListener('click', (event) => {
-      const v = onclick(!el.classList.contains('active'), event)
-      if (v) return
-      el.classList.toggle('active')
-    })
+    // el.addEventListener('click', (event) => {
+    //   const v = onclick(!el.classList.contains('active'), event)
+    //   if (v) return
+    //   el.classList.toggle('active')
+    // })
     return el
   }
 }

@@ -1,4 +1,6 @@
 import './index.css'
+import menu from './menu'
+import tap from '../../ui/components/tap'
 import list from '../../ui/components/list'
 
 export default {
@@ -13,7 +15,6 @@ export default {
     ui.navigate.classList.add('info')
     ui.navigate.on('close', () => {
       select.getFeatures().clear()
-      ui.navigate.classList.remove('info')
     })
     ui.navigate.on('back', () => {
       ui.navigate.extension.setTitle('')
@@ -28,26 +29,8 @@ export default {
     container.hidden = true
     return container
   },
-  list: [{
-      title: 'График режимных наблюдений'
-    },
-    {
-      title: 'Разрез скважины'
-    },
-    {
-      title: 'Данные ГИС'
-    },
-    {
-      title: 'Данные по ОФР'
-    },
-    {
-      title: 'Химический анализ'
-    },
-    {
-      title: 'Датчик мониторинга уровня'
-    }],
   getEx(selected) {
-    const {geometry, extra, name, typo, head, intake, field, field_name, intake_name} = selected.getProperties()
+    const { geometry, extra, name, typo, head, intake, field, field_name, intake_name } = selected
     const nameGwk = extra?.name_gwk || 'Н/Д'
     let html = '<div class="info-text">'
     const add = (label, text) => text ? `<div><span>${label}: </span><b>${text}</b></div>` : ''
@@ -58,53 +41,67 @@ export default {
        + add('А.О. устья', head)
        + add('Водозабор', intake)
        + add('Месторождение', field)
+       + add('N', geometry.flatCoordinates[0])
+       + add('E', geometry.flatCoordinates[1])
     } else if (geometry.getType() === 'Polygon' || geometry.getType() === 'MultiPolygon') {
-      if (field_name) {
-        html += `<div><span>Месторождение: </span><b>${field_name}</b></div>`
-      } else if (intake_name) {
-        html += `<div><span>Владелец ВЗУ: </span><b>${intake_name}</b></div>`
-      }
+      html += add('Месторождение', field_name) + add('Владелец ВЗУ', intake_name)
     }
     return html + '</div>'
   },
   getNavigate(selectedAll) {
     const list = []
-    selectedAll.forEach((selected) => {
-      const {extra, name, typo} = selected.getProperties()
+    selectedAll.forEach((s) => {
+      const selected = s.getProperties()
+      const {extra, name, typo, field_name, intake_name } = selected
       const nameGwk = extra?.name_gwk || 'Н/Д'
+      let type = {
+        key: 'points',
+        text: typo
+      }
+      if (intake_name) type = {
+        key: 'VZU',
+        text: 'водозаборы'
+      }
+      if (field_name) type = {
+        key: 'fields',
+        text: 'месторождения'
+      }
+      selected.type = type.key
       list.push({
         selected,
-        title: `<div><span>Номер: </span>${name}</div>
+        title: `<div><span>Номер: </span>${name || 'б/н'}</div>
                  <div><span>Номер ГВК: </span>${nameGwk}</div>
-                 <div><span>Тип: </span>${typo}</div>`,
+                 <div><span>Тип: </span>${type.text}</div>`,
       })
     })
     return list
   },
   openEx(ui) {
+    const editBtn = tap.create({
+      html: 'Редактировать <i>✎</i>',
+      onclick: () => {
+        ui.navigate.extension.setTitle('Редактирование')
+      }
+    })
     const html = this.getEx(this.selected)
-    ui.navigate.extension.content(html)
+    ui.navigate.extension.content(editBtn)
+    ui.navigate.extension.addContent(html)
+    const type = this.selected.type
     const listEx = list.create({
-      list: this.list,
-      onclick: (item) => {
+      list: menu[type],
+      onclick: (item, index) => {
         ui.navigate.extension.setTitle(item.title)
-        if (item.title === 'Данные ГИС') {
-          const img = document.createElement('img')
-          img.src = 'GIS.png'
-          ui.navigate.extension.content(img)
-        }
-        if (item.title === 'Разрез скважины') {
-          const img = document.createElement('img')
-          img.src = 'result.png'
-          ui.navigate.extension.content(img)
-        }
+        const content = menu[type][index].view?.(this.selected)
+        if (content) ui.navigate.extension.content(content)
       }
     })
     ui.navigate.extension.addContent(listEx)
   },
   update(event, select, infoPanel, ui) {
+    ui.navigate.extension.content('')
     const selectedAll = select.getFeatures().getArray()
     if (selectedAll) {
+      console.log(selectedAll)
       const listNavigate = this.getNavigate(selectedAll)
       const l = list.create({
         list: listNavigate,

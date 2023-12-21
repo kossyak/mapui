@@ -31,7 +31,6 @@ export default {
   },
   addPolygon(item) {
     const format = new WKT()
-    
     if (item.geom && item.geom.length > 10) {
       const croppedGeom = item.geom.substring(10);
       const feature = format.readFeature(croppedGeom, {
@@ -39,7 +38,8 @@ export default {
         featureProjection: 'EPSG:3857'
       })
       feature.setProperties({
-        field_name: item.field_name,
+        intake_name: item.intake_name,
+        field_name: item.field_name?.replace("\"", ''),
         pk: item.id
         // ...
       })

@@ -1,0 +1,11 @@
+.ol-zoom {
+  right: 15px;
+  left: auto;
+}
+.ol-mouse-position {
+  top: auto;
+  bottom: 5px;
+}
+.ol-attribution.ol-uncollapsible {
+  display: none;
+}
