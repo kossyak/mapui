@@ -15,8 +15,8 @@ export default {
   helpTooltip: null,
   measureTooltipElement: null,
   measureTooltip: [],
-  continuePolygonMsg: 'Click to continue drawing the polygon',
-  continueLineMsg: 'Click to continue drawing the line',
+  continuePolygonMsg: 'Двойной клик для окончания рисования',
+  continueLineMsg: 'Двойной клик для окончания рисования',
   create(map) {
     const source = new VectorSource()
     const measureVector = new VectorLayer({
@@ -53,7 +53,7 @@ export default {
   },
   pointerMoveHandler(evt) {
     if (evt.dragging) return
-    let helpMsg = 'Click to start drawing'
+    let helpMsg = 'Кликните для начала рисования'
     
     if (this.sketch) {
       const geom = this.sketch.getGeometry()
