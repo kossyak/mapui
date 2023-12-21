@@ -36,13 +36,13 @@ export default {
     const add = (label, text) => text ? `<div><span>${label}: </span><b>${text}</b></div>` : ''
     if (geometry.getType() === 'Point') {
       html += add('Номер ГВК', nameGwk)
-       + add('Внутренний номер', name)
-       + add('Тип', typo)
-       + add('А.О. устья', head)
-       + add('Водозабор', intake)
-       + add('Месторождение', field)
-       + add('N', geometry.flatCoordinates[0])
-       + add('E', geometry.flatCoordinates[1])
+      + add('Внутренний номер', name)
+      + add('Тип', typo)
+      + add('А.О. устья', head)
+      + add('Водозабор', intake)
+      + add('Месторождение', field)
+      + add('С.Ш', geometry.flatCoordinates[0])
+      + add('В.Д', geometry.flatCoordinates[1])
     } else if (geometry.getType() === 'Polygon' || geometry.getType() === 'MultiPolygon') {
       html += add('Месторождение', field_name) + add('Владелец ВЗУ', intake_name)
     }
@@ -54,24 +54,25 @@ export default {
       const selected = s.getProperties()
       const {extra, name, typo, field_name, intake_name } = selected
       const nameGwk = extra?.name_gwk || 'Н/Д'
+      console.log(intake_name)
       let type = {
         key: 'points',
         text: typo
       }
       if (intake_name) type = {
         key: 'VZU',
-        text: 'водозаборы'
+        text: 'водозабор'
       }
       if (field_name) type = {
         key: 'fields',
-        text: 'месторождения'
+        text: 'месторождение'
       }
       selected.type = type.key
       list.push({
         selected,
         title: `<div><span>Номер: </span>${name || 'б/н'}</div>
-                 <div><span>Номер ГВК: </span>${nameGwk}</div>
-                 <div><span>Тип: </span>${type.text}</div>`,
+                <div><span>Номер ГВК: </span>${nameGwk}</div>
+                <div><span>Тип: </span>${type.text}</div>`,
       })
     })
     return list
