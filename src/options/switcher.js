@@ -28,7 +28,7 @@ export default [
     children: [
       {
         key: 'fields',
-        title: 'Меторождения',
+        title: 'Месторождения',
         color: [0, 128, 255, 0.7],
       },
       {
@@ -41,7 +41,7 @@ export default [
   { title: 'Геологические и гидрогеологические карты',
     visible: false },
   {
-    title: 'Абсолютные отметки',
+    title: 'Карта высот',
     visible: false,
     type: 'tile',
     children: [
