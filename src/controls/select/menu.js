@@ -30,7 +30,12 @@ export default {
     },
     {
       key: 'reg',
-      title: 'График режимных наблюдений'
+      title: 'График режимных наблюдений',
+      view: () => {
+        const img = document.createElement('img')
+        img.src = 'regime.png'
+        return img
+      }
     },
     {
       key: 'raz',
