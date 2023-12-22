@@ -43,8 +43,8 @@ export default {
         { label: 'А.О. устья', value: head, name: 'n4'  },
         { label: 'Водозабор', value: intake, name: 'n5'  },
         { label: 'Месторождение', value: field, name: 'n6'  },
-        { label: 'N', value: coordinates[0], type: 'number', name: 'n7'  },
-        { label: 'E', value: coordinates[1], type: 'number', name: 'n8'  },
+        { label: 'С.Ш', value: coordinates[0], type: 'number', name: 'n7'  },
+        { label: 'В.Д', value: coordinates[1], type: 'number', name: 'n8'  },
       ]
     } else if (selected.type === 'fields') {
       return [{ label: 'Наименование', value: field_name, name: 'n9'  }]
@@ -71,11 +71,11 @@ export default {
       }
       if (intake_name) type = {
         key: 'VZU',
-        title: add('Тип', 'Водозабор') + add('Владелец', intake_name)
+        title: add('Тип', 'Водозаборы') + add('Владелец', intake_name)
       }
       if (field_name) type = {
         key: 'fields',
-        title: add('Тип', 'Месторождение') + add('Наименование', field_name)
+        title: add('Тип', 'Месторождения') + add('Наименование', field_name)
       }
       selected.type = type.key
       list.push({ selected, title: type.title })
