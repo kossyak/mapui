@@ -16,7 +16,7 @@ import VZUJson from './interactions/polygons/VZU.json'
 
 import polygons from './interactions/polygons'
 import controls from './controls'
-import measureModule from './measure'
+import measureModule from './controls/measure'
 
 import pointSource from './pointSource'
 import pointLayers from './pointLayers'

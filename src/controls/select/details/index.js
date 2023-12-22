@@ -1,32 +1,30 @@
+import { transform } from 'ol/proj'
+
+function coordinatesHTML(c) {
+  const coordinates = transform(c, 'EPSG:3857', 'EPSG:4326')
+  const html = coordinates.reduce((accum, current) => accum + `<div>${current}</div>`, '')
+  return html
+}
+
 export default {
   fields: [
     {
       key: 'coord',
       title: 'Координаты',
-      view: (selected) => {
-        const coordinates = selected.geometry.flatCoordinates
-        const html = coordinates.reduce((accum, current) => accum + `<div>${current}</div>`, '')
-        return html
-      }
+      view: (selected) => coordinatesHTML(selected.geometry.flatCoordinates)
     }
   ],
   VZU: [
     {
       key: 'coord',
       title: 'Координаты',
-      view: (selected) => {
-        return selected.geometry.flatCoordinates
-      }
+      view: (selected) => coordinatesHTML(selected.geometry.flatCoordinates)
     }
   ],
-  points: [{
+  wells: [{
       key: 'coord',
       title: 'Координаты',
-      view: (selected) => {
-        const coordinates = selected.geometry.flatCoordinates
-        const html = coordinates.reduce((accum, current) => accum + `<div>${current}</div>`, '')
-        return html
-      }
+      view: (selected) => coordinatesHTML(selected.geometry.flatCoordinates)
     },
     {
       key: 'reg',

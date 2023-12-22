@@ -6,6 +6,11 @@
   justify-content: space-between;
   color: var(--gray600);
 }
+.mui .mui-li > div {
+  width: 100%;
+  word-break: normal;
+  white-space: normal;
+}
 .mui-li:hover .mui-arrow {
   opacity: 1;
 }

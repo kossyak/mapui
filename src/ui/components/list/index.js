@@ -7,11 +7,13 @@ export default {
     el.innerHTML = this.content(list)
     el.onclick = (event) => {
       const target = event.target.closest('.mui-li')
-      const prev = target.parentNode.querySelector('.active')
-      prev?.classList.remove('active')
-      target.classList.add('active')
-      const index = +target.dataset.index - 1
-      onclick?.(list[index], index, target, event)
+      if (target) {
+        const prev = target.parentNode.querySelector('.active')
+        prev?.classList.remove('active')
+        target.classList.add('active')
+        const index = +target.dataset.index - 1
+        onclick?.(list[index], index, target, event)
+      }
     }
     return el
   },

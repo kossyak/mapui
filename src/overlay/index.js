@@ -25,7 +25,8 @@ export default {
   },
   update(event, map, tooltip, container, content) {
     const features = map.getFeaturesAtPixel(event.pixel)
-    if (features && features.length > 0 && features.__id === 'measure') {
+    if (features?.length === 1 && features[0].__id === 'measure') return
+    if (features?.length > 0) {
       const add = (label, text) => text ? `<b>${label}: </b>${text}<br>` : ''
       let tooltipText = ''
       features.forEach((feature) => {

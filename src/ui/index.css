@@ -169,7 +169,6 @@ aside.mui-navigate > div.mui-content {
   width: calc(100vw - 220px);
 }
 .mui-extension:has(.mui-content:empty) {
-  left: 0;
   max-width: 0;
   min-width: 0;
   animation: none;

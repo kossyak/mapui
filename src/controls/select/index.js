@@ -1,7 +1,9 @@
 import './index.css'
-import menu from './menu'
+import details from './details'
+import editor from './editor'
 import tap from '../../ui/components/tap'
 import list from '../../ui/components/list'
+import { transform } from 'ol/proj'
 
 export default {
   selected: {},
@@ -18,7 +20,7 @@ export default {
     })
     ui.navigate.on('back', () => {
       ui.navigate.extension.setTitle('')
-      this.openEx(ui)
+      this.openExtension(ui)
     })
     // select.getFeatures().on('remove', update)
     return infoPanel
@@ -29,69 +31,76 @@ export default {
     container.hidden = true
     return container
   },
-  getEx(selected) {
+  getFields(selected) {
     const { geometry, extra, name, typo, head, intake, field, field_name, intake_name } = selected
+    const coordinates = transform(geometry.flatCoordinates, 'EPSG:3857', 'EPSG:4326')
     const nameGwk = extra?.name_gwk || 'Н/Д'
+    if (selected.type === 'wells') {
+      return [
+        { label: 'Номер ГВК', value: nameGwk, type: 'number', name: 'n1' },
+        { label: 'Внутренний номер', value: name, type: 'number', name: 'n2'  },
+        { label: 'Тип', value: typo, name: 'n3'  },
+        { label: 'А.О. устья', value: head, name: 'n4'  },
+        { label: 'Водозабор', value: intake, name: 'n5'  },
+        { label: 'Месторождение', value: field, name: 'n6'  },
+        { label: 'N', value: coordinates[0], type: 'number', name: 'n7'  },
+        { label: 'E', value: coordinates[1], type: 'number', name: 'n8'  },
+      ]
+    } else if (selected.type === 'fields') {
+      return [{ label: 'Наименование', value: field_name, name: 'n9'  }]
+    } else if (selected.type === 'VZU') {
+      return [{ label: 'Владелец', value: intake_name, name: 'n10'  }]
+    }
+  },
+  fieldsToHTML(fields) {
     let html = '<div class="info-text">'
     const add = (label, text) => text ? `<div><span>${label}: </span><b>${text}</b></div>` : ''
-    if (geometry.getType() === 'Point') {
-      html += add('Номер ГВК', nameGwk)
-       + add('Внутренний номер', name)
-       + add('Тип', typo)
-       + add('А.О. устья', head)
-       + add('Водозабор', intake)
-       + add('Месторождение', field)
-       + add('N', geometry.flatCoordinates[0])
-       + add('E', geometry.flatCoordinates[1])
-    } else if (geometry.getType() === 'Polygon' || geometry.getType() === 'MultiPolygon') {
-      html += add('Месторождение', field_name) + add('Владелец ВЗУ', intake_name)
-    }
+    fields.forEach((el) => html += add(el.label, el.value))
     return html + '</div>'
   },
   getNavigate(selectedAll) {
     const list = []
     selectedAll.forEach((s) => {
       const selected = s.getProperties()
-      const {extra, name, typo, field_name, intake_name } = selected
+      const { extra, name, typo, field_name, intake_name } = selected
       const nameGwk = extra?.name_gwk || 'Н/Д'
+      const add = (label, text) => `<div><span>${label}: </span>${text || '-'}</div>`
       let type = {
-        key: 'points',
-        text: typo
+        key: 'wells',
+        title: add('Номер', name || 'б/н') + add('Номер ГВК', nameGwk) + add('Тип', typo)
       }
       if (intake_name) type = {
         key: 'VZU',
-        text: 'водозаборы'
+        title: add('Тип', 'Водозабор') + add('Владелец', intake_name)
       }
       if (field_name) type = {
         key: 'fields',
-        text: 'месторождения'
+        title: add('Тип', 'Месторождение') + add('Наименование', field_name)
       }
       selected.type = type.key
-      list.push({
-        selected,
-        title: `<div><span>Номер: </span>${name || 'б/н'}</div>
-                 <div><span>Номер ГВК: </span>${nameGwk}</div>
-                 <div><span>Тип: </span>${type.text}</div>`,
-      })
+      list.push({ selected, title: type.title })
     })
     return list
   },
-  openEx(ui) {
+  openExtension(ui) {
+    const fields = this.getFields(this.selected)
     const editBtn = tap.create({
       html: 'Редактировать <i>✎</i>',
-      onclick: () => {
+      onclick: (v) => {
+        const form = editor.create(fields)
+        ui.navigate.extension.content(form)
         ui.navigate.extension.setTitle('Редактирование')
       }
     })
-    const html = this.getEx(this.selected)
+    const html = this.fieldsToHTML(fields)
     ui.navigate.extension.content(editBtn)
     ui.navigate.extension.addContent(html)
     const type = this.selected.type
     const listEx = list.create({
-      list: menu[type],
+      list: details[type],
       onclick: (item, index) => {
         ui.navigate.extension.setTitle(item.title)
-        const content = menu[type][index].view?.(this.selected)
+        const content = details[type][index].view?.(this.selected)
         if (content) ui.navigate.extension.content(content)
       }
     })
@@ -101,13 +110,12 @@ export default {
     ui.navigate.extension.content('')
     const selectedAll = select.getFeatures().getArray()
     if (selectedAll) {
-      console.log(selectedAll)
       const listNavigate = this.getNavigate(selectedAll)
       const l = list.create({
         list: listNavigate,
         onclick: (v) => {
           this.selected = v.selected
-          this.openEx(ui)
+          this.openExtension(ui)
         }
       })
       ui.navigate.content(l)
