@@ -14,3 +14,41 @@
   background-color: var(--black);
   color: white;
 }
+
+.coordinate-list > div {
+  display: grid;
+  grid-template-columns: 180px 180px;
+  column-gap: 10px;
+  cursor: pointer;
+  padding: 5px 0;
+}
+
+.coordinate-list > div:first-child {
+  font-weight: bold;
+}
+
+.editor .coordinate-list > div:not(.hr, .coordinate-panel):hover:after {
+  position: absolute;
+  content: '✎';
+  right: 20px;
+}
+
+.coordinate-panel {
+  padding-top: 12px;
+  border-bottom: 1px solid var(--gray100);
+}
+.coordinate-panel .mui-input {
+  margin-bottom: 10px;
+}
+.coordinate-panel-btns {
+  grid-column: 2;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+}
+.coordinate-panel-btns  button {
+  display: block;
+  padding: 8px 10px;
+  font-weight: bold;
+}

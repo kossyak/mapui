@@ -5,6 +5,14 @@ import tap from '../../ui/components/tap'
 import list from '../../ui/components/list'
 import { transform } from 'ol/proj'
 
+function combine(original) {
+  let n = []
+  for (let i = 0; i < original.length; i += 2) {
+    n.push(transform([original[i], original[i + 1]], 'EPSG:3857', 'EPSG:4326'))
+  }
+  return n
+}
+
 export default {
   selected: {},
   create(select, ui) {
@@ -33,7 +41,8 @@ export default {
   },
   getFields(selected) {
     const { geometry, extra, name, typo, head, intake, field, field_name, intake_name } = selected
-    const coordinates = transform(geometry.flatCoordinates, 'EPSG:3857', 'EPSG:4326')
+    const coordinates = combine(geometry.flatCoordinates)
+    selected.__coordinates = coordinates
     const nameGwk = extra?.name_gwk || 'Н/Д'
     if (selected.type === 'wells') {
       return [
@@ -43,8 +52,8 @@ export default {
         { label: 'А.О. устья', value: head, name: 'n4'  },
         { label: 'Водозабор', value: intake, name: 'n5'  },
         { label: 'Месторождение', value: field, name: 'n6'  },
-        { label: 'С.Ш', value: coordinates[0], type: 'number', name: 'n7'  },
-        { label: 'В.Д', value: coordinates[1], type: 'number', name: 'n8'  },
+        // { label: 'С.Ш', value: coordinates[0][0], type: 'number', name: 'n7'  },
+        // { label: 'В.Д', value: coordinates[0][1], type: 'number', name: 'n8'  },
       ]
     } else if (selected.type === 'fields') {
       return [{ label: 'Наименование', value: field_name, name: 'n9'  }]
@@ -87,7 +96,7 @@ export default {
     const editBtn = tap.create({
       html: 'Редактировать <i>✎</i>',
       onclick: (v) => {
-        const form = editor.create(fields)
+        const form = editor.create(fields, this.selected.__coordinates)
         ui.navigate.extension.content(form)
         ui.navigate.extension.setTitle('Редактирование')
       }

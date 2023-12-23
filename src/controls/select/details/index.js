@@ -1,30 +1,25 @@
-import { transform } from 'ol/proj'
+import coordinatesHTML from '../coordinatesHTML'
 
-function coordinatesHTML(c) {
-  const coordinates = transform(c, 'EPSG:3857', 'EPSG:4326')
-  const html = coordinates.reduce((accum, current) => accum + `<div>${current}</div>`, '')
-  return html
-}
 
 export default {
   fields: [
     {
       key: 'coord',
       title: 'Координаты',
-      view: (selected) => coordinatesHTML(selected.geometry.flatCoordinates)
+      view: (selected) => coordinatesHTML(selected.__coordinates)
     }
   ],
   VZU: [
     {
       key: 'coord',
       title: 'Координаты',
-      view: (selected) => coordinatesHTML(selected.geometry.flatCoordinates)
+      view: (selected) => coordinatesHTML(selected.__coordinates)
     }
   ],
   wells: [{
       key: 'coord',
       title: 'Координаты',
-      view: (selected) => coordinatesHTML(selected.geometry.flatCoordinates)
+      view: (selected) => coordinatesHTML(selected.__coordinates)
     },
     {
       key: 'reg',
