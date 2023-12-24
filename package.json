@@ -1,10 +1,29 @@
 {
-  "name": "static",
+  "name": "mui",
   "version": "1.0.0",
   "description": "",
+  "targets": {
+    "global": {
+      "context": "browser",
+      "outputFormat": "global",
+      "source": "./src/main.js",
+      "sourceMap": false,
+      "distDir": "./static"
+    },
+    "esm": {
+      "outputFormat": "esmodule",
+      "source": "./src/main.js",
+      "sourceMap": false,
+      "optimize": true,
+      "distDir": "./static",
+      "isLibrary": true
+    }
+  },
   "scripts": {
     "dev": "npm run build-img && parcel index.html",
-    "build-img": "parcel build image/* --no-cache"
+    "build-img": "parcel build image/* --no-cache",
+    "global": "parcel build --target global --no-cache",
+    "esm": "parcel build --target esm --no-cache"
   },
   "author": "",
   "license": "ISC",
