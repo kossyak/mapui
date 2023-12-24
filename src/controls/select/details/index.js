@@ -1,5 +1,5 @@
 import coordinatesHTML from '../coordinatesHTML'
-
+import ms from '../../../microservice'
 
 export default {
   fields: [
@@ -54,10 +54,16 @@ export default {
     },
     {
       key: 'him',
-      title: 'Химический анализ'
+      title: 'Химический анализ',
+      view: () => {
+        return ms.create({ url: 'https://cdn.openai.com/papers/weak-to-strong-generalization.pdf' })
+      }
     },
     {
       key: 'mon',
-      title: 'Датчик мониторинга уровня'
+      title: 'Датчик мониторинга уровня',
+      view: () => {
+        return ms.create({ url: 'https://openweathermap.org/weathermap?basemap=map&cities=false&layer=precipitation&lat=0&lon=0&zoom=2' })
+      }
     }]
 }

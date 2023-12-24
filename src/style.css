@@ -9,3 +9,6 @@
 .ol-attribution.ol-uncollapsible {
   display: none;
 }
+iframe {
+  display: block;
+}
