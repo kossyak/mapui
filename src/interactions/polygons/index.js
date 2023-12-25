@@ -4,24 +4,20 @@ import WKT from 'ol/format/WKT'
 import Modify from 'ol/interaction/Modify'
 import { transform } from "ol/proj"
 import { Fill, Stroke, Style } from 'ol/style'
+import api from '../../api'
 
 export default {
-  create({ getUrl, setUrl, data, style }) {
+  create({ type, data, style }) {
     this.style = style
     this.layer = new VectorLayer({ source: new VectorSource() })
-    // this.load(getUrl)
+    // api.loadPolygons(type).than(data => this.addPolygons(data))
     this.addPolygons(data)
-    return { layer: this.layer, interaction: this.addModify(setUrl) }
+    return { layer: this.layer, interaction: this.addModify(type) }
   },
-  load() {
-    // fetch(getUrl)
-    // .then(response => response.json())
-    // .then(data => this.addPolygons(data)).catch(error => console.error('Error fetching data:', error))
-  },
-  addModify(setUrl) {
+  addModify(type) {
     const interaction = new Modify({
       source: this.layer.getSource(),
-      modifyend: (event) => this.handleModifyEnd(event, setUrl)
+      modifyend: (event) => this.handleModifyEnd(event, type)
     })
     interaction.setActive(false)
     return interaction
@@ -58,7 +54,7 @@ export default {
     })
   })
   },
-  handleModifyEnd(event, coordinates_url) {
+  handleModifyEnd(event, type) {
     const features = event.features.getArray()
     features.forEach((feature) => {
       const coordinates = feature.getGeometry().getCoordinates().map(
@@ -69,19 +65,7 @@ export default {
         )
       )
       const featureId = feature.get('pk')
-      this.updateCoordinates(featureId, coordinates, coordinates_url)
-    })
-  },
-  updateCoordinates(featureId, coordinates, coordinates_url) {
-    const url = `${coordinates_url}${featureId}`
-    const data = { coordinates }
-    console.log(url)
-    console.log('Отправляемый запрос:', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
+      api.updateCoordinates(featureId, coordinates, type)
     })
   }
 }

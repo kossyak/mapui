@@ -78,11 +78,11 @@ export default {
         key: 'wells',
         title: add('Номер', name || 'б/н') + add('Номер ГВК', nameGwk) + add('Тип', typo)
       }
-      if (intake_name) type = {
+      if (selected.hasOwnProperty('intake_name')) type = {
         key: 'VZU',
         title: add('Тип', 'Водозаборы') + add('Владелец', intake_name)
       }
-      if (field_name) type = {
+      if (selected.hasOwnProperty('field_name')) type = {
         key: 'fields',
         title: add('Тип', 'Месторождения') + add('Наименование', field_name)
       }

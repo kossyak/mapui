@@ -42,20 +42,18 @@ export default {
     const zoomLabel = 13
     
     const fieldsPolygon = polygons.create({
-      getUrl: 'app/map/fields',
-      setUrl: '/base/api/fields/',
-      data: fieldsJson
+      data: fieldsJson,
+      type: 'fields'
     })
     const VZUPolygon = polygons.create({
-      getUrl: '/map/vzu',
-      setUrl: '/base/api/fields/',
       data: VZUJson,
+      type: 'VZU',
       style: {
         strokeColor: 'blue',
         fillColor: [0, 0, 128, 0.4]
       }
     })
-    
+    debugger
     const pointSrc = pointSource.getPointSource(wells)
     const layers = pointLayers.create(pointSrc, wells)
     const allLayers = { fields: fieldsPolygon.layer, VZU: VZUPolygon.layer, ...layers }

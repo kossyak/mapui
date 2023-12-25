@@ -1,5 +1,6 @@
 import Translate from 'ol/interaction/Translate'
 import { transform } from "ol/proj"
+import api from '../../api'
 
 export default {
   create(select) {
@@ -14,7 +15,7 @@ export default {
     // обработка получения координат, в зависимости от источника
     const features = event.features.getArray()
     features.forEach((feature) => {
-      let coordinates_url
+      let type
       let coordinates
       // для точки
       if (feature.getGeometry().getType() === 'Point') {
@@ -38,32 +39,17 @@ export default {
       }
       const featureId = feature.get('pk')
       if (feature.getGeometry().getType() === 'Point') {
-        coordinates_url = '/base/api/wells/'
+        type = 'wells'
       } else if (feature.getGeometry().getType() === 'Polygon' || feature.getGeometry().getType() === 'MultiPolygon') {
         const properties = feature.getProperties()
-        if ('field_name' in properties) {
-          coordinates_url = '/base/api/fields/'
-        } else if ('intake_name' in properties) {
-          coordinates_url = '/base/api/vzus/'
+        if (properties.hasOwnProperty('field_name')) {
+          type = 'fields'
+        } else if (properties.hasOwnProperty('intake_name')) {
+          type = 'vzu'
         }
       }
-      this.updateCoordinates(featureId, coordinates, coordinates_url)
+      api.updateCoordinates(featureId, coordinates, type)
     })
-  },
-  updateCoordinates(featureId, coordinates, coordinates_url) {
-    console.log(featureId, coordinates, coordinates_url)
-    // const url = `${coordinates_url}${featureId}`
-    // const data = {
-    //   coordinates: coordinates
-    // };
-    // console.log(url);
-    // console.log('Отправляемый запрос:', {
-    //   method: 'PUT',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(data)
-    // })
   }
 }
 

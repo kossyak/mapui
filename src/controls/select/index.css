@@ -45,6 +45,7 @@
 .mui-extension .mui-content img {
   display: block;
   max-height: 100%;
+  max-width: 100%;
 }
 .mui-extension .mui-content .mui-tap {
   width: auto;
