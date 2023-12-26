@@ -42,9 +42,9 @@ export default {
         type = 'wells'
       } else if (feature.getGeometry().getType() === 'Polygon' || feature.getGeometry().getType() === 'MultiPolygon') {
         const properties = feature.getProperties()
-        if (properties.hasOwnProperty('field_name')) {
+        if (properties.field_name) {
           type = 'fields'
-        } else if (properties.hasOwnProperty('intake_name')) {
+        } else if (properties.intake_name) {
           type = 'vzu'
         }
       }

@@ -39,7 +39,8 @@ export default {
           tooltipText += add('Номер', name) + add('Тип', typo) + add('ГВК', nameGwk)
         } else if (type === 'Polygon' || type === 'MultiPolygon') {
           this.coordinates = event.coordinate
-          tooltipText += add('Месторождение', field_name || '-') + add('Владелец ВЗУ', intake_name)
+          if (field_name) tooltipText += add('Месторождение', field_name || '-')
+          if (intake_name) tooltipText += add('Владелец ВЗУ', intake_name)
         }
         tooltip.setPosition(this.coordinates)
       })

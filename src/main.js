@@ -53,7 +53,6 @@ export default {
         fillColor: [0, 0, 128, 0.4]
       }
     })
-    debugger
     const pointSrc = pointSource.getPointSource(wells)
     const layers = pointLayers.create(pointSrc, wells)
     const allLayers = { fields: fieldsPolygon.layer, VZU: VZUPolygon.layer, ...layers }
