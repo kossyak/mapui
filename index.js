@@ -1,13 +1,7 @@
 import mapUI from './src/main.js'
+import loader from './src/loader'
+import api from './src/api'
 
 const target = document.querySelector('#root')
-mapUI.init(target)
-
-// <body>
-// <div id="root"></div>
-// <script type="module">
-// import mapUI from '/static/main.js'
-// const target = document.querySelector('#root')
-// mapUI.init(target)
-// </script>
-// </body>
+const urls = [api.wells.get, api.fields.get, api.vzu.get]
+loader.init(urls).then(result => mapUI.init(target, result))

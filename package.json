@@ -11,6 +11,7 @@
       "distDir": "./static"
     },
     "esm": {
+      "context": "browser",
       "outputFormat": "esmodule",
       "source": "./src/main.js",
       "sourceMap": false,

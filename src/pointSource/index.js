@@ -1,14 +1,14 @@
 import VectorSource from 'ol/source/Vector'
 import GeoJSON from 'ol/format/GeoJSON'
-import points from './points.json'
+// import points from './points.json'
 
 export default {
-  getFeatures(typo) {
+   getFeatures(typo, points) {
     const features = points.features.filter(item => item.properties.typo === typo)
     return {type: 'FeatureCollection', crs: {type: 'name', properties: {name: 'EPSG:4326'}}, features}
   },
-  getSource(typo) {
-    const features = new GeoJSON().readFeatures(this.getFeatures(typo), {
+  getSource(typo, points) {
+    const features = new GeoJSON().readFeatures(this.getFeatures(typo, points), {
       dataProjection: 'EPSG:4326',
       featureProjection: 'EPSG:3857'
     })
@@ -19,9 +19,9 @@ export default {
       features
     })
   },
-  getPointSource(wells) {
+  getPointSource(wells, points) {
     const pointSource = {}
-    wells.forEach(item => pointSource[item.key] = this.getSource(item.typo))
+    wells.forEach(item => pointSource[item.key] = this.getSource(item.typo, points))
     return pointSource
   }
 }

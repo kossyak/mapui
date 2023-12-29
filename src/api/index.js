@@ -1,21 +1,15 @@
 export default {
-  pointSource: {
-    url: 'app/map/points'
-  },
   wells: {
+    get: '/points.json',
     set: '/base/api/wells/'
   },
   fields: {
-    get: 'app/map/fields',
+    get: '/fields.json',
     set: '/base/api/fields',
   },
   vzu: {
-    getUrl: '/map/vzu',
-    setUrl: '/base/api/vzu'
-  },
-  async loadPolygons(type) {
-    const response = fetch(this[type].get)
-    return await response.json()
+    get: '/VZU.json',
+    set: '/base/api/vzu'
   },
   async updateCoordinates(featureId, coordinates, type) {
     const url = `${this[type].set}${featureId}`

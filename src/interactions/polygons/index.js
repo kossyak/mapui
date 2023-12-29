@@ -10,7 +10,6 @@ export default {
   create({ type, data, style }) {
     this.style = style
     this.layer = new VectorLayer({ source: new VectorSource() })
-    // api.loadPolygons(type).than(data => this.addPolygons(data))
     this.addPolygons(data)
     return { layer: this.layer, interaction: this.addModify(type) }
   },

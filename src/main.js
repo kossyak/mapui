@@ -10,9 +10,6 @@ import dragBoxModule from './interactions/dragBox'
 import Select from 'ol/interaction/Select'
 import tooltipOverlay from './overlay'
 import Control from 'ol/control/Control'
-// Json source
-import fieldsJson from './interactions/polygons/fields.json'
-import VZUJson from './interactions/polygons/VZU.json'
 
 import polygons from './interactions/polygons'
 import controls from './controls'
@@ -30,17 +27,18 @@ import switcher from './options/switcher'
 
 import UI from './ui'
 
-
 export default {
   animate(map) {
     map.render()
     window.requestAnimationFrame(() => this.animate(map))
   },
-  init(target, coordinate) {
+  init(target, result, coordinate) {
     const ui = UI.create(target) // { navigate, info }
     const zoom = 12
     const zoomLabel = 13
-    
+    const wellsJson = result[0]
+    const fieldsJson = result[1]
+    const VZUJson = result[2]
     const fieldsPolygon = polygons.create({
       data: fieldsJson,
       type: 'fields'
@@ -53,7 +51,7 @@ export default {
         fillColor: [0, 0, 128, 0.4]
       }
     })
-    const pointSrc = pointSource.getPointSource(wells)
+    const pointSrc = pointSource.getPointSource(wells, wellsJson)
     const layers = pointLayers.create(pointSrc, wells)
     const allLayers = { fields: fieldsPolygon.layer, VZU: VZUPolygon.layer, ...layers }
     const groups = groupsModule.create(allLayers)

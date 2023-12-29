@@ -5,6 +5,7 @@ import element from './components/element'
 export default {
   create(target) {
     target.classList.add('mui')
+    target.innerHTML = ''
     const navigate = this.aside(target, 'navigate')
     this.extension(navigate)
     const map = element.create({ parent: target, name: 'map' })
