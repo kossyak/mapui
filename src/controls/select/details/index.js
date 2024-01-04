@@ -24,10 +24,8 @@ export default {
     {
       key: 'reg',
       title: 'График режимных наблюдений',
-      view: () => {
-        const img = document.createElement('img')
-        img.src = 'regime.png'
-        return img
+      view: (selected) => {
+        return ms.create({ url: 'http://127.0.0.1:8080/base/api/regime/' + selected.pk + '/plot/' })
       }
     },
     {
@@ -50,7 +48,10 @@ export default {
     },
     {
       key: 'ofp',
-      title: 'Данные по ОФР'
+      title: 'Данные по ОФР',
+      view: (selected) => {
+        return ms.create({ url: 'http://127.0.0.1:8080/base/api/efw/' + selected.pk + '/list/' })
+      }
     },
     {
       key: 'him',
