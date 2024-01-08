@@ -56,8 +56,8 @@ export default {
     {
       key: 'him',
       title: 'Химический анализ',
-      view: () => {
-        return ms.create({ url: 'https://cdn.openai.com/papers/weak-to-strong-generalization.pdf' })
+      view: (selected) => {
+        return ms.create({ url: 'http://127.0.0.1:8080/base/api/chem/' + selected.pk + '/list/' })
       }
     },
     {
