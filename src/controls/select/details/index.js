@@ -40,10 +40,8 @@ export default {
     {
       key: 'gis',
       title: 'Данные ГИС',
-      view: () => {
-        const img = document.createElement('img')
-        img.src = 'GIS.png'
-        return img
+      view: (selected) => {
+        return ms.create({ url: 'http://127.0.0.1:8080/base/api/gph/' + selected.pk + '/list/' })
       }
     },
     {
