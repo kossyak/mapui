@@ -53,7 +53,7 @@
 
 .mui aside > .mui-content {
   /*white-space: nowrap;*/
-  overflow: hidden;
+  overflow: auto;
   opacity: 0;
   padding: 22px;
   transition: opacity .3s ease-in .12s;

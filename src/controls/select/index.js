@@ -43,10 +43,10 @@ export default {
     const { geometry, extra, name, typo, head, intake, field, field_name, intake_name } = selected
     const coordinates = combine(geometry.flatCoordinates)
     selected.__coordinates = coordinates
-    const nameGwk = extra?.name_gwk || 'Н/Д'
+    selected.nameGwk = extra?.name_gwk || 'Н/Д' // new field
     if (selected.type === 'wells') {
       return [
-        { label: 'Номер ГВК', value: nameGwk, type: 'number', name: 'n1' },
+        { label: 'Номер ГВК', value: selected.nameGwk, type: 'number', name: 'n1' },
         { label: 'Внутренний номер', value: name, type: 'number', name: 'n2'  },
         { label: 'Тип', value: typo, name: 'n3'  },
         { label: 'А.О. устья', value: head, name: 'n4'  },

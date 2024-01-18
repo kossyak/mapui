@@ -1,0 +1,36 @@
+*:has(> .lstTable) {
+    overflow-x: auto;
+}
+.lstTable {
+    width: 100%;
+    font-weight: 300;
+    font-size: var(--fs-xxs);
+    border: 0;
+    border-collapse: collapse;
+    text-align: left;
+}
+.lstTable td {
+    max-width: 20ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.lstTable td,.lstTable th {
+    padding: 0.4em;
+}
+.lstTable tr {
+    background-color: #ffffff10;
+    border-bottom: 1px solid #00000020;
+}
+.lstTable tr.selected {
+    background-color: #00000020;
+}
+.lstTable tr:hover {
+    background-color: #00000010;
+}
+.lstTable th {
+    background-color: #00000020;
+}
+
+.lstTable td:first-child,.lstTable th:first-child {
+    padding-left: var(--xxs);
+}

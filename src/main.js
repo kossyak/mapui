@@ -58,7 +58,13 @@ export default {
     const { mousePositionControl, scaleLineControl, selectControlModule } = controls
   
     // switcher
-    wells.forEach((item, i) => { switcher[0].children[i].key = item.key, switcher[0].children[i].color = item.color })
+    wells.forEach((item) => {
+      const target = switcher[0].children.find(el => el.key === item.key)
+      if (target) {
+        target.key = item.key
+        target.color = item.color
+      } else console.error('wells and switcher do not correspond')
+    })
     const switcherElement = switcherModule.create(switcher, groups)
     
     // menu

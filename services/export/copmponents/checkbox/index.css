@@ -1,0 +1,62 @@
+.lstCheckbox {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  font-family: inherit;
+  font-size: inherit;
+  padding-block: 0;
+  padding-inline: 0;
+  line-height: normal;
+  padding-left: 2.2em;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+}
+.lstCheckbox input {
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  left: 0;
+  top: 0;
+}
+.lstCheckboxText:before {
+  content: '\200B';
+}
+.lstCheckbox:has(.lstCheckboxText:not(:empty)) {
+  padding-left: 2.2em;
+}
+.lstCheckmark {
+  position: absolute;
+  top: auto;
+  left: 0;
+  height: 70%;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  border: 1px solid var(--gray400);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lstCheckbox input:checked ~ .lstCheckmark {
+  border: 0;
+  background-color: var(--gray700);
+}
+
+.lstCheckmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.lstCheckbox input:checked ~ .lstCheckmark:after {
+  display: block;
+}
+.lstCheckbox .lstCheckmark:after {
+  margin-top: -.2em;
+  width: .6em;
+  height: 1em;
+  border: solid white;
+  border-width: 0 4px 4px 0;
+  transform: rotate(45deg);
+}

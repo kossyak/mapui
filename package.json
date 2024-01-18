@@ -24,6 +24,7 @@
     "dev": "npm run build-img && parcel index.html",
     "build-img": "parcel build image/* --no-cache",
     "global": "parcel build --target global --no-cache",
+    "export": "parcel services/export/index.html",
     "esm": "parcel build --target esm --no-cache"
   },
   "author": "",
@@ -31,5 +32,8 @@
   "dependencies": {
     "ol": "^8.2.0",
     "parcel": "^2.10.3"
+  },
+  "devDependencies": {
+    "@parcel/transformer-inline-string": "^2.10.3"
   }
 }
