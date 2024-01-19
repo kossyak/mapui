@@ -1,7 +1,7 @@
-export default {
-  iframe: null,
-  url: '',
-  create({target, url, onload, width = '100%', height = '100%'}) {
+export default class MS {
+  constructor({ target, url, entry, onload, onmessage, width = '100%', height = '100%'}) {
+    this.iframe = null
+    this.url = url
     const iframe = document.createElement('iframe')
     this.iframe = iframe
     this.url = url
@@ -10,17 +10,16 @@ export default {
     iframe.height = height
     iframe.setAttribute('frameborder', '0')
     if (target) target.appendChild(iframe)
-    iframe.onload = onload
+    iframe.onload = async () => {
+      await iframe.contentWindow.create?.(entry)
+      onload?.()
+    }
     window.addEventListener('message', (event) => {
-      if (event.source === iframe.contentWindow) {
-        const message = event.data
-        // Действия с полученным сообщением от микросервиса
-      }
+      if (event.source === iframe.contentWindow) onmessage?.(event.data)
     })
-    return iframe
-  },
-  send(message) {
-    this.iframe.contentWindow.postMessage(message, this.url)
+  }
+  send(data) {
+    this.iframe.contentWindow.postMessage(data, this.url)
   }
 }
 

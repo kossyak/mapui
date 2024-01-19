@@ -1,7 +1,11 @@
-import data from 'bundle-text:./data.txt'
 import main from './main'
 
-const root = document.querySelector('#root')
-const app = lesta.createApp({ data: JSON.parse(data) })
+window.create = ({ data, models }) => {
+  const root = document.querySelector('#root')
+  const app = lesta.createApp({ data, models })
+  app.mount(main, root, { params: {} })
+}
 
-app.mount(main, root, { params: {} })
+// window.addEventListener('message', (event) => {
+//   console.log(event.data)
+// })

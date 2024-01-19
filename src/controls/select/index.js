@@ -4,6 +4,9 @@ import editor from './editor'
 import tap from '../../ui/components/tap'
 import list from '../../ui/components/list'
 import { transform } from 'ol/proj'
+import MS from '../../microservice'
+import models from '../../options/models'
+import config from '../../../config'
 
 function combine(original) {
   let n = []
@@ -15,6 +18,7 @@ function combine(original) {
 
 export default {
   selected: {},
+  selectedAll: [],
   create(select, ui) {
     const infoPanel = this.infoElement()
     const update = (event) => this.update(event, select, infoPanel, ui)
@@ -23,6 +27,22 @@ export default {
     //   ui.navigate.content('')
     // })
     ui.navigate.classList.add('info')
+    const exportBtn = tap.create({
+      html: `Экспорт ⤇`,
+      onclick: (v) => {
+        const ms = new MS({
+          url: config.services.export(),
+          entry: {
+            data: this.selectedAll,
+            models: models
+          }
+        })
+        ui.navigate.extension.content(ms.iframe)
+        return true
+      }
+    })
+    ui.navigate.append(exportBtn)
+    
     ui.navigate.on('close', () => {
       select.getFeatures().clear()
     })
@@ -40,13 +60,10 @@ export default {
     return container
   },
   getFields(selected) {
-    const { geometry, extra, name, typo, head, intake, field, field_name, intake_name } = selected
-    const coordinates = combine(geometry.flatCoordinates)
-    selected.__coordinates = coordinates
-    selected.nameGwk = extra?.name_gwk || 'Н/Д' // new field
+    const { nameGwk, name, typo, field_name, head, intake, field, intake_name } = selected
     if (selected.type === 'wells') {
       return [
-        { label: 'Номер ГВК', value: selected.nameGwk, type: 'number', name: 'n1' },
+        { label: 'Номер ГВК', value: nameGwk, type: 'number', name: 'n1' },
         { label: 'Внутренний номер', value: name, type: 'number', name: 'n2'  },
         { label: 'Тип', value: typo, name: 'n3'  },
         { label: 'А.О. устья', value: head, name: 'n4'  },
@@ -69,10 +86,13 @@ export default {
   },
   getNavigate(selectedAll) {
     const list = []
+    this.selectedAll = []
     selectedAll.forEach((s) => {
-      const selected = s.getProperties()
-      const { extra, name, typo, field_name, intake_name } = selected
+      const properties = s.getProperties()
+      const { geometry, extra, name, typo, head, intake, field, field_name, intake_name } = properties
       const nameGwk = extra?.name_gwk || 'Н/Д'
+      const selected = { nameGwk, name, typo, field_name, head, intake, field, intake_name, coordinates: combine(geometry.flatCoordinates) }
+      this.selectedAll.push(selected)
       const add = (label, text) => `<div><span>${label}: </span>${text || '-'}</div>`
       let type = {
         key: 'wells',
@@ -96,7 +116,7 @@ export default {
     const editBtn = tap.create({
       html: 'Редактировать <i>✎</i>',
       onclick: (v) => {
-        const form = editor.create(fields, this.selected.__coordinates)
+        const form = editor.create(fields, this.selected.coordinates)
         ui.navigate.extension.content(form)
         ui.navigate.extension.setTitle('Редактирование')
       }

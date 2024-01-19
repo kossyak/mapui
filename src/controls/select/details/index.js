@@ -1,31 +1,32 @@
 import coordinatesHTML from '../coordinatesHTML'
-import ms from '../../../microservice'
+import MS from '../../../microservice'
+import config from '../../../../config'
 
 export default {
   fields: [
     {
       key: 'coord',
       title: 'Координаты',
-      view: (selected) => coordinatesHTML(selected.__coordinates)
+      view: (selected) => coordinatesHTML(selected.coordinates)
     }
   ],
   VZU: [
     {
       key: 'coord',
       title: 'Координаты',
-      view: (selected) => coordinatesHTML(selected.__coordinates)
+      view: (selected) => coordinatesHTML(selected.coordinates)
     }
   ],
   wells: [{
       key: 'coord',
       title: 'Координаты',
-      view: (selected) => coordinatesHTML(selected.__coordinates)
+      view: (selected) => coordinatesHTML(selected.coordinates)
     },
     {
       key: 'reg',
       title: 'График режимных наблюдений',
       view: (selected) => {
-        return ms.create({ url: 'http://127.0.0.1:8080/base/api/regime/' + selected.pk + '/plot/' })
+        return new MS({ url: config.services.reg(selected) }).iframe
       }
     },
     {
@@ -41,28 +42,28 @@ export default {
       key: 'gis',
       title: 'Данные ГИС',
       view: (selected) => {
-        return ms.create({ url: 'http://127.0.0.1:8080/base/api/gph/' + selected.pk + '/list/' })
+        return new MS({ url: config.services.gis(selected) }).iframe
       }
     },
     {
       key: 'ofp',
       title: 'Данные по ОФР',
       view: (selected) => {
-        return ms.create({ url: 'http://127.0.0.1:8080/base/api/efw/' + selected.pk + '/list/' })
+        return new MS({ url: config.services.ofp(selected) }).iframe
       }
     },
     {
       key: 'him',
       title: 'Химический анализ',
       view: (selected) => {
-        return ms.create({ url: 'http://127.0.0.1:8080/base/api/chem/' + selected.pk + '/list/' })
+        return new MS({ url: config.services.him(selected) }).iframe
       }
     },
     {
       key: 'mon',
       title: 'Датчик мониторинга уровня',
       view: () => {
-        return ms.create({ url: 'https://openweathermap.org/weathermap?basemap=map&cities=false&layer=precipitation&lat=0&lon=0&zoom=2' })
+        return new MS({ url: 'https://openweathermap.org/weathermap?basemap=map&cities=false&layer=precipitation&lat=0&lon=0&zoom=2' }).iframe
       }
     }]
 }

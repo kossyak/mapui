@@ -9,6 +9,17 @@
 .ol-attribution.ol-uncollapsible {
   display: none;
 }
+.mui-navigate.info .mui-tap {
+  padding: 16px;
+  background-color: #ffffff1f;
+}
+.mui-navigate.info .mui-tap:active {
+  color: var(--white100);
+}
+.mui-navigate.info .mui-tap svg {
+  height: 100%;
+}
+
 iframe {
   display: block;
 }

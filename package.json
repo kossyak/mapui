@@ -18,6 +18,14 @@
       "optimize": true,
       "distDir": "./static",
       "isLibrary": true
+    },
+    "export" : {
+      "source": "services/export/index.html",
+      "sourceMap": true,
+      "optimize": true,
+      "distDir": "./static/servises/export",
+      "context": "browser",
+      "publicUrl": "."
     }
   },
   "scripts": {
@@ -25,6 +33,7 @@
     "build-img": "parcel build image/* --no-cache",
     "global": "parcel build --target global --no-cache",
     "export": "parcel services/export/index.html",
+    "export-build": "parcel build --target export",
     "esm": "parcel build --target esm --no-cache"
   },
   "author": "",

@@ -12,13 +12,15 @@ export default {
         <div class="count"></div>
         <div class="remove"></div>
         <div class="export"></div>
+        <div class="chemistry"></div>
       </div>
       <div class="table"></div>
     </div>`,
   props: {
     params: {
       data: {},
-      fields: {}
+      fields: {},
+      key: {}
     }
   },
   proxies: {
@@ -114,6 +116,19 @@ export default {
           }
         }
       },
+      chemistry: {
+        hidden: () => this.param.key !== 'typo',
+        component: {
+          src: btn,
+          params: {
+            type: 'primary',
+            text: 'Экспорт Химии',
+          },
+          methods: {
+            action: () => location.href = ''
+          }
+        }
+      },
       table: {
         component: {
           src: table,
@@ -149,6 +164,7 @@ export default {
       let csv = ''
       const fields = this.proxy.fields.filter(el => el.checked)
       const keys = fields.map(el => el.key)
+      csv += fields.map(el => `"${el.title.replace(/"/g, '')}"`).join(',') + '\n'
       data.forEach((item) => {
         keys.forEach((key, index) => {
           if (index > 0) csv += ','
