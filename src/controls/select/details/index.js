@@ -45,14 +45,14 @@ export default {
       }
     },
     {
-      key: 'ofp',
+      key: 'efw',
       title: 'Данные по ОФР',
       view: (selected, config) => {
         return new MS({ url: config.services.ofp(selected) }).iframe
       }
     },
     {
-      key: 'him',
+      key: 'chem',
       title: 'Химический анализ',
       view: (selected, config) => {
         return new MS({ url: config.services.him(selected) }).iframe
