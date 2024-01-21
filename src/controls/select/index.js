@@ -6,7 +6,6 @@ import list from '../../ui/components/list'
 import { transform } from 'ol/proj'
 import MS from '../../microservice'
 import models from '../../options/models'
-import config from '../../../config'
 
 function combine(original) {
   let n = []
@@ -19,7 +18,9 @@ function combine(original) {
 export default {
   selected: {},
   selectedAll: [],
-  create(select, ui) {
+  config: {},
+  create(select, ui, config) {
+    this.config = config
     const infoPanel = this.infoElement()
     const update = (event) => this.update(event, select, infoPanel, ui)
     select.getFeatures().on('add', update)
@@ -34,7 +35,8 @@ export default {
           url: config.services.export(),
           entry: {
             data: this.selectedAll,
-            models: models
+            models: models,
+            config
           }
         })
         ui.navigate.extension.content(ms.iframe)
@@ -129,7 +131,7 @@ export default {
       list: details[type],
       onclick: (item, index) => {
         ui.navigate.extension.setTitle(item.title)
-        const content = details[type][index].view?.(this.selected)
+        const content = details[type][index].view?.(this.selected, this.config)
         if (content) ui.navigate.extension.content(content)
       }
     })

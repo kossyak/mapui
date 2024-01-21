@@ -1,6 +1,5 @@
 import coordinatesHTML from '../coordinatesHTML'
 import MS from '../../../microservice'
-import config from '../../../../config'
 
 export default {
   fields: [
@@ -25,7 +24,7 @@ export default {
     {
       key: 'reg',
       title: 'График режимных наблюдений',
-      view: (selected) => {
+      view: (selected, config) => {
         return new MS({ url: config.services.reg(selected) }).iframe
       }
     },
@@ -41,21 +40,21 @@ export default {
     {
       key: 'gis',
       title: 'Данные ГИС',
-      view: (selected) => {
+      view: (selected, config) => {
         return new MS({ url: config.services.gis(selected) }).iframe
       }
     },
     {
       key: 'ofp',
       title: 'Данные по ОФР',
-      view: (selected) => {
+      view: (selected, config) => {
         return new MS({ url: config.services.ofp(selected) }).iframe
       }
     },
     {
       key: 'him',
       title: 'Химический анализ',
-      view: (selected) => {
+      view: (selected, config) => {
         return new MS({ url: config.services.him(selected) }).iframe
       }
     },

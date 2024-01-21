@@ -125,7 +125,7 @@ export default {
             text: 'Экспорт Химии',
           },
           methods: {
-            action: () => location.href = ''
+            action: () => location.href = this.config.services.chem(this.proxy.data)
           }
         }
       },

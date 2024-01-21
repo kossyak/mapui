@@ -32,7 +32,7 @@ export default {
     map.render()
     window.requestAnimationFrame(() => this.animate(map))
   },
-  init(target, result, coordinate) {
+  init(target, result, config, coordinate) {
     const ui = UI.create(target) // { navigate, info }
     const zoom = 12
     const zoomLabel = 13
@@ -108,7 +108,7 @@ export default {
       layers: Object.values(allLayers)
     })
     const translate = translateModule.create(select)
-    const infoElement = selectControlModule.create(select, ui)
+    const infoElement = selectControlModule.create(select, ui, config)
     const menuControl = new Control({ element: menuElement })
     const infoControl = new Control({ element: infoElement })
     select.setActive(true)
