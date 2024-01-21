@@ -30,6 +30,11 @@ export default [
       key: 'coordinates',
       title: 'Координаты',
       checked: true
+    },
+    {
+        key: 'pk',
+        title: 'pk',
+        hidden: true
     }]
   },
   {

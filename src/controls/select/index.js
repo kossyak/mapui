@@ -91,9 +91,9 @@ export default {
     this.selectedAll = []
     selectedAll.forEach((s) => {
       const properties = s.getProperties()
-      const { geometry, extra, name, typo, head, intake, field, field_name, intake_name } = properties
+      const { geometry, extra, name, typo, head, intake, field, field_name, intake_name, pk } = properties
       const nameGwk = extra?.name_gwk || 'Н/Д'
-      const selected = { nameGwk, name, typo, field_name, head, intake, field, intake_name, coordinates: combine(geometry.flatCoordinates) }
+      const selected = { nameGwk, name, typo, field_name, head, intake, field, intake_name, pk, coordinates: combine(geometry.flatCoordinates) }
       this.selectedAll.push(selected)
       const add = (label, text) => `<div><span>${label}: </span>${text || '-'}</div>`
       let type = {

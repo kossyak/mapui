@@ -109,7 +109,7 @@ export default {
           src: btn,
           params: {
             type: 'primary',
-            text: 'Экспорт SCV',
+            text: 'Экспорт CSV',
           },
           methods: {
             action: this.method.downloadCSV
@@ -122,10 +122,10 @@ export default {
           src: btn,
           params: {
             type: 'primary',
-            text: 'Экспорт Химии',
+            text: 'Химические анализы',
           },
           methods: {
-            action: () => location.href = this.config.services.chem(this.proxy.data)
+            action: () => location.href = this.config.services.choosen_chem(this.proxy.data)
           }
         }
       },
