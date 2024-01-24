@@ -19,7 +19,7 @@ export default {
       razvexp,
       min,
       fields,
-      VZU
+      intakes
     } = layers
     return {
       OSM: new TileLayer({ source: new OSM() }),
@@ -49,9 +49,9 @@ export default {
         visible: true,
         layers: [fields]
       }),
-      VZU: new GroupLayer({
+      intakes: new GroupLayer({
         visible: true,
-        layers: [VZU]
+        layers: [intakes]
       }),
       explo: new GroupLayer({
         visible: true,

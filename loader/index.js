@@ -15,7 +15,7 @@ export  default {
         const response = await fetch(urls[i])
         if (response.ok) {
           const data = await response.json()
-          results[i] = data
+          results[i] = data.results?.features || []
           this.update()
         } else {
           results[i] = null

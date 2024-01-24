@@ -3,17 +3,10 @@ import details from './details'
 import editor from './editor'
 import tap from '../../ui/components/tap'
 import list from '../../ui/components/list'
-import { transform } from 'ol/proj'
+import mapping from '../../utils/mapping'
 import MS from '../../microservice'
 import models from '../../options/models'
 
-function combine(original) {
-  let n = []
-  for (let i = 0; i < original.length; i += 2) {
-    n.push(transform([original[i], original[i + 1]], 'EPSG:3857', 'EPSG:4326'))
-  }
-  return n
-}
 
 export default {
   selected: {},
@@ -31,6 +24,7 @@ export default {
     const exportBtn = tap.create({
       html: `Экспорт ⤇`,
       onclick: (v) => {
+        console.log(this.selectedAll)
         const ms = new MS({
           url: config.services.export(),
           entry: {
@@ -39,6 +33,7 @@ export default {
             config
           }
         })
+        ui.navigate.extension.setTitle('Экспорт')
         ui.navigate.extension.content(ms.iframe)
         return true
       }
@@ -62,21 +57,22 @@ export default {
     return container
   },
   getFields(selected) {
-    const { nameGwk, name, typo, field_name, head, intake, field, intake_name } = selected
-    if (selected.type === 'wells') {
+    const { model, gvk, name, typo, head, intake, field, aquifer_usage, field_name, intake_name } = selected
+    if (model === 'wells') {
       return [
-        { label: 'Номер ГВК', value: nameGwk, type: 'number', name: 'n1' },
+        { label: 'Номер ГВК', value: gvk, type: 'number', name: 'n1' },
         { label: 'Внутренний номер', value: name, type: 'number', name: 'n2'  },
         { label: 'Тип', value: typo, name: 'n3'  },
         { label: 'А.О. устья', value: head, name: 'n4'  },
         { label: 'Водозабор', value: intake, name: 'n5'  },
         { label: 'Месторождение', value: field, name: 'n6'  },
+        { label: 'Целевой горизонт', value: aquifer_usage?.map(el => el.name), name: 'n7'  },
         // { label: 'С.Ш', value: coordinates[0][0], type: 'number', name: 'n7'  },
         // { label: 'В.Д', value: coordinates[0][1], type: 'number', name: 'n8'  },
       ]
-    } else if (selected.type === 'fields') {
+    } else if (model === 'fields') {
       return [{ label: 'Наименование', value: field_name, name: 'n9'  }]
-    } else if (selected.type === 'VZU') {
+    } else if (model === 'intakes') {
       return [{ label: 'Владелец', value: intake_name, name: 'n10'  }]
     }
   },
@@ -90,26 +86,15 @@ export default {
     const list = []
     this.selectedAll = []
     selectedAll.forEach((s) => {
-      const properties = s.getProperties()
-      const { geometry, extra, name, typo, head, intake, field, field_name, intake_name, pk } = properties
-      const nameGwk = extra?.name_gwk || 'Н/Д'
-      const selected = { nameGwk, name, typo, field_name, head, intake, field, intake_name, pk, coordinates: combine(geometry.flatCoordinates) }
+      const selected = mapping(s)
       this.selectedAll.push(selected)
-      const add = (label, text) => `<div><span>${label}: </span>${text || '-'}</div>`
-      let type = {
-        key: 'wells',
-        title: add('Номер', name || 'б/н') + add('Номер ГВК', nameGwk) + add('Тип', typo)
-      }
-      if (intake_name) type = {
-        key: 'VZU',
-        title: add('Тип', 'Водозаборы') + add('Владелец', intake_name)
-      }
-      if (field_name) type = {
-        key: 'fields',
-        title: add('Тип', 'Месторождения') + add('Наименование', field_name)
-      }
-      selected.type = type.key
-      list.push({ selected, title: type.title })
+      const add = (label, text) => text ? `<div><span>${label}: </span>${text || '-'}</div>` : ''
+      const { model, gvk, name, typo, aquifer_usage, field_name, intake_name } = selected
+      let title = ''
+      if (model === 'wells') title = add('Номер', name || 'б/н') + add('Номер ГВК', gvk || 'Н/Д') + add('Тип', typo) + add('Индекс', aquifer_usage?.map(el => el.index))
+      if (model === 'intakes') title = add('Тип', 'Водозаборы') + add('Владелец', intake_name)
+      if (model === 'fields') title =  add('Тип', 'Месторождения') + add('Наименование', field_name)
+      list.push({ selected, title })
     })
     return list
   },
@@ -126,12 +111,11 @@ export default {
     const html = this.fieldsToHTML(fields)
     ui.navigate.extension.content(editBtn)
     ui.navigate.extension.addContent(html)
-    const type = this.selected.type
     const listEx = list.create({
-      list: details[type],
+      list: details[this.selected.model],
       onclick: (item, index) => {
         ui.navigate.extension.setTitle(item.title)
-        const content = details[type][index].view?.(this.selected, this.config)
+        const content = details[this.selected.model][index].view?.(this.selected, this.config)
         if (content) ui.navigate.extension.content(content)
       }
     })

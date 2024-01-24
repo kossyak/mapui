@@ -1,18 +1,18 @@
-import config from '../../config'
+import config from '../config'
 
 const host = config.host
 export default {
   wells: {
-    get: host + '/points.json',
+    get: '/wells.json', // host + '/base/api/wells/?format=json',
     set: host + '/base/api/wells/'
   },
   fields: {
-    get: host + '/fields.json',
-    set: host + '/base/api/fields',
+    get: '/fields.json', // host + '/base/api/fields/?format=json',
+    set: host + '/base/api/fields/',
   },
-  vzu: {
-    get: host + '/VZU.json',
-    set: host + '/base/api/vzu'
+  intakes: {
+    get: '/intakes.json', // host + '/base/api/intakes/?format=json',
+    set: host + '/base/api/intakes/'
   },
   async updateCoordinates(featureId, coordinates, type) {
     const url = `${this[type].set}${featureId}`

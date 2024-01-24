@@ -32,7 +32,7 @@ export default [
         color: [0, 128, 255, 0.7],
       },
       {
-        key: 'VZU',
+        key: 'intakes',
         title: 'Водозаборы',
         color: [0, 0, 128, 0.4],
       },

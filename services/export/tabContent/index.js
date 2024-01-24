@@ -1,6 +1,6 @@
-import table from '../copmponents/table'
-import dialog from '../copmponents/dialog'
-import btn from '../copmponents/button'
+import table from '../components/table'
+import dialog from '../components/dialog'
+import btn from '../components/button'
 
 import settings from '../settings'
 
@@ -54,8 +54,8 @@ export default {
               this.proxy.fields = this.param.fields
             },
             allow: () => {
-              const keys = this.proxy.fields.filter(el => el.checked).map(el => el.key)
-              this.proxy.data = this.method.filterObjects(this.param.data, keys)
+              this.param.fields = lesta.replicate(this.proxy.fields)
+              this.proxy.data = this.method.mapping(this.param.data)
             }
           },
           sections: {
@@ -117,7 +117,7 @@ export default {
         }
       },
       chemistry: {
-        hidden: () => this.param.key !== 'typo',
+        hidden: () => this.param.key !== 'wells',
         component: {
           src: btn,
           params: {
@@ -125,7 +125,7 @@ export default {
             text: 'Химические анализы',
           },
           methods: {
-            action: () => location.href = this.config.services.choosen_chem(this.proxy.data)
+            action: () => window.parent.open(this.config.services.choosen_chem(this.param.data), '_blank')
           }
         }
       },
@@ -157,7 +157,8 @@ export default {
       return arr.map(obj => keys.reduce((acc, key) => (key in obj && (acc[key] = obj[key]), acc), {}))
     },
     remove() {
-      this.proxy.data = this.proxy.data.filter((element, index) => !this.proxy.selected.includes(index))
+      this.param.data = this.param.data.filter((element, index) => !this.proxy.selected.includes(index))
+      this.proxy.data = this.method.mapping(this.param.data)
       this.proxy.selected = []
     },
     convertArrayOfObjectsToCSV(data) {
@@ -192,10 +193,17 @@ export default {
       document.body.appendChild(downloadLink)
       downloadLink.click()
       document.body.removeChild(downloadLink)
+    },
+    mapping(data) {
+      const fields = this.proxy.fields
+      const mapping = (item, acc, el) => {
+        return {...acc, [el.key]: item[el.key] || '-'}
+      }
+      return data.map(item => fields.filter(el => el.checked).reduce((acc, el) => mapping(item, acc, el), {}))
     }
   },
   created() {
-    this.proxy.fields = this.param.fields
-    this.proxy.data = this.param.data
+    this.proxy.fields = this.param.fields = this.param.fields.filter(el => !el.hidden)
+    this.proxy.data = this.method.mapping(this.param.data)
   }
 }

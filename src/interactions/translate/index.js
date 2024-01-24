@@ -1,6 +1,6 @@
 import Translate from 'ol/interaction/Translate'
 import { transform } from "ol/proj"
-import api from '../../api'
+import api from '../../../api'
 
 export default {
   create(select) {

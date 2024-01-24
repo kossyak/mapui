@@ -901,7 +901,6 @@
       this.createIterate = async (index) => {
         if (!this.created)
           this.nodeElement.style.visibility = "hidden";
-        console.log(this.nodeElement.children[index])
         const proxies = this.proxies(this.node.component.proxies, this.nodeElement, index);
         await this.create(this.proxies.bind(this), this.nodeElement, this.node.component, proxies, this.data[index], index);
         if (!this.created)

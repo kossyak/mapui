@@ -1,57 +1,53 @@
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
-import WKT from 'ol/format/WKT'
 import Modify from 'ol/interaction/Modify'
 import { transform } from "ol/proj"
 import { Fill, Stroke, Style } from 'ol/style'
-import api from '../../api'
+import api from '../../../api'
+import GeoJSON from 'ol/format/GeoJSON'
 
 export default {
-  create({ type, data, style }) {
-    this.style = style
-    this.layer = new VectorLayer({ source: new VectorSource() })
-    this.addPolygons(data)
-    return { layer: this.layer, interaction: this.addModify(type) }
+  create({ type, features, style }) {
+    const source = new VectorSource({
+      features: new GeoJSON().readFeatures({
+        type: 'FeatureCollection',
+        crs: {
+          type: 'name',
+          properties: {
+            name: 'EPSG:4326'
+          }
+        }, features }, {
+          dataProjection: 'EPSG:4326',
+          featureProjection: 'EPSG:3857'
+        })
+    })
+    const layer = new VectorLayer({
+      source: source,
+      style: this.polygonStyle(style)
+    })
+    const interaction = this.addModify(layer, type)
+    return { layer, interaction }
   },
-  addModify(type) {
+  addModify(layer, type) {
     const interaction = new Modify({
-      source: this.layer.getSource(),
+      source: layer.getSource(),
       modifyend: (event) => this.handleModifyEnd(event, type)
     })
     interaction.setActive(false)
     return interaction
   },
-  addPolygons(items) {
-    items.forEach(item => this.addPolygon(item))
-  },
-  addPolygon(item) {
-    const format = new WKT()
-    if (item.geom && item.geom.length > 10) {
-      const croppedGeom = item.geom.substring(10);
-      const feature = format.readFeature(croppedGeom, {
-        dataProjection: 'EPSG:4326',
-        featureProjection: 'EPSG:3857'
+  polygonStyle(style) {
+    if (style) {
+      return new Style({
+        fill: new Fill({
+          color: style.fillColor
+        }),
+        stroke: new Stroke({
+          color: style.strokeColor,
+          width: 1
+        })
       })
-      feature.setProperties({
-        intake_name: item.intake_name,
-        field_name: item.field_name?.replace("\"", ''),
-        pk: item.id
-        // ...
-      })
-      this.style && feature.setStyle(this.polygonStyle())
-      this.layer.getSource().addFeature(feature)
-    }
-  },
-  polygonStyle() {
-    return new Style({
-    fill: new Fill({
-      color: this.style.fillColor
-    }),
-    stroke: new Stroke({
-      color: this.style.strokeColor,
-      width: 1
-    })
-  })
+    } else return {}
   },
   handleModifyEnd(event, type) {
     const features = event.features.getArray()
@@ -63,7 +59,7 @@ export default {
           )
         )
       )
-      const featureId = feature.get('pk')
+      const featureId = feature.id
       api.updateCoordinates(featureId, coordinates, type)
     })
   }

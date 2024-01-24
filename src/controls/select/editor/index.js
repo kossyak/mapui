@@ -1,6 +1,6 @@
 import './index.css'
 import input from '../../../ui/components/input'
-import coordinatesHTML from '../coordinatesHTML'
+import coordinatesHTML from '../../../utils/coordinatesHTML'
 
 export default {
   create(fields, coordinates) {

@@ -1,0 +1,3569 @@
+[
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1602",
+            "values_": null,
+            "extent_": [
+                4032955.581335589,
+                6747143.2520131655,
+                4032955.581335589,
+                6747143.2520131655
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4032955.581335589,
+                6747143.2520131655
+            ]
+        },
+        "name": "9",
+        "gvk": "38200043",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200043,
+            "name_drill": "",
+            "name_subject": [
+                "9"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 4,
+        "regime_count": 0,
+        "efw_count": 3,
+        "geophysics_count": 1,
+        "sample_count": 14,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.61061907427318,
+                34.03092743443452
+            ]
+        ],
+        "id": 291,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1646",
+            "values_": null,
+            "extent_": [
+                4032731.1797953974,
+                6747216.353998625,
+                4032731.1797953974,
+                6747216.353998625
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4032731.1797953974,
+                6747216.353998625
+            ]
+        },
+        "name": "2д",
+        "gvk": "38200093",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 728,
+        "field": 40,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200093,
+            "name_drill": "",
+            "name_subject": [
+                "2д"
+            ]
+        },
+        "aquifers_count": 0,
+        "aquiferusage_count": 1,
+        "lithology_count": 7,
+        "regime_count": 0,
+        "efw_count": 0,
+        "geophysics_count": 1,
+        "sample_count": 6,
+        "aquifer_usage": [
+            {
+                "name": "Верхнеморсовский водоносный горизонт",
+                "index": "D2mr2"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.61127576058156,
+                34.02925682512566
+            ]
+        ],
+        "id": 341,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1592",
+            "values_": null,
+            "extent_": [
+                4032707.3697932004,
+                6747217.850974482,
+                4032707.3697932004,
+                6747217.850974482
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4032707.3697932004,
+                6747217.850974482
+            ]
+        },
+        "name": "7",
+        "gvk": "38200046",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200046,
+            "name_drill": "",
+            "name_subject": [
+                "7"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 4,
+        "regime_count": 0,
+        "efw_count": 0,
+        "geophysics_count": 1,
+        "sample_count": 15,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.611289208144484,
+                34.029079564112095
+            ]
+        ],
+        "id": 294,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1650",
+            "values_": null,
+            "extent_": [
+                4032805.9803087944,
+                6747251.632802969,
+                4032805.9803087944,
+                6747251.632802969
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4032805.9803087944,
+                6747251.632802969
+            ]
+        },
+        "name": "8",
+        "gvk": "38200084",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200084,
+            "name_drill": "",
+            "name_subject": [
+                "8"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 4,
+        "regime_count": 0,
+        "efw_count": 2,
+        "geophysics_count": 1,
+        "sample_count": 13,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.611592675473034,
+                34.02981369855007
+            ]
+        ],
+        "id": 332,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1654",
+            "values_": null,
+            "extent_": [
+                4032411.2599476906,
+                6747267.550729467,
+                4032411.2599476906,
+                6747267.550729467
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4032411.2599476906,
+                6747267.550729467
+            ]
+        },
+        "name": "3",
+        "gvk": "38200090",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200090,
+            "name_drill": "",
+            "name_subject": [
+                "3"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 5,
+        "regime_count": 0,
+        "efw_count": 0,
+        "geophysics_count": 1,
+        "sample_count": 18,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.61173566863968,
+                34.026875050749865
+            ]
+        ],
+        "id": 338,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1608",
+            "values_": null,
+            "extent_": [
+                4032238.9621136067,
+                6747298.139183589,
+                4032238.9621136067,
+                6747298.139183589
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4032238.9621136067,
+                6747298.139183589
+            ]
+        },
+        "name": "1",
+        "gvk": "38200044",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200044,
+            "name_drill": "",
+            "name_subject": [
+                "1"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 3,
+        "regime_count": 0,
+        "efw_count": 0,
+        "geophysics_count": 1,
+        "sample_count": 25,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.612010449398234,
+                34.0255922812367
+            ]
+        ],
+        "id": 292,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1528",
+            "values_": null,
+            "extent_": [
+                4033531.8390485123,
+                6746286.8351364015,
+                4033531.8390485123,
+                6746286.8351364015
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4033531.8390485123,
+                6746286.8351364015
+            ]
+        },
+        "name": "10246",
+        "gvk": "38200013",
+        "typo": 26,
+        "head": "157.77",
+        "moved": 129,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200013,
+            "name_drill": "",
+            "name_subject": []
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 1,
+        "lithology_count": 5,
+        "regime_count": 0,
+        "efw_count": 1,
+        "geophysics_count": 0,
+        "sample_count": 18,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.602925750573434,
+                34.03521736792803
+            ]
+        ],
+        "id": 261,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1540",
+            "values_": null,
+            "extent_": [
+                4033102.8322842433,
+                6746066.508498907,
+                4033102.8322842433,
+                6746066.508498907
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4033102.8322842433,
+                6746066.508498907
+            ]
+        },
+        "name": "79",
+        "gvk": "38200034",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200034,
+            "name_drill": "",
+            "name_subject": [
+                "79"
+            ]
+        },
+        "aquifers_count": 1,
+        "aquiferusage_count": 2,
+        "lithology_count": 3,
+        "regime_count": 0,
+        "efw_count": 0,
+        "geophysics_count": 1,
+        "sample_count": 12,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.60094652271383,
+                34.032023660397954
+            ]
+        ],
+        "id": 282,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1542",
+            "values_": null,
+            "extent_": [
+                4033114.953739907,
+                6746207.205526521,
+                4033114.953739907,
+                6746207.205526521
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4033114.953739907,
+                6746207.205526521
+            ]
+        },
+        "name": "78",
+        "gvk": "38200033",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200033,
+            "name_drill": "",
+            "name_subject": [
+                "78"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 4,
+        "regime_count": 0,
+        "efw_count": 1,
+        "geophysics_count": 1,
+        "sample_count": 7,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.602210425617194,
+                34.0321138992835
+            ]
+        ],
+        "id": 281,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1554",
+            "values_": null,
+            "extent_": [
+                4033633.919021569,
+                6746027.472989265,
+                4033633.919021569,
+                6746027.472989265
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4033633.919021569,
+                6746027.472989265
+            ]
+        },
+        "name": "73792",
+        "gvk": "38200016",
+        "typo": 26,
+        "head": "158.00",
+        "moved": 129,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200016,
+            "name_drill": "",
+            "name_subject": []
+        },
+        "aquifers_count": 0,
+        "aquiferusage_count": 1,
+        "lithology_count": 0,
+        "regime_count": 0,
+        "efw_count": 0,
+        "geophysics_count": 0,
+        "sample_count": 11,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.600595860764486,
+                34.03597727665009
+            ]
+        ],
+        "id": 264,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1612",
+            "values_": null,
+            "extent_": [
+                4033321.5565304034,
+                6746286.8351364015,
+                4033321.5565304034,
+                6746286.8351364015
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4033321.5565304034,
+                6746286.8351364015
+            ]
+        },
+        "name": "38200037",
+        "gvk": "38200037",
+        "typo": 26,
+        "head": "159.53",
+        "moved": 129,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "name_gwk": 38200037
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 1,
+        "lithology_count": 5,
+        "regime_count": 0,
+        "efw_count": 1,
+        "geophysics_count": 0,
+        "sample_count": 4,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.602925750573434,
+                34.03365195107999
+            ]
+        ],
+        "id": 285,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1558",
+            "values_": null,
+            "extent_": [
+                4033278.364567976,
+                6746646.076158609,
+                4033278.364567976,
+                6746646.076158609
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4033278.364567976,
+                6746646.076158609
+            ]
+        },
+        "name": "38200028",
+        "gvk": "38200028",
+        "typo": 26,
+        "head": "158.64",
+        "moved": 129,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "name_gwk": 38200028
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 1,
+        "lithology_count": 4,
+        "regime_count": 0,
+        "efw_count": 1,
+        "geophysics_count": 0,
+        "sample_count": 6,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.60615286758276,
+                34.03333041138072
+            ]
+        ],
+        "id": 276,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1560",
+            "values_": null,
+            "extent_": [
+                4033216.470931095,
+                6746656.135135778,
+                4033216.470931095,
+                6746656.135135778
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4033216.470931095,
+                6746656.135135778
+            ]
+        },
+        "name": "38200036",
+        "gvk": "38200036",
+        "typo": 26,
+        "head": "160.23",
+        "moved": 129,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "name_gwk": 38200036
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 1,
+        "lithology_count": 5,
+        "regime_count": 0,
+        "efw_count": 1,
+        "geophysics_count": 0,
+        "sample_count": 5,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.606243228912085,
+                34.03286964618211
+            ]
+        ],
+        "id": 284,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1556",
+            "values_": null,
+            "extent_": [
+                4033068.1995537747,
+                6746708.994866229,
+                4033068.1995537747,
+                6746708.994866229
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4033068.1995537747,
+                6746708.994866229
+            ]
+        },
+        "name": "75",
+        "gvk": "38200032",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200032,
+            "name_drill": "",
+            "name_subject": [
+                "75"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 5,
+        "regime_count": 0,
+        "efw_count": 1,
+        "geophysics_count": 1,
+        "sample_count": 4,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.606718075949864,
+                34.031765834481774
+            ]
+        ],
+        "id": 280,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1552",
+            "values_": null,
+            "extent_": [
+                4033297.796003536,
+                6746903.043020422,
+                4033297.796003536,
+                6746903.043020422
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4033297.796003536,
+                6746903.043020422
+            ]
+        },
+        "name": "12",
+        "gvk": "38200010",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200010,
+            "name_drill": "",
+            "name_subject": [
+                "12"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 4,
+        "regime_count": 0,
+        "efw_count": 3,
+        "geophysics_count": 1,
+        "sample_count": 12,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.60846124017754,
+                34.03347506756461
+            ]
+        ],
+        "id": 258,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1614",
+            "values_": null,
+            "extent_": [
+                4032446.4740132783,
+                6747339.635874065,
+                4032446.4740132783,
+                6747339.635874065
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4032446.4740132783,
+                6747339.635874065
+            ]
+        },
+        "name": "\"Киевский\"",
+        "gvk": "38200094",
+        "typo": 26,
+        "head": "156.78",
+        "moved": 129,
+        "intake": 728,
+        "field": 40,
+        "extra": {
+            "name_gwk": 38200094
+        },
+        "aquifers_count": 0,
+        "aquiferusage_count": 1,
+        "lithology_count": 0,
+        "regime_count": 0,
+        "efw_count": 0,
+        "geophysics_count": 0,
+        "sample_count": 15,
+        "aquifer_usage": [
+            {
+                "name": "Верхнеморсовский водоносный горизонт",
+                "index": "D2mr2"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.612383220511184,
+                34.02713721956246
+            ]
+        ],
+        "id": 342,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1590",
+            "values_": null,
+            "extent_": [
+                4032459.158250812,
+                6747383.168704956,
+                4032459.158250812,
+                6747383.168704956
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4032459.158250812,
+                6747383.168704956
+            ]
+        },
+        "name": "4",
+        "gvk": "38200075",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200075,
+            "name_drill": "",
+            "name_subject": [
+                "4"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 6,
+        "regime_count": 0,
+        "efw_count": 1,
+        "geophysics_count": 1,
+        "sample_count": 12,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.612774282584695,
+                34.027231653546465
+            ]
+        ],
+        "id": 323,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1548",
+            "values_": null,
+            "extent_": [
+                4032916.5762228984,
+                6746880.669116748,
+                4032916.5762228984,
+                6746880.669116748
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4032916.5762228984,
+                6746880.669116748
+            ]
+        },
+        "name": "38200029",
+        "gvk": "38200029",
+        "typo": 26,
+        "head": "158.40",
+        "moved": 129,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "name_gwk": 38200029
+        },
+        "aquifers_count": 0,
+        "aquiferusage_count": 1,
+        "lithology_count": 0,
+        "regime_count": 0,
+        "efw_count": 0,
+        "geophysics_count": 0,
+        "sample_count": 9,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.60826025198118,
+                34.0306370541889
+            ]
+        ],
+        "id": 277,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1550",
+            "values_": null,
+            "extent_": [
+                4032955.8287122357,
+                6746791.972463358,
+                4032955.8287122357,
+                6746791.972463358
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4032955.8287122357,
+                6746791.972463358
+            ]
+        },
+        "name": "74",
+        "gvk": "38200031",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200031,
+            "name_drill": "",
+            "name_subject": [
+                "74"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 4,
+        "regime_count": 0,
+        "efw_count": 2,
+        "geophysics_count": 1,
+        "sample_count": 8,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.60746347638728,
+                34.0309292760692
+            ]
+        ],
+        "id": 279,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1544",
+            "values_": null,
+            "extent_": [
+                4032458.8304767557,
+                6746900.608034159,
+                4032458.8304767557,
+                6746900.608034159
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4032458.8304767557,
+                6746900.608034159
+            ]
+        },
+        "name": "38200025",
+        "gvk": "38200025",
+        "typo": 26,
+        "head": "157.93",
+        "moved": 129,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200025,
+            "name_drill": "",
+            "name_subject": []
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 1,
+        "lithology_count": 0,
+        "regime_count": 0,
+        "efw_count": 1,
+        "geophysics_count": 0,
+        "sample_count": 11,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.60843936632377,
+                34.02722921327418
+            ]
+        ],
+        "id": 273,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1604",
+            "values_": null,
+            "extent_": [
+                4033041.6993305497,
+                6747031.679192499,
+                4033041.6993305497,
+                6747031.679192499
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4033041.6993305497,
+                6747031.679192499
+            ]
+        },
+        "name": "10",
+        "gvk": "38200067",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200067,
+            "name_drill": "",
+            "name_subject": [
+                "10"
+            ]
+        },
+        "aquifers_count": 0,
+        "aquiferusage_count": 1,
+        "lithology_count": 0,
+        "regime_count": 0,
+        "efw_count": 2,
+        "geophysics_count": 0,
+        "sample_count": 14,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.60961679857222,
+                34.03156855108645
+            ]
+        ],
+        "id": 315,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1522",
+            "values_": null,
+            "extent_": [
+                4032369.02038535,
+                6747067.905262399,
+                4032369.02038535,
+                6747067.905262399
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4032369.02038535,
+                6747067.905262399
+            ]
+        },
+        "name": "70",
+        "gvk": "38200026",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200026,
+            "name_drill": "",
+            "name_subject": [
+                "70"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 3,
+        "regime_count": 0,
+        "efw_count": 1,
+        "geophysics_count": 1,
+        "sample_count": 17,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.60994222289497,
+                34.0265605760266
+            ]
+        ],
+        "id": 274,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1530",
+            "values_": null,
+            "extent_": [
+                4033479.957981387,
+                6745366.651816721,
+                4033479.957981387,
+                6745366.651816721
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4033479.957981387,
+                6745366.651816721
+            ]
+        },
+        "name": "28",
+        "gvk": "38200021",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200021,
+            "name_drill": "",
+            "name_subject": [
+                "28"
+            ]
+        },
+        "aquifers_count": 0,
+        "aquiferusage_count": 1,
+        "lithology_count": 0,
+        "regime_count": 0,
+        "efw_count": 2,
+        "geophysics_count": 0,
+        "sample_count": 10,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.59465960317082,
+                34.03483114974473
+            ]
+        ],
+        "id": 269,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1600",
+            "values_": null,
+            "extent_": [
+                4033214.3991516833,
+                6745426.018557345,
+                4033214.3991516833,
+                6745426.018557345
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4033214.3991516833,
+                6745426.018557345
+            ]
+        },
+        "name": "83",
+        "gvk": "38200039",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200039,
+            "name_drill": "",
+            "name_subject": []
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 5,
+        "regime_count": 0,
+        "efw_count": 1,
+        "geophysics_count": 1,
+        "sample_count": 10,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.59519290367553,
+                34.03285422284331
+            ]
+        ],
+        "id": 287,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1538",
+            "values_": null,
+            "extent_": [
+                4033419.0414822586,
+                6745520.25791259,
+                4033419.0414822586,
+                6745520.25791259
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4033419.0414822586,
+                6745520.25791259
+            ]
+        },
+        "name": "27",
+        "gvk": "38200020",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200020,
+            "name_drill": "",
+            "name_subject": []
+        },
+        "aquifers_count": 0,
+        "aquiferusage_count": 1,
+        "lithology_count": 0,
+        "regime_count": 0,
+        "efw_count": 3,
+        "geophysics_count": 0,
+        "sample_count": 11,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.596039470207366,
+                34.034377666858404
+            ]
+        ],
+        "id": 268,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1526",
+            "values_": null,
+            "extent_": [
+                4033452.3136411733,
+                6745704.000358807,
+                4033452.3136411733,
+                6745704.000358807
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4033452.3136411733,
+                6745704.000358807
+            ]
+        },
+        "name": "25",
+        "gvk": "38200018",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200018,
+            "name_drill": "",
+            "name_subject": [
+                "25"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 4,
+        "regime_count": 0,
+        "efw_count": 3,
+        "geophysics_count": 1,
+        "sample_count": 15,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.59769005668514,
+                34.03462535628863
+            ]
+        ],
+        "id": 266,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1598",
+            "values_": null,
+            "extent_": [
+                4033177.1689664293,
+                6745600.080349324,
+                4033177.1689664293,
+                6745600.080349324
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4033177.1689664293,
+                6745600.080349324
+            ]
+        },
+        "name": "82",
+        "gvk": "38200038",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200038,
+            "name_drill": "",
+            "name_subject": [
+                "82"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 4,
+        "regime_count": 0,
+        "efw_count": 1,
+        "geophysics_count": 1,
+        "sample_count": 10,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.5967565273567,
+                34.032577062665155
+            ]
+        ],
+        "id": 286,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1536",
+            "values_": null,
+            "extent_": [
+                4033484.3489168566,
+                6745561.316480575,
+                4033484.3489168566,
+                6745561.316480575
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4033484.3489168566,
+                6745561.316480575
+            ]
+        },
+        "name": "26",
+        "gvk": "38200019",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200019,
+            "name_drill": "",
+            "name_subject": [
+                "26"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 5,
+        "regime_count": 0,
+        "efw_count": 0,
+        "geophysics_count": 1,
+        "sample_count": 12,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.59640830559901,
+                34.03486383724996
+            ]
+        ],
+        "id": 267,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1562",
+            "values_": null,
+            "extent_": [
+                4034740.8800380183,
+                6744411.136434344,
+                4034740.8800380183,
+                6744411.136434344
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4034740.8800380183,
+                6744411.136434344
+            ]
+        },
+        "name": "69121",
+        "gvk": "38200054",
+        "typo": 26,
+        "head": "158.52",
+        "moved": 129,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "name_gwk": 38200054
+        },
+        "aquifers_count": 1,
+        "aquiferusage_count": 1,
+        "lithology_count": 1,
+        "regime_count": 0,
+        "efw_count": 0,
+        "geophysics_count": 0,
+        "sample_count": 13,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.58607606244881,
+                34.044217332754926
+            ]
+        ],
+        "id": 302,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1576",
+            "values_": null,
+            "extent_": [
+                4034536.8314113934,
+                6744426.041180879,
+                4034536.8314113934,
+                6744426.041180879
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4034536.8314113934,
+                6744426.041180879
+            ]
+        },
+        "name": "43",
+        "gvk": "38200052",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200052,
+            "name_drill": "",
+            "name_subject": [
+                "43"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 5,
+        "regime_count": 0,
+        "efw_count": 0,
+        "geophysics_count": 1,
+        "sample_count": 14,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.586209954065,
+                34.04269848476771
+            ]
+        ],
+        "id": 300,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1596",
+            "values_": null,
+            "extent_": [
+                4034682.672313166,
+                6744492.464406373,
+                4034682.672313166,
+                6744492.464406373
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4034682.672313166,
+                6744492.464406373
+            ]
+        },
+        "name": "46",
+        "gvk": "38200056",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200056,
+            "name_drill": "",
+            "name_subject": [
+                "46"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 5,
+        "regime_count": 0,
+        "efw_count": 1,
+        "geophysics_count": 1,
+        "sample_count": 9,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.58680664405181,
+                34.04378406289494
+            ]
+        ],
+        "id": 304,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1564",
+            "values_": null,
+            "extent_": [
+                4034385.3255844247,
+                6744500.924477666,
+                4034385.3255844247,
+                6744500.924477666
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4034385.3255844247,
+                6744500.924477666
+            ]
+        },
+        "name": "75759",
+        "gvk": "38200060",
+        "typo": 26,
+        "head": "158.41",
+        "moved": 129,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "name_gwk": 38200060
+        },
+        "aquifers_count": 1,
+        "aquiferusage_count": 1,
+        "lithology_count": 1,
+        "regime_count": 0,
+        "efw_count": 0,
+        "geophysics_count": 0,
+        "sample_count": 14,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.58688264216529,
+                34.041570724611745
+            ]
+        ],
+        "id": 308,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1580",
+            "values_": null,
+            "extent_": [
+                4035155.563694471,
+                6744526.035377928,
+                4035155.563694471,
+                6744526.035377928
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4035155.563694471,
+                6744526.035377928
+            ]
+        },
+        "name": "50",
+        "gvk": "38200059",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200059,
+            "name_drill": "",
+            "name_subject": [
+                "50"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 4,
+        "regime_count": 0,
+        "efw_count": 3,
+        "geophysics_count": 1,
+        "sample_count": 16,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.587108217220326,
+                34.04730397119276
+            ]
+        ],
+        "id": 307,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1610",
+            "values_": null,
+            "extent_": [
+                4034607.717189364,
+                6744507.179748305,
+                4034607.717189364,
+                6744507.179748305
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4034607.717189364,
+                6744507.179748305
+            ]
+        },
+        "name": "45",
+        "gvk": "38200055",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200055,
+            "name_drill": "",
+            "name_subject": [
+                "45"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 4,
+        "regime_count": 0,
+        "efw_count": 3,
+        "geophysics_count": 1,
+        "sample_count": 12,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.586938834217506,
+                34.04322613032046
+            ]
+        ],
+        "id": 303,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1572",
+            "values_": null,
+            "extent_": [
+                4035783.1273238184,
+                6744537.508401489,
+                4035783.1273238184,
+                6744537.508401489
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4035783.1273238184,
+                6744537.508401489
+            ]
+        },
+        "name": "56",
+        "gvk": "38200066",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200066,
+            "name_drill": "",
+            "name_subject": [
+                "56"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 6,
+        "regime_count": 0,
+        "efw_count": 3,
+        "geophysics_count": 1,
+        "sample_count": 14,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.587211281144526,
+                34.05197493755773
+            ]
+        ],
+        "id": 314,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1570",
+            "values_": null,
+            "extent_": [
+                4034976.308392214,
+                6744551.37581679,
+                4034976.308392214,
+                6744551.37581679
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4034976.308392214,
+                6744551.37581679
+            ]
+        },
+        "name": "49",
+        "gvk": "38200058",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200058,
+            "name_drill": "",
+            "name_subject": [
+                "49"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 4,
+        "regime_count": 0,
+        "efw_count": 3,
+        "geophysics_count": 1,
+        "sample_count": 17,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.58733585425569,
+                34.04596972379598
+            ]
+        ],
+        "id": 306,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1566",
+            "values_": null,
+            "extent_": [
+                4035314.7505663065,
+                6744540.351718522,
+                4035314.7505663065,
+                6744540.351718522
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4035314.7505663065,
+                6744540.351718522
+            ]
+        },
+        "name": "41",
+        "gvk": "38200050",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200050,
+            "name_drill": "",
+            "name_subject": [
+                "41"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 3,
+        "regime_count": 0,
+        "efw_count": 3,
+        "geophysics_count": 1,
+        "sample_count": 15,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.587236823096,
+                34.048488826043496
+            ]
+        ],
+        "id": 298,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1578",
+            "values_": null,
+            "extent_": [
+                4034753.8240210316,
+                6744556.264335736,
+                4034753.8240210316,
+                6744556.264335736
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4034753.8240210316,
+                6744556.264335736
+            ]
+        },
+        "name": "47",
+        "gvk": "38200057",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200057,
+            "name_drill": "",
+            "name_subject": [
+                "47"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 5,
+        "regime_count": 0,
+        "efw_count": 2,
+        "geophysics_count": 1,
+        "sample_count": 13,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.58737976856854,
+                34.044313681138405
+            ]
+        ],
+        "id": 305,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1568",
+            "values_": null,
+            "extent_": [
+                4035513.548623614,
+                6744571.628271573,
+                4035513.548623614,
+                6744571.628271573
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4035513.548623614,
+                6744571.628271573
+            ]
+        },
+        "name": "53",
+        "gvk": "38200062",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200062,
+            "name_drill": "",
+            "name_subject": [
+                "53"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 4,
+        "regime_count": 0,
+        "efw_count": 3,
+        "geophysics_count": 1,
+        "sample_count": 19,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.587517785152414,
+                34.049968490407636
+            ]
+        ],
+        "id": 310,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1606",
+            "values_": null,
+            "extent_": [
+                4033913.3000213797,
+                6744577.963409421,
+                4033913.3000213797,
+                6744577.963409421
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4033913.3000213797,
+                6744577.963409421
+            ]
+        },
+        "name": "39",
+        "gvk": "38200047",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200047,
+            "name_drill": "",
+            "name_subject": [
+                "39"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 5,
+        "regime_count": 0,
+        "efw_count": 3,
+        "geophysics_count": 1,
+        "sample_count": 12,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.58757469466397,
+                34.03805702352615
+            ]
+        ],
+        "id": 295,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1546",
+            "values_": null,
+            "extent_": [
+                4033780.365996124,
+                6744669.0003843475,
+                4033780.365996124,
+                6744669.0003843475
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4033780.365996124,
+                6744669.0003843475
+            ]
+        },
+        "name": "36",
+        "gvk": "38200008",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200008,
+            "name_drill": "",
+            "name_subject": [
+                "36"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 3,
+        "regime_count": 0,
+        "efw_count": 3,
+        "geophysics_count": 1,
+        "sample_count": 7,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.58839249372394,
+                34.03706745248385
+            ]
+        ],
+        "id": 256,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1524",
+            "values_": null,
+            "extent_": [
+                4033940.882517432,
+                6744723.373639284,
+                4033940.882517432,
+                6744723.373639284
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4033940.882517432,
+                6744723.373639284
+            ]
+        },
+        "name": "38",
+        "gvk": "38200009",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200009,
+            "name_drill": "",
+            "name_subject": [
+                "38"
+            ]
+        },
+        "aquifers_count": 0,
+        "aquiferusage_count": 1,
+        "lithology_count": 6,
+        "regime_count": 0,
+        "efw_count": 1,
+        "geophysics_count": 0,
+        "sample_count": 18,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.58888093698351,
+                34.03826234828834
+            ]
+        ],
+        "id": 257,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1534",
+            "values_": null,
+            "extent_": [
+                4033688.4346499783,
+                6744760.1381471325,
+                4033688.4346499783,
+                6744760.1381471325
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4033688.4346499783,
+                6744760.1381471325
+            ]
+        },
+        "name": "21795/35",
+        "gvk": "38200007",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200007,
+            "name_drill": "",
+            "name_subject": [
+                "35"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 5,
+        "regime_count": 0,
+        "efw_count": 3,
+        "geophysics_count": 1,
+        "sample_count": 11,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.58921119817664,
+                34.036383101765736
+            ]
+        ],
+        "id": 255,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1594",
+            "values_": null,
+            "extent_": [
+                4034004.946884384,
+                6744889.897736599,
+                4034004.946884384,
+                6744889.897736599
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4034004.946884384,
+                6744889.897736599
+            ]
+        },
+        "name": "37",
+        "gvk": "38200048",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200048,
+            "name_drill": "",
+            "name_subject": [
+                "37"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 1,
+        "lithology_count": 7,
+        "regime_count": 0,
+        "efw_count": 1,
+        "geophysics_count": 0,
+        "sample_count": 7,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.59037684840142,
+                34.03873924305465
+            ]
+        ],
+        "id": 296,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1532",
+            "values_": null,
+            "extent_": [
+                4033518.641504437,
+                6745217.638219174,
+                4033518.641504437,
+                6745217.638219174
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4033518.641504437,
+                6745217.638219174
+            ]
+        },
+        "name": "29",
+        "gvk": "38200022",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200022,
+            "name_drill": "",
+            "name_subject": [
+                "29"
+            ]
+        },
+        "aquifers_count": 3,
+        "aquiferusage_count": 1,
+        "lithology_count": 6,
+        "regime_count": 0,
+        "efw_count": 2,
+        "geophysics_count": 0,
+        "sample_count": 16,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.59332099124864,
+                34.035119121628796
+            ]
+        ],
+        "id": 270,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1652",
+            "values_": null,
+            "extent_": [
+                4033674.105357746,
+                6745927.60999278,
+                4033674.105357746,
+                6745927.60999278
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4033674.105357746,
+                6745927.60999278
+            ]
+        },
+        "name": "10248",
+        "gvk": "38200081",
+        "typo": 26,
+        "head": "160.02",
+        "moved": 129,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200081,
+            "name_drill": "",
+            "name_subject": []
+        },
+        "aquifers_count": 0,
+        "aquiferusage_count": 1,
+        "lithology_count": 0,
+        "regime_count": 0,
+        "efw_count": 0,
+        "geophysics_count": 0,
+        "sample_count": 16,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.59969877620388,
+                34.03627643186955
+            ]
+        ],
+        "id": 329,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1656",
+            "values_": null,
+            "extent_": [
+                4036641.2459874307,
+                6744655.282418772,
+                4036641.2459874307,
+                6744655.282418772
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4036641.2459874307,
+                6744655.282418772
+            ]
+        },
+        "name": "63",
+        "gvk": "38200076",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200076,
+            "name_drill": "",
+            "name_subject": [
+                "63"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 3,
+        "regime_count": 0,
+        "efw_count": 2,
+        "geophysics_count": 1,
+        "sample_count": 12,
+        "aquifer_usage": [
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            },
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.58826926314249,
+                34.05836151229708
+            ]
+        ],
+        "id": 324,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1584",
+            "values_": null,
+            "extent_": [
+                4035887.2110477104,
+                6744556.264335736,
+                4035887.2110477104,
+                6744556.264335736
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4035887.2110477104,
+                6744556.264335736
+            ]
+        },
+        "name": "57",
+        "gvk": "38200068",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200068,
+            "name_drill": "",
+            "name_subject": []
+        },
+        "aquifers_count": 0,
+        "aquiferusage_count": 1,
+        "lithology_count": 0,
+        "regime_count": 0,
+        "efw_count": 0,
+        "geophysics_count": 0,
+        "sample_count": 10,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.58737976856854,
+                34.052749609539134
+            ]
+        ],
+        "id": 316,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1582",
+            "values_": null,
+            "extent_": [
+                4036504.6322345627,
+                6744696.037315185,
+                4036504.6322345627,
+                6744696.037315185
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4036504.6322345627,
+                6744696.037315185
+            ]
+        },
+        "name": "62",
+        "gvk": "38200074",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200074,
+            "name_drill": "",
+            "name_subject": [
+                "62"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 3,
+        "regime_count": 0,
+        "efw_count": 3,
+        "geophysics_count": 1,
+        "sample_count": 9,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.588635370606,
+                34.05734479241339
+            ]
+        ],
+        "id": 322,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1588",
+            "values_": null,
+            "extent_": [
+                4036390.715288984,
+                6744673.040953163,
+                4036390.715288984,
+                6744673.040953163
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4036390.715288984,
+                6744673.040953163
+            ]
+        },
+        "name": "61",
+        "gvk": "38200072",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200072,
+            "name_drill": "",
+            "name_subject": [
+                "61"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 5,
+        "regime_count": 0,
+        "efw_count": 0,
+        "geophysics_count": 1,
+        "sample_count": 15,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.588428790771175,
+                34.056496979545884
+            ]
+        ],
+        "id": 320,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1586",
+            "values_": null,
+            "extent_": [
+                4036136.875927895,
+                6744605.199570094,
+                4036136.875927895,
+                6744605.199570094
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4036136.875927895,
+                6744605.199570094
+            ]
+        },
+        "name": "59",
+        "gvk": "38200070",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200070,
+            "name_drill": "",
+            "name_subject": [
+                "59"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 5,
+        "regime_count": 0,
+        "efw_count": 1,
+        "geophysics_count": 1,
+        "sample_count": 6,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.587819361258106,
+                34.054607780796644
+            ]
+        ],
+        "id": 318,
+        "aquifer_usage_string": "-/-"
+    },
+    {
+        "geometry": {
+            "disposed": false,
+            "pendingRemovals_": null,
+            "dispatching_": null,
+            "listeners_": {
+                "change": [
+                    null
+                ]
+            },
+            "revision_": 2,
+            "ol_uid": "1574",
+            "values_": null,
+            "extent_": [
+                4036064.580103041,
+                6744585.346095968,
+                4036064.580103041,
+                6744585.346095968
+            ],
+            "extentRevision_": 2,
+            "simplifiedGeometryMaxMinSquaredTolerance": 233.70477172275338,
+            "simplifiedGeometryRevision": 2,
+            "layout": "XY",
+            "stride": 2,
+            "flatCoordinates": [
+                4036064.580103041,
+                6744585.346095968
+            ]
+        },
+        "name": "58",
+        "gvk": "38200069",
+        "typo": 26,
+        "head": null,
+        "moved": 130,
+        "intake": 392,
+        "field": 30,
+        "extra": {
+            "comments": "",
+            "name_gwk": 38200069,
+            "name_drill": "",
+            "name_subject": [
+                "58"
+            ]
+        },
+        "aquifers_count": 2,
+        "aquiferusage_count": 2,
+        "lithology_count": 6,
+        "regime_count": 0,
+        "efw_count": 2,
+        "geophysics_count": 1,
+        "sample_count": 14,
+        "aquifer_usage": [
+            {
+                "name": "Альб-сеноманский водоносный горизонт",
+                "index": "K1-2al-s"
+            },
+            {
+                "name": "Четвертичный водоносный комплекс",
+                "index": "Q"
+            }
+        ],
+        "model": "wells",
+        "coordinates": [
+            [
+                60.5876410144656,
+                34.054069711614815
+            ]
+        ],
+        "id": 317,
+        "aquifer_usage_string": "-/-"
+    }
+]

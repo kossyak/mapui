@@ -38,14 +38,18 @@ export default {
     const zoomLabel = 13
     const wellsJson = result[0]
     const fieldsJson = result[1]
-    const VZUJson = result[2]
+    const intakesJson = result[2]
     const fieldsPolygon = polygons.create({
-      data: fieldsJson,
-      type: 'fields'
+      features: fieldsJson,
+      type: 'fields',
+      style: {
+        strokeColor: '#01796f',
+        fillColor: [0, 56, 123, 0.4]
+      }
     })
-    const VZUPolygon = polygons.create({
-      data: VZUJson,
-      type: 'VZU',
+    const intakesPolygon = polygons.create({
+      features: intakesJson,
+      type: 'intakes',
       style: {
         strokeColor: 'blue',
         fillColor: [0, 0, 128, 0.4]
@@ -53,7 +57,7 @@ export default {
     })
     const pointSrc = pointSource.getPointSource(wells, wellsJson)
     const layers = pointLayers.create(pointSrc, wells)
-    const allLayers = { fields: fieldsPolygon.layer, VZU: VZUPolygon.layer, ...layers }
+    const allLayers = { fields: fieldsPolygon.layer, intakes: intakesPolygon.layer, ...layers }
     const groups = groupsModule.create(allLayers)
     const { mousePositionControl, scaleLineControl, selectControlModule } = controls
   
@@ -84,12 +88,12 @@ export default {
           if (isActive) {
             translate.setActive(true)
             fieldsPolygon.interaction.setActive(true)
-            VZUPolygon.interaction.setActive(true)
+            intakesPolygon.interaction.setActive(true)
             map.removeOverlay(tooltip)
           } else {
             translate.setActive(false)
             fieldsPolygon.interaction.setActive(false)
-            VZUPolygon.interaction.setActive(false)
+            intakesPolygon.interaction.setActive(false)
             select.getFeatures().clear()
             map.addOverlay(tooltip)
           }
@@ -114,7 +118,7 @@ export default {
     select.setActive(true)
     
     const map = new Map({
-      interactions: defaultInteractions().extend([VZUPolygon.interaction, fieldsPolygon.interaction, select, translate]),
+      interactions: defaultInteractions().extend([intakesPolygon.interaction, fieldsPolygon.interaction, select, translate]),
       controls: defaults().extend([mousePositionControl, scaleLineControl, menuControl, infoControl]),
       layers: Object.values(groups),
       view: new View({ center: transform(coordinate || [36.1874, 51.7373], 'EPSG:4326', 'EPSG:3857'), zoom }),

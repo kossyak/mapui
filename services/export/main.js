@@ -1,6 +1,6 @@
-import './copmponents/general.css'
+import './components/general.css'
 import './main.css'
-import tabs from './copmponents/tabs'
+import tabs from './components/tabs'
 import tabContent from './tabContent'
 
 export default {
@@ -31,10 +31,7 @@ export default {
     switchTab(n) {
       const key = this.models[n].key
       const fields = this.models[n].fields
-      const mapping = (item, acc, el) => {
-          return {...acc, [el.key]: item[el.key] || '-'}
-      }
-      const data = this.data.filter(el => el[key]).map(item => fields.filter(el => el.checked).reduce((acc, el) => mapping(item, acc, el), {}))
+      const data = this.data.filter(el => el.model === key)
       this.node.main.section.content.mount({
         src: tabContent,
         params: { data, fields, key }

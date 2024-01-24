@@ -1,9 +1,9 @@
 export default [
   {
-    key: 'typo',
+    key: 'wells',
     title: 'Скважины',
     fields: [{
-      key: 'nameGwk',
+      key: 'gvk',
       title: 'Номер ГВК',
       checked: true
     },{
@@ -30,15 +30,19 @@ export default [
       key: 'coordinates',
       title: 'Координаты',
       checked: true
+    },{
+      key: 'aquifer_usage_string',
+      title: 'Эксплуатируемый горизонт',
+      checked: true
     },
     {
-        key: 'pk',
-        title: 'pk',
-        hidden: true
+      key: 'id',
+      title: 'id',
+      hidden: true
     }]
   },
   {
-    key: 'intake_name',
+    key: 'intakes',
     title: 'Водозаборы',
     fields: [{
       key: 'intake_name',
@@ -51,7 +55,7 @@ export default [
     }]
   },
   {
-    key: 'field_name',
+    key: 'fields',
     title: 'Месторождения',
     fields: [{
       key: 'field_name',

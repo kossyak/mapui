@@ -21,15 +21,15 @@
     },
     "export" : {
       "source": "services/export/index.html",
-      "sourceMap": true,
-      "optimize": true,
-      "distDir": "./static/servises/export",
+      "sourceMap": false,
+      "optimize": false,
+      "distDir": "./static/services/export",
       "context": "browser",
       "publicUrl": "."
     }
   },
   "scripts": {
-    "dev": "npm run build-img && parcel index.html",
+    "dev": "parcel index.html",
     "build-img": "parcel build image/* --no-cache",
     "global": "parcel build --target global --no-cache",
     "export": "parcel services/export/index.html",
@@ -39,10 +39,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ol": "^8.2.0",
-    "parcel": "^2.10.3"
+    "ol": "^8.2.0"
   },
   "devDependencies": {
-    "@parcel/transformer-inline-string": "^2.10.3"
+    "parcel": "^2.10.3"
   }
 }

@@ -1,10 +1,9 @@
 import VectorSource from 'ol/source/Vector'
 import GeoJSON from 'ol/format/GeoJSON'
-// import points from './points.json'
 
 export default {
    getFeatures(typo, points) {
-    const features = points.features.filter(item => item.properties.typo === typo)
+    const features = points.filter(item => item.properties.typo === typo)
     return {type: 'FeatureCollection', crs: {type: 'name', properties: {name: 'EPSG:4326'}}, features}
   },
   getSource(typo, points) {

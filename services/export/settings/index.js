@@ -1,4 +1,4 @@
-import checkbox from '../copmponents/checkbox'
+import checkbox from '../components/checkbox'
 
 export default {
   template: `<div class="checkboxes l-content"></div>`,
