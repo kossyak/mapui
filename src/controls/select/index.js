@@ -87,10 +87,10 @@ export default {
     selectedAll.forEach((s) => {
       const selected = mapping(s)
       this.selectedAll.push(selected)
-      const add = (label, text) => text ? `<div><span>${label}: </span>${text || '-'}</div>` : ''
+      const add = (label, text) => (text && text != []) ? `<div><span>${label}: </span>${text || '-'}</div>` : ''
       const { model, gvk, name, typo, aquifer_usage, field_name, intake_name } = selected
       let title = ''
-      if (model === 'wells') title = add('Номер', name || 'б/н') + add('Номер ГВК', gvk || 'Н/Д') + add('Тип', typo?.name) + add('Индекс', aquifer_usage?.map(el => el.index))
+      if (model === 'wells') title = add('Номер', name || 'б/н') + add('Номер ГВК', gvk || 'Н/Д') + add('Тип', typo?.name) + add('Горизонт', aquifer_usage?.map(el => el.index))
       if (model === 'intakes') title = add('Тип', 'Водозаборы') + add('Владелец', intake_name)
       if (model === 'fields') title =  add('Тип', 'Месторождения') + add('Наименование', field_name)
       list.push({ selected, title })
