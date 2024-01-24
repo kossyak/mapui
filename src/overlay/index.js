@@ -30,13 +30,12 @@ export default {
       const add = (label, text) => text ? `<b>${label}: </b>${text}<br>` : ''
       let tooltipText = ''
       features.forEach((feature) => {
-        const { geometry, name, typo, extra, field_name, intake_name } = feature.getProperties()
+        const { geometry, name, typo, gvk, field_name, intake_name } = feature.getProperties()
         const type = geometry.getType()
         if (type === 'Point') {
           // if (this.coordinates && this.coordinates === tooltip.getPosition()) return
           this.coordinates = geometry.getCoordinates()
-          const nameGwk = extra?.name_gwk || 'Н/Д'
-          tooltipText += add('Номер', name) + add('Тип', typo) + add('ГВК', nameGwk)
+          tooltipText += add('Номер', name) + add('Тип', typo.name) + add('ГВК', gvk || 'Н/Д')
         } else if (type === 'Polygon' || type === 'MultiPolygon') {
           this.coordinates = event.coordinate
           if (field_name) tooltipText += add('Месторождение', field_name || '-')

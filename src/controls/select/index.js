@@ -62,10 +62,10 @@ export default {
       return [
         { label: 'Номер ГВК', value: gvk, type: 'number', name: 'n1' },
         { label: 'Внутренний номер', value: name, type: 'number', name: 'n2'  },
-        { label: 'Тип', value: typo, name: 'n3'  },
+        { label: 'Тип', value: typo.name, name: 'n3'  },
         { label: 'А.О. устья', value: head, name: 'n4'  },
-        { label: 'Водозабор', value: intake, name: 'n5'  },
-        { label: 'Месторождение', value: field, name: 'n6'  },
+        { label: 'Водозабор', value: intake.name, name: 'n5'  },
+        { label: 'Месторождение', value: field.name, name: 'n6'  },
         { label: 'Целевой горизонт', value: aquifer_usage?.map(el => el.name), name: 'n7'  },
         // { label: 'С.Ш', value: coordinates[0][0], type: 'number', name: 'n7'  },
         // { label: 'В.Д', value: coordinates[0][1], type: 'number', name: 'n8'  },
@@ -91,7 +91,7 @@ export default {
       const add = (label, text) => text ? `<div><span>${label}: </span>${text || '-'}</div>` : ''
       const { model, gvk, name, typo, aquifer_usage, field_name, intake_name } = selected
       let title = ''
-      if (model === 'wells') title = add('Номер', name || 'б/н') + add('Номер ГВК', gvk || 'Н/Д') + add('Тип', typo) + add('Индекс', aquifer_usage?.map(el => el.index))
+      if (model === 'wells') title = add('Номер', name || 'б/н') + add('Номер ГВК', gvk || 'Н/Д') + add('Тип', typo.name) + add('Индекс', aquifer_usage?.map(el => el.index))
       if (model === 'intakes') title = add('Тип', 'Водозаборы') + add('Владелец', intake_name)
       if (model === 'fields') title =  add('Тип', 'Месторождения') + add('Наименование', field_name)
       list.push({ selected, title })

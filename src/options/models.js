@@ -11,7 +11,7 @@ export default [
       title: 'Внутренний номер',
       checked: true
     },{
-      key: 'typo',
+      key: 'typo_string',
       title: 'Тип',
       checked: true
     },{
@@ -19,11 +19,11 @@ export default [
       title: 'А.О. устья',
       checked: true
     },{
-      key: 'intake',
+      key: 'intake_string',
       title: 'Водозабор',
       checked: true
     },{
-      key: 'field',
+      key: 'field_string',
       title: 'Месторождение',
       checked: true
     },{
