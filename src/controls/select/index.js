@@ -24,7 +24,6 @@ export default {
     const exportBtn = tap.create({
       html: `Экспорт ⤇`,
       onclick: (v) => {
-        console.log(this.selectedAll)
         const ms = new MS({
           url: config.services.export(),
           entry: {

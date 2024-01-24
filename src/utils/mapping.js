@@ -12,7 +12,6 @@ export default function mapping(target) {
   }
   if (aquifer_usage?.length) {
     properties.aquifer_usage_string = aquifer_usage.map((el) => (el.name || '-') + '/' + (el.index || '-'))
-    console.log(properties.aquifer_usage_string)
   }
   return properties
 }
