@@ -28,10 +28,8 @@ export default {
     {
       key: 'lithology_count',
       title: 'Разрез скважины',
-      view: () => {
-        const img = document.createElement('img')
-        img.src = 'result.png'
-        return img
+      view: (selected, config) => {
+        return new MS({ url: config.services.ws(selected) }).iframe
       }
     },
     {
@@ -58,7 +56,7 @@ export default {
     {
       title: 'Датчик мониторинга уровня',
       view: (selected, config) => {
-        return new MS({ url: config.services.chem(selected) }).iframe
+        return new MS({ url: config.services.mon(selected) }).iframe
       }
     }]
 }

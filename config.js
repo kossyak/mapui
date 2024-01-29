@@ -10,6 +10,7 @@ export default {
     gis: (selected) => host + '/base/api/gph/' + selected.id + '/list/',
     efw: (selected) => host + '/base/api/efw/' + selected.id + '/list/',
     chem: (selected) => host + '/base/api/chem/' + selected.id + '/list/',
+    ws: (selected) => host + '/base/api/ws/' + selected.id + '/plot/',
     mon: (selected) => 'https://openweathermap.org/weathermap?basemap=map&cities=false&layer=precipitation&lat=0&lon=0&zoom=2',
   }
 }
