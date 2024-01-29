@@ -21,6 +21,9 @@
   background-color: #26282b;
   font-size: 13.5px;
 }
+.mui button[disabled] {
+  opacity: .4;
+}
 .mui aside button {
   background-color: transparent;
   text-align: left;

@@ -87,7 +87,7 @@ export default {
     selectedAll.forEach((s) => {
       const selected = mapping(s)
       this.selectedAll.push(selected)
-      const add = (label, text) => text ? `<div><span>${label}: </span>${text || '-'}</div>` : ''
+      const add = (label, text) => (text && text !== []) ? `<div><span>${label}: </span>${text || '-'}</div>` : ''
       const { model, gvk, name, typo, aquifer_usage, field_name, intake_name } = selected
       let title = ''
       if (model === 'wells') title = add('Номер', name || 'б/н') + add('Номер ГВК', gvk || 'Н/Д') + add('Тип', typo?.name) + add('Индекс', aquifer_usage?.map(el => el.index))
@@ -110,6 +110,9 @@ export default {
     const html = this.fieldsToHTML(fields)
     ui.navigate.extension.content(editBtn)
     ui.navigate.extension.addContent(html)
+    details[this.selected.model].forEach((el) => {
+      if (el.key) el.disabled = Boolean(this.selected[el.key])
+    })
     const listEx = list.create({
       list: details[this.selected.model],
       onclick: (item, index) => {

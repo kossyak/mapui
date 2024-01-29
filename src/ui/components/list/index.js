@@ -18,6 +18,6 @@ export default {
     return el
   },
   content(list) {
-    return list.reduce((accum, current, i) => accum + `<button class="mui-li" data-index="${i + 1}"><div>${current.title}</div><i class="mui-arrow right"></i></button>`, '')
+    return list.reduce((accum, current, i) => accum + `<button class="mui-li" data-index="${i + 1}" ${current.disabled ? 'disabled' : ''}><div>${current.title}</div><i class="mui-arrow right"></i></button>`, '')
   }
 }
