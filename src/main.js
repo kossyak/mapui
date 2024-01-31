@@ -3,6 +3,7 @@ import './style.css'
 import Map from 'ol/Map'
 import View from 'ol/View'
 import { defaults as defaultInteractions } from 'ol/interaction'
+import { containsCoordinate } from 'ol/extent'
 import { defaults } from 'ol/control/defaults'
 import { transform } from 'ol/proj'
 import translateModule from './interactions/translate'
@@ -24,6 +25,8 @@ import switcherModule from './controls/switcher'
 
 import wells from './options/wells'
 import switcher from './options/switcher'
+
+import throttling from './utils/throttling'
 
 import UI from './ui'
 
@@ -134,7 +137,8 @@ export default {
     
     // zoom
     let visible = false
-    map.getView().on('change:resolution', () => {
+    
+    map.getView().on('change:resolution', throttling(() => {
       const currentZoom = map.getView().getZoom()
       const visibleLabels = (v) => {
         if (visible !== v) {
@@ -146,7 +150,22 @@ export default {
         }
       }
       visibleLabels(currentZoom > zoomLabel)
-    })
+      // оо
+      console.dir(switcherElement.children[2].content(33))
+      const extent = map.getView().calculateExtent(map.getSize())
+      const visiblePoints = []
+      const unique = []
+      pointSrc.explo.getFeatures().forEach((point) => {
+        if (containsCoordinate(extent, point.getGeometry().getCoordinates())) {
+          visiblePoints.push(point)
+          const aquifer_usage = point.getProperties().aquifer_usage
+          aquifer_usage.forEach(e => {
+            if (!unique.some((el) => el.index === e.index)) unique.push(e)
+          })
+        }
+      })
+      console.log(unique)
+    }, 800))
     map.getView().dispatchEvent('change:resolution')
     
     const dragBox = dragBoxModule.create(map, pointSrc, select)

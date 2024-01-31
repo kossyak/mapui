@@ -1,6 +1,6 @@
 import { Fill, Stroke, Text, Style, Circle as CircleStyle } from 'ol/style'
 
-function pointStyle(fill = [255, 0, 0, 0.7], stroke = 'black') {
+function pointStyle(feature, resolution, fill = [255, 0, 0, 0.7], stroke = 'black') {
   return new Style({
     stroke: new Stroke({
       color: stroke,
@@ -11,7 +11,8 @@ function pointStyle(fill = [255, 0, 0, 0.7], stroke = 'black') {
       fill: new Fill({
         color: fill
       })
-    })
+    }),
+    visible: false
   })
 }
 function labelStyle() {

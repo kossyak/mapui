@@ -38,6 +38,8 @@ export default [
       },
     ]
   },
+  { title: 'Водоносный горизонт',
+    visible: true },
   { title: 'Геологические и гидрогеологические карты',
     visible: false },
   {

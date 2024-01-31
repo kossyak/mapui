@@ -111,7 +111,7 @@ export default {
     ui.navigate.extension.content(editBtn)
     ui.navigate.extension.addContent(html)
     details[this.selected.model].forEach((el) => {
-      if (el.key) el.disabled = Boolean(this.selected[el.key])
+      if (el.key) el.disabled = !Boolean(this.selected[el.key])
     })
     const listEx = list.create({
       list: details[this.selected.model],

@@ -39,7 +39,7 @@
   font-weight: bold;
   color: var(--black);
 }
-.mui-extension .mui-li:hover {
+.mui-extension .mui-li:not([disabled]):hover {
   color: var(--black);
 }
 .mui-extension .mui-content img {

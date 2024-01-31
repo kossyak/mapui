@@ -6,7 +6,7 @@ export default {
     const layers = {}
     wells.forEach(item => {
       const key = item.key
-      layers[key] = new VectorLayer({ source: pointSource[key], style: pointStyle(item.color) })
+      layers[key] = new VectorLayer({ source: pointSource[key], style: (feature, resolution) => pointStyle(feature, resolution, item.color) })
       layers[key + 'Label'] = new VectorLayer({ source: pointSource[key], style: labelStyle(), visible: false })
     })
     return layers
