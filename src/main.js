@@ -113,7 +113,9 @@ export default {
       }
     })
     const selectControl = selectControlModule.create(ui, config)
-    const select = new Select({})
+    const select = new Select({
+      layers: Object.values(allLayers)
+    })
     const selectedFeatures = select.getFeatures()
     const dragBox = new DragBox({ condition: platformModifierKeyOnly })
     select.on('select', (e) => {
@@ -171,20 +173,20 @@ export default {
       }
       visibleLabels(currentZoom > zoomLabel)
       // оо
-      console.dir(switcherElement.children[2].content(33))
-      const extent = map.getView().calculateExtent(map.getSize())
-      const visiblePoints = []
-      const unique = []
-      pointSrc.explo.getFeatures().forEach((point) => {
-        if (containsCoordinate(extent, point.getGeometry().getCoordinates())) {
-          visiblePoints.push(point)
-          const aquifer_usage = point.getProperties().aquifer_usage
-          aquifer_usage.forEach(e => {
-            if (!unique.some((el) => el.index === e.index)) unique.push(e)
-          })
-        }
-      })
-      console.log(unique)
+      // console.dir(switcherElement.children[2].content(33))
+      // const extent = map.getView().calculateExtent(map.getSize())
+      // const visiblePoints = []
+      // const unique = []
+      // pointSrc.explo.getFeatures().forEach((point) => {
+      //   if (containsCoordinate(extent, point.getGeometry().getCoordinates())) {
+      //     visiblePoints.push(point)
+      //     const aquifer_usage = point.getProperties().aquifer_usage
+      //     aquifer_usage.forEach(e => {
+      //       if (!unique.some((el) => el.index === e.index)) unique.push(e)
+      //     })
+      //   }
+      // })
+      // console.log(unique)
     }, 800))
     map.getView().dispatchEvent('change:resolution')
     
