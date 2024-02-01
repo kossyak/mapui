@@ -14,7 +14,10 @@ export default {
           multiply: true,
           html: child.title,
           active: groups[child.key].getVisible(),
-          onclick: (v) => groups[child.key].setVisible(v)
+          onclick: (v) => {
+            child.visible = v
+            groups[child.key].setVisible(v)
+          }
         })
         t.style.cssText = `--color: rgba(${child.color || [255, 255, 255, 0.21]})`
         a.addContent(t)

@@ -4,22 +4,32 @@ export default [
     visible: true,
     children: [{
       key: 'explo',
+      typo: 26,
       title: 'Эксплуатационные',
+      visible: true
     },
     {
       key: 'razv',
+      typo: 27,
       title: 'Разведочные',
+      visible: true
     },
     {
       key: 'razvexp',
+      typo: 28,
       title: 'Разведочно-эксплуатационные',
+      visible: true
     },
     {
       key: 'reg',
+      typo: 25,
       title: 'Режимные',
+      visible: true
     }, {
       key: 'min',
+      typo: 49,
       title: 'Минеральные',
+      visible: true
     }]
   },
   {
@@ -29,19 +39,23 @@ export default [
       {
         key: 'fields',
         title: 'Месторождения',
-        color: [0, 128, 255, 0.7],
+        color: [0, 128, 255, 0.7]
       },
       {
         key: 'intakes',
         title: 'Водозаборы',
-        color: [0, 0, 128, 0.4],
+        color: [0, 0, 128, 0.4]
       },
     ]
   },
-  { title: 'Водоносный горизонт',
-    visible: true },
-  { title: 'Геологические и гидрогеологические карты',
-    visible: false },
+  {
+    title: 'Водоносный горизонт',
+    visible: true
+  },
+  {
+    title: 'Геологические и гидрогеологические карты',
+    visible: false
+  },
   {
     title: 'Карта высот',
     visible: false,

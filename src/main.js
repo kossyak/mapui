@@ -7,7 +7,7 @@ import { containsCoordinate } from 'ol/extent'
 import { defaults } from 'ol/control/defaults'
 import { transform } from 'ol/proj'
 import translateModule from './interactions/translate'
-import dragBoxModule from './interactions/dragBox'
+// import dragBoxModule from './interactions/dragBox'
 import Select from 'ol/interaction/Select'
 import tooltipOverlay from './overlay'
 import Control from 'ol/control/Control'
@@ -29,6 +29,8 @@ import switcher from './options/switcher'
 import throttling from './utils/throttling'
 
 import UI from './ui'
+import DragBox from 'ol/interaction/DragBox'
+import { platformModifierKeyOnly } from 'ol/events/condition'
 
 export default {
   animate(map) {
@@ -110,14 +112,32 @@ export default {
         }
       }
     })
-    
-    const select = new Select({
-      layers: Object.values(allLayers)
+    const selectControl = selectControlModule.create(ui, config)
+    const select = new Select({})
+    const selectedFeatures = select.getFeatures()
+    const dragBox = new DragBox({ condition: platformModifierKeyOnly })
+    select.on('select', (e) => {
+      selectControl.update(selectedFeatures.getArray())
     })
+    dragBox.on('boxend', () => {
+      const extent = dragBox.getGeometry().getExtent()
+      const boxFeatures = []
+      for (const key in pointSrc) {
+        pointSrc[key].forEachFeatureIntersectingExtent(extent, (feature) => {
+          const target = switcher.at(0).children.find((el) => el.typo === feature.getProperties().typo.id)
+          target?.visible && boxFeatures.push(feature)
+        })
+      }
+      selectedFeatures.extend(boxFeatures)
+      selectControl.update(selectedFeatures.getArray())
+    })
+    dragBox.on('boxstart', () => selectedFeatures.clear())
+    ui.navigate.on('close', () => selectedFeatures.clear())
+    
     const translate = translateModule.create(select)
-    const infoElement = selectControlModule.create(select, ui, config)
+    
     const menuControl = new Control({ element: menuElement })
-    const infoControl = new Control({ element: infoElement })
+    const infoControl = new Control({ element: selectControl.infoPanel })
     select.setActive(true)
     
     const map = new Map({
@@ -168,11 +188,11 @@ export default {
     }, 800))
     map.getView().dispatchEvent('change:resolution')
     
-    const dragBox = dragBoxModule.create(map, pointSrc, select)
     const tooltip = tooltipOverlay.create(map)
     map.addInteraction(dragBox)
     map.addOverlay(tooltip)
     // this.animate(map)
+    
   }
 }
 

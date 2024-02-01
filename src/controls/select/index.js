@@ -12,14 +12,9 @@ export default {
   selected: {},
   selectedAll: [],
   config: {},
-  create(select, ui, config) {
+  create(ui, config) {
     this.config = config
     const infoPanel = this.infoElement()
-    const update = (event) => this.update(event, select, infoPanel, ui)
-    select.getFeatures().on('add', update)
-    // select.on('select', () => {
-    //   ui.navigate.content('')
-    // })
     ui.navigate.classList.add('info')
     const exportBtn = tap.create({
       html: `Экспорт ⤇`,
@@ -38,16 +33,11 @@ export default {
       }
     })
     ui.navigate.append(exportBtn)
-    
-    ui.navigate.on('close', () => {
-      select.getFeatures().clear()
-    })
     ui.navigate.on('back', () => {
       ui.navigate.extension.setTitle('')
       this.openExtension(ui)
     })
-    // select.getFeatures().on('remove', update)
-    return infoPanel
+    return { infoPanel, update: (select) => this.update(select, infoPanel, ui) }
   },
   infoElement() {
     const container = document.createElement('div')
@@ -123,10 +113,10 @@ export default {
     })
     ui.navigate.extension.addContent(listEx)
   },
-  update(event, select, infoPanel, ui) {
+  update(selectedAll, infoPanel, ui) {
     ui.navigate.extension.content('')
-    const selectedAll = select.getFeatures().getArray()
-    if (selectedAll) {
+    console.log(selectedAll)
+    if (selectedAll?.length) {
       const listNavigate = this.getNavigate(selectedAll)
       const l = list.create({
         list: listNavigate,
