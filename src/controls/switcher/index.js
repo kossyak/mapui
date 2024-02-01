@@ -9,21 +9,41 @@ export default {
     options.forEach((item) => {
       const a = accordion.create({ text: item.title, active: item.visible })
       item.children?.forEach(child => {
-        const t = tap.create({
-          // parent: div,
-          multiply: true,
-          html: child.title,
-          active: groups[child.key].getVisible(),
-          onclick: (v) => {
+        // const t = tap.create({
+        //   // parent: div,
+        //   multiply: true,
+        //   html: child.title,
+        //   active: groups[child.key].getVisible(),
+        //   onclick: (v) => {
+        //     child.visible = v
+        //     groups[child.key].setVisible(v)
+        //   }
+        // })
+        // t.style.cssText = `--color: rgba(${child.color || [255, 255, 255, 0.21]})`
+        // a.addContent(t)
+        this.createSwitch({
+          target: a,
+          title: child.title,
+          visible: groups[child.key].getVisible(),
+          color: child.color,
+          handler: (v) => {
             child.visible = v
             groups[child.key].setVisible(v)
           }
         })
-        t.style.cssText = `--color: rgba(${child.color || [255, 255, 255, 0.21]})`
-        a.addContent(t)
       })
       controls.append(a)
     })
     return controls
+  },
+  createSwitch({ target, title, visible, color, handler }) {
+    const t = tap.create({
+      multiply: true,
+      html: title,
+      active: visible,
+      onclick: handler
+    })
+    t.style.cssText = `--color: rgba(${color || [255, 255, 255, 0.21]})`
+    target.addContent(t)
   }
 }

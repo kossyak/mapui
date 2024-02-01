@@ -2,6 +2,7 @@ import DragBox from 'ol/interaction/DragBox'
 import { platformModifierKeyOnly } from 'ol/events/condition'
 // import { getWidth } from 'ol/extent'
 
+/*
 export default {
   dragBox: null,
   map: null,
@@ -83,3 +84,4 @@ export default {
     }
   }
 }
+*/

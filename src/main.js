@@ -31,6 +31,7 @@ import throttling from './utils/throttling'
 import UI from './ui'
 import DragBox from 'ol/interaction/DragBox'
 import { platformModifierKeyOnly } from 'ol/events/condition'
+import {log} from "ol/console";
 
 export default {
   animate(map) {
@@ -134,6 +135,7 @@ export default {
       selectControl.update(selectedFeatures.getArray())
     })
     dragBox.on('boxstart', () => selectedFeatures.clear())
+    // selectedFeatures.on(['add', 'remove'], function() {})
     ui.navigate.on('close', () => selectedFeatures.clear())
     
     const translate = translateModule.create(select)
@@ -159,7 +161,7 @@ export default {
     
     // zoom
     let visible = false
-    
+    const hidden_aquifers = switcher.find(el => el.hidden_aquifers).hidden_aquifers
     map.getView().on('change:resolution', throttling(() => {
       const currentZoom = map.getView().getZoom()
       const visibleLabels = (v) => {
@@ -172,29 +174,43 @@ export default {
         }
       }
       visibleLabels(currentZoom > zoomLabel)
-      // оо
-      // console.dir(switcherElement.children[2].content(33))
-      // const extent = map.getView().calculateExtent(map.getSize())
-      // const visiblePoints = []
-      // const unique = []
-      // pointSrc.explo.getFeatures().forEach((point) => {
-      //   if (containsCoordinate(extent, point.getGeometry().getCoordinates())) {
-      //     visiblePoints.push(point)
-      //     const aquifer_usage = point.getProperties().aquifer_usage
-      //     aquifer_usage.forEach(e => {
-      //       if (!unique.some((el) => el.index === e.index)) unique.push(e)
-      //     })
-      //   }
-      // })
-      // console.log(unique)
-    }, 800))
+      // 00
+      console.dir()
+      const extent = map.getView().calculateExtent(map.getSize())
+      const visiblePoints = []
+      const unique = []
+      pointSrc.explo.getFeatures().forEach((point) => {
+        if (containsCoordinate(extent, point.getGeometry().getCoordinates())) {
+          visiblePoints.push(point)
+          const aquifer_usage = point.getProperties().aquifer_usage
+          aquifer_usage.forEach(e => {
+            if (!unique.some((el) => el.index === e.index)) unique.push(e)
+          })
+        }
+      })
+      console.log(hidden_aquifers)
+      switcherElement.children[2].content()
+      unique.forEach((el) => {
+        switcherModule.createSwitch({
+          target: switcherElement.children[2],
+          title: `${el.index} / ${el.name}`,
+          visible: !hidden_aquifers.has(el.index),
+          color: '',
+          handler: (v) => {
+            console.log(v)
+            v ? hidden_aquifers.delete(el.index) : hidden_aquifers.add(el.index)
+          }
+        })
+      })
+
+    }, 300))
     map.getView().dispatchEvent('change:resolution')
     
     const tooltip = tooltipOverlay.create(map)
     map.addInteraction(dragBox)
     map.addOverlay(tooltip)
     // this.animate(map)
-    
+    // map.getInteractions().extend([selectInteraction]);
   }
 }
 

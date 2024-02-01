@@ -50,7 +50,8 @@ export default [
   },
   {
     title: 'Водоносный горизонт',
-    visible: true
+    visible: true,
+    hidden_aquifers: new Set()
   },
   {
     title: 'Геологические и гидрогеологические карты',
