@@ -12,7 +12,7 @@
     border-color: var(--white200);
 }
 
-.switcher-controls .mui-accordion:nth-child(1) .mui-content button.active:before {
+.mui-accordion[name="wells"] .mui-content button.active:before, .mui-accordion[name="aquifers"] .mui-content button.active:before {
     border-radius: 10px;
     height: 11px;
     width: 11px;
@@ -20,7 +20,7 @@
     outline: 1px solid var(--white100);
     border: 0;
 }
-.switcher-controls .mui-accordion:nth-child(2) .mui-content button.active:before {
+.mui-accordion[name="polygons"] .mui-content button.active:before {
     height: 11px;
     width: 11px;
     background-color: var(--color);

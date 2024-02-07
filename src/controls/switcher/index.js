@@ -7,7 +7,7 @@ export default {
     const controls = document.createElement('div')
     controls.className = 'switcher-controls'
     options.forEach((item) => {
-      const a = accordion.create({ text: item.title, active: item.visible })
+      const a = accordion.create({ text: item.title, active: item.visible, name: item.key })
       item.children?.forEach(child => {
         // const t = tap.create({
         //   // parent: div,
@@ -43,7 +43,8 @@ export default {
       active: visible,
       onclick: handler
     })
-    t.style.cssText = `--color: rgba(${color || [255, 255, 255, 0.21]})`
+    console.log(color)
+    t.style.cssText = Array.isArray(color) ? `--color: rgba(${color || [255, 255, 255, 0.21]})` : `--color: ${color || '#ffffff'}`
     target.addContent(t)
   }
 }

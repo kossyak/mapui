@@ -1,15 +1,15 @@
 import { Fill, Stroke, Text, Style, Circle as CircleStyle } from 'ol/style'
 
-function pointStyle(feature, resolution, fill = [255, 0, 0, 0.7], stroke = 'black') {
+function pointStyle(feature, fill = '#ffffff', stroke = '#000000') {
   return new Style({
-    stroke: new Stroke({
-      color: stroke,
-      width: 4
-    }),
     image: new CircleStyle({
-      radius: 5,
+      radius: 6,
       fill: new Fill({
         color: fill
+      }),
+      stroke: new Stroke({
+        color: stroke + 'сс',
+        width: 2
       })
     }),
     visible: false

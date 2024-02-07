@@ -1,3 +1,4 @@
+import secret from '../secret'
 export  default {
   total: 0,
   loaded: 0,
@@ -12,7 +13,13 @@ export  default {
     this.total = urls.length
     for (let i = 0; i < urls.length; i++) {
       try {
-        const response = await fetch(urls[i])
+        const response = await fetch(urls[i], {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': secret.Authorization
+          }
+        })
         if (response.ok) {
           const data = await response.json()
           results[i] = data.results?.features || []

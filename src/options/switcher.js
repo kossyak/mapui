@@ -1,6 +1,7 @@
 export default [
   {
     title: 'Скважины',
+    key: 'wells',
     visible: true,
     children: [{
       key: 'explo',
@@ -34,6 +35,7 @@ export default [
   },
   {
     title: 'Полигоны',
+    key: 'polygons',
     visible: true,
     children: [
       {
@@ -50,6 +52,7 @@ export default [
   },
   {
     title: 'Водоносный горизонт',
+    key: 'aquifers',
     visible: true,
     hidden_aquifers: new Set()
   },

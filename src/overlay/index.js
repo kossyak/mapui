@@ -25,8 +25,9 @@ export default {
   },
   update(event, map, tooltip, container, content) {
     const features = map.getFeaturesAtPixel(event.pixel)
-    if (features?.length === 1 && features[0].__id === 'measure') return
+    console.log(features[0])
     if (features?.length > 0) {
+      if (features[0].__id === 'measure') return
       const add = (label, text) => text ? `<b>${label}: </b>${text}<br>` : ''
       let tooltipText = ''
       features.forEach((feature) => {
@@ -35,7 +36,7 @@ export default {
         if (type === 'Point') {
           // if (this.coordinates && this.coordinates === tooltip.getPosition()) return
           this.coordinates = geometry.getCoordinates()
-          tooltipText += add('Номер', name) + add('Тип', typo.name) + add('ГВК', gvk || 'Н/Д')
+          tooltipText += add('Номер', name) + add('Тип', typo?.name) + add('ГВК', gvk || 'Н/Д')
         } else if (type === 'Polygon' || type === 'MultiPolygon') {
           this.coordinates = event.coordinate
           if (field_name) tooltipText += add('Месторождение', field_name || '-')
