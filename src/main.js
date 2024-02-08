@@ -187,6 +187,7 @@ export default {
         })
       })
       switcherElement.children[2].content()
+      unique.sort((a, b) => (b.index > a.index) ? 1 : ((a.index > b.index) ? -1 : 0))
       unique.forEach((el) => {
         switcherModule.createSwitch({
           target: switcherElement.children[2],

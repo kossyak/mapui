@@ -115,7 +115,6 @@ export default {
   },
   update(selectedAll, infoPanel, ui) {
     ui.navigate.extension.content('')
-    console.log(selectedAll)
     if (selectedAll?.length) {
       const listNavigate = this.getNavigate(selectedAll)
       const l = list.create({

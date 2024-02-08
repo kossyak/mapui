@@ -43,7 +43,6 @@ export default {
       active: visible,
       onclick: handler
     })
-    console.log(color)
     t.style.cssText = Array.isArray(color) ? `--color: rgba(${color || [255, 255, 255, 0.21]})` : `--color: ${color || '#ffffff'}`
     target.addContent(t)
   }

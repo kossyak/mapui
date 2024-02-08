@@ -4,32 +4,27 @@ export default [
     key: 'wells',
     visible: true,
     children: [{
-      key: 'explo',
+      key: 'p26',
       typo: 26,
       title: 'Эксплуатационные',
       visible: true
     },
     {
-      key: 'razv',
-      typo: 27,
-      title: 'Разведочные',
+      key: 'p31',
+      typo: 31,
+      title: 'Наблюдательные',
       visible: true
     },
     {
-      key: 'razvexp',
-      typo: 28,
-      title: 'Разведочно-эксплуатационные',
+      key: 'p43',
+      typo: 43,
+      title: 'Проектные',
       visible: true
     },
     {
-      key: 'reg',
-      typo: 25,
-      title: 'Режимные',
-      visible: true
-    }, {
-      key: 'min',
-      typo: 49,
-      title: 'Минеральные',
+      key: 'p654',
+      typo: 654,
+      title: 'Инженерные',
       visible: true
     }]
   },

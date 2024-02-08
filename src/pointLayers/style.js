@@ -8,7 +8,7 @@ function pointStyle(feature, fill = '#ffffff', stroke = '#000000') {
         color: fill
       }),
       stroke: new Stroke({
-        color: stroke + 'сс',
+        color: stroke + 'dd',
         width: 2
       })
     }),

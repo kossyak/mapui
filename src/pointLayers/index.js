@@ -1,6 +1,6 @@
 import VectorLayer from 'ol/layer/Vector'
 import { pointStyle, labelStyle } from './style'
-import {Style} from "ol/style";
+import { Style } from 'ol/style'
 
 export default {
   wells: [],
@@ -15,7 +15,7 @@ export default {
       layers[key] = new VectorLayer({ source: pointSource[key], style: (feature) => {
           const prop = feature.getProperties()
           const aquifer_usage = prop.aquifer_usage
-          return pointStyle(feature, aquifer_usage?.[0].color, prop.typo.color)
+          return pointStyle(feature, aquifer_usage?.[0]?.color, prop.typo?.color)
         }
       })
       layers[key + 'Label'] = new VectorLayer({ source: pointSource[key], style: labelStyle(), visible: false })

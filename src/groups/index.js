@@ -8,16 +8,14 @@ import { pointStyle } from '../pointLayers/style'
 export default {
   create(layers) {
     const {
-      exploLabel,
-      razvLabel,
-      regLabel,
-      razvexpLabel,
-      minLabel,
-      explo,
-      razv,
-      reg,
-      razvexp,
-      min,
+      p26Label,
+      p31Label,
+      p43Label,
+      p654Label,
+      p26,
+      p31,
+      p43,
+      p654,
       fields,
       intakes
     } = layers
@@ -53,25 +51,21 @@ export default {
         visible: true,
         layers: [intakes]
       }),
-      explo: new GroupLayer({
+      p26: new GroupLayer({
         visible: true,
-        layers: [explo, exploLabel]
+        layers: [p26, p26Label]
       }),
-      razv: new GroupLayer({
+      p31: new GroupLayer({
         visible: true,
-        layers: [razv, razvLabel]
+        layers: [p31, p31Label]
       }),
-      razvexp: new GroupLayer({
+      p43: new GroupLayer({
         visible: true,
-        layers: [razvexp, razvexpLabel]
+        layers: [p43, p43Label]
       }),
-      reg: new GroupLayer({
+      p654: new GroupLayer({
         visible: true,
-        layers: [reg, regLabel]
-      }),
-      min: new GroupLayer({
-        visible: true,
-        layers: [min, minLabel]
+        layers: [p654, p654Label]
       })
     }
   }

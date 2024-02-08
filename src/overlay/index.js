@@ -25,7 +25,6 @@ export default {
   },
   update(event, map, tooltip, container, content) {
     const features = map.getFeaturesAtPixel(event.pixel)
-    console.log(features[0])
     if (features?.length > 0) {
       if (features[0].__id === 'measure') return
       const add = (label, text) => text ? `<b>${label}: </b>${text}<br>` : ''

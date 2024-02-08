@@ -1,28 +1,22 @@
 export default [
   {
-    key: 'explo',
-    typo: 26, // 'эксплуатационный',
-    color: [17, 30, 108, 0.7]
+    key: 'p26',
+    typo: 26,
+    color: '#111e6c'
   },
   {
-    key: 'razv',
-    typo: 27, // 'разведочный',
-    color: [14, 77, 146, 0.7]
+    key: 'p31',
+    typo: 31,
+    color: '#0080ff'
   },
   {
-    key: 'razvexp',
-    typo: 28, // 'разведочно-эксплуатационный',
-    color: [0, 49, 82, 0.7]
+    key: 'p43',
+    typo: 43,
+    color: '#008081'
   },
   {
-    key: 'reg',
-    typo: 25, // 'режимный',
-    color: [0, 128, 255, 0.7]
+    key: 'p654',
+    typo: 654,
+    color: '#4B0082'
   },
-
-  {
-    key: 'min',
-    typo: 49, // 'минеральный',
-    color: [0, 128, 129, 0.7]
-  }
 ]

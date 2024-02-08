@@ -3,7 +3,7 @@ import config from '../config.js'
 const host = config.host
 export default {
   wells: {
-    get: '/wells.json', // host + '/base/api/wells/?format=json&limit=300', //'https://darcydb.ru/base/api/wells/?format=json&limit=5000', // host + '/base/api/wells/?format=json',
+    get: 'https://darcydb.ru/base/api/wells/?format=json&limit=300', // '/wells.json', // host + '/base/api/wells/?format=json&limit=300', //'https://darcydb.ru/base/api/wells/?format=json&limit=5000', // host + '/base/api/wells/?format=json&limit=5000',
     set: host + '/base/api/wells/'
   },
   fields: {
