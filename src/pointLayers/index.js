@@ -28,12 +28,17 @@ export default {
       this.pointSource[key].getFeatures().forEach((feature) => {
         const prop = feature.getProperties()
         const aquifer_usage = prop.aquifer_usage
-        aquifer_usage?.forEach(e => {
-          if (e.index === aquifer_index) {
-            v ? feature.setStyle(pointStyle(feature, e.color, prop.typo.color)) : feature.setStyle(new Style({}))
-            feature._hidden = !v
-          }
-        })
+        if (aquifer_usage) {
+          aquifer_usage.forEach(e => {
+            if (e.index === aquifer_index) {
+              v ? feature.setStyle(pointStyle(feature, e.color, prop.typo.color)) : feature.setStyle(new Style({}))
+              feature._hidden = !v
+            }
+          })
+        } else {
+          v ? feature.setStyle(pointStyle(feature, '#ffffff', prop.typo.color)) : feature.setStyle(new Style({}))
+          feature._hidden = !v
+        }
       })
     })
   }

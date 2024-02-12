@@ -7,7 +7,7 @@ import api from '../../../api'
 import GeoJSON from 'ol/format/GeoJSON'
 
 export default {
-  create({ type, features, style }) {
+  create({ type, features = [], style }) {
     const source = new VectorSource({
       features: new GeoJSON().readFeatures({
         type: 'FeatureCollection',

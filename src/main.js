@@ -40,7 +40,7 @@ export default {
   },
   init(target, result, config, coordinate) {
     const ui = UI.create(target) // { navigate, info }
-    const zoom = 15
+    const zoom = 13
     const zoomLabel = 13
     const wellsJson = result[0]
     const fieldsJson = result[1]
@@ -160,21 +160,14 @@ export default {
     // zoom
     let visible = false
     const hidden_aquifers = switcher.find(el => el.hidden_aquifers).hidden_aquifers
-    map.getView().on('change:resolution', throttling(() => {
-      const currentZoom = map.getView().getZoom()
-      const visibleLabels = (v) => {
-        if (visible !== v) {
-          visible = v
-          wells.forEach(item => {
-            const layers = groups[item.key].getLayers()
-            layers.array_[1].setVisible(v)
-          })
-        }
-      }
-      visibleLabels(currentZoom > zoomLabel)
-      // filter by aquifer
+    const filterByAquifer = () => {
       const extent = map.getView().calculateExtent(map.getSize())
-      const unique = []
+      const unique = [{
+        id: 0,
+        name: '__',
+        index: '__',
+        color: "#ffffff"
+      }]
       wells.forEach(item => {
         const key = item.key
         pointSrc[key].getFeatures().forEach((feature) => {
@@ -200,8 +193,24 @@ export default {
           }
         })
       })
+    }
+    
+    map.getView().on('change:resolution', throttling(() => {
+      const currentZoom = map.getView().getZoom()
+      const visibleLabels = (v) => {
+        if (visible !== v) {
+          visible = v
+          wells.forEach(item => {
+            const layers = groups[item.key].getLayers()
+            layers.array_[1].setVisible(v)
+          })
+        }
+      }
+      visibleLabels(currentZoom > zoomLabel)
+      filterByAquifer()
     }, 200))
     map.getView().dispatchEvent('change:resolution')
+    map.on("moveend", () => filterByAquifer())
     
     const tooltip = tooltipOverlay.create(map)
     map.addInteraction(dragBox)

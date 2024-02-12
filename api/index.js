@@ -3,15 +3,15 @@ import config from '../config.js'
 const host = config.host
 export default {
   wells: {
-    get: 'https://darcydb.ru/base/api/wells/?format=json&limit=300', // '/wells.json', // host + '/base/api/wells/?format=json&limit=300', //'https://darcydb.ru/base/api/wells/?format=json&limit=5000', // host + '/base/api/wells/?format=json&limit=5000',
+    get: host + '/base/api/wells/?format=json&limit=300', // 'https://darcydb.ru/base/api/wells/?format=json&limit=300', // '/wells.json', // host + '/base/api/wells/?format=json&limit=300', //'https://darcydb.ru/base/api/wells/?format=json&limit=5000', // host + '/base/api/wells/?format=json&limit=5000',
     set: host + '/base/api/wells/'
   },
   fields: {
-    get: '/fields.json', // host + '/base/api/fields/?format=json',
+    get: host + '/base/api/fields/?format=json', // host + '/base/api/fields/?format=json',
     set: host + '/base/api/fields/',
   },
   intakes: {
-    get: '/intakes.json', // host + '/base/api/intakes/?format=json',
+    get: host + '/base/api/intakes/?format=json', // host + '/base/api/intakes/?format=json',
     set: host + '/base/api/intakes/'
   },
   async updateCoordinates(featureId, coordinates, type) {
