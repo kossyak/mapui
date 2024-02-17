@@ -15,7 +15,8 @@ export default {
       layers[key] = new VectorLayer({ source: pointSource[key], style: (feature) => {
           const prop = feature.getProperties()
           const aquifer_usage = prop.aquifer_usage
-          return pointStyle(feature, aquifer_usage?.[0]?.color, prop.typo?.color)
+          feature._style = pointStyle(feature, aquifer_usage?.[0]?.color, prop.typo?.color)
+          return feature._style
         }
       })
       layers[key + 'Label'] = new VectorLayer({ source: pointSource[key], style: labelStyle(), visible: false })
@@ -31,12 +32,32 @@ export default {
         if (aquifer_usage) {
           aquifer_usage.forEach(e => {
             if (e.index === aquifer_index) {
-              v ? feature.setStyle(pointStyle(feature, e.color, prop.typo.color)) : feature.setStyle(new Style({}))
+              v ? feature.setStyle(feature._style) : feature.setStyle(new Style({}))
               feature._hidden = !v
             }
           })
         } else {
           v ? feature.setStyle(pointStyle(feature, '#ffffff', prop.typo.color)) : feature.setStyle(new Style({}))
+          feature._hidden = !v
+        }
+      })
+    })
+  },
+  visibleFiltersPoints(k, v) {
+    this.wells.forEach(item => {
+      const key = item.key
+      this.pointSource[key].getFeatures().forEach((feature) => {
+        const prop = feature.getProperties()
+        if (v) {
+          if (!prop[k]) {
+            feature.setStyle(new Style({}))
+            feature._hidden = !v
+          } else {
+            feature.setStyle(feature._style)
+            feature._hidden = !v
+          }
+        } else {
+          feature.setStyle(feature._style)
           feature._hidden = !v
         }
       })

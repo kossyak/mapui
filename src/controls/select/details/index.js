@@ -6,13 +6,76 @@ export default {
     {
       title: 'Координаты',
       view: (selected) => coordinatesHTML(selected.coordinates)
-    }
+    },
+    {
+      key: 'protocol',
+      title: 'Протокол',
+      view: (selected, config) => {
+        return new MS({ url: config.services.protocol(selected) }).iframe
+      }
+    },
+    {
+      key: 'balances',
+      title: 'Запасы',
+      view: (selected, config) => {
+        return new MS({ url: config.services.balances(selected) }).iframe
+      }
+    },
+    {
+      key: 'plan',
+      title: 'План подсчета запасов',
+      view: (selected, config) => {
+        return new MS({ url: config.services.plan(selected) }).iframe
+      }
+    },
+    {
+      key: 'report',
+      title: 'Отчет по оценке запасов',
+      view: (selected, config) => {
+        return new MS({ url: config.services.report(selected) }).iframe
+      }
+    },
+    {
+      key: 'documents',
+      title: 'Документы',
+      view: (selected, config) => {
+        return new MS({ url: config.services.documents(selected) }).iframe
+      }
+    },
   ],
   intakes: [
     {
       title: 'Координаты',
       view: (selected) => coordinatesHTML(selected.coordinates)
-    }
+    },
+    {
+      key: 'license',
+      title: 'Лицензия',
+      view: (selected, config) => {
+        return new MS({ url: config.services.license(selected) }).iframe
+      }
+    },
+    {
+      key: 'wells',
+      title: 'Список скважин',
+      view: (selected, config) => {
+        return new MS({ url: config.services.wells(selected) }).iframe
+      }
+    },
+    {
+      key: 'deadlines',
+      title: 'Сроки выполнения условий недропользования',
+      view: (selected, config) => {
+        return new MS({ url: config.services.deadlines(selected) }).iframe
+      }
+    },
+    {
+      key: 'withdrawal',
+      title: 'Водоотбор',
+      view: (selected, config) => {
+        return new MS({ url: config.services.withdrawal(selected) }).iframe
+      }
+    },
   ],
   wells: [{
       title: 'Координаты',
@@ -58,5 +121,5 @@ export default {
       view: (selected, config) => {
         return new MS({ url: config.services.mon(selected) }).iframe
       }
-    }]
+  }]
 }

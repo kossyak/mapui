@@ -52,6 +52,12 @@ export default [
     hidden_aquifers: new Set()
   },
   {
+    title: 'Фильтрация',
+    key: 'filters',
+    visible: true,
+    hidden_filters: new Set()
+  },
+  {
     title: 'Геологические и гидрогеологические карты',
     visible: false
   },

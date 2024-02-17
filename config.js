@@ -6,11 +6,20 @@ export default {
   services: {
     export: () => 'http://localhost:1234/' + '/static/services/export/index.html',
     choosen_chem: (selected) => host + `/base/api/chem/${selected.map(e => e.id)}/choosen_table/`,
-    reg: (selected) => host + '/base/api/regime/' + selected.id + '/plot/',
-    gis: (selected) => host + '/base/api/gph/' + selected.id + '/list/',
-    efw: (selected) => host + '/base/api/efw/' + selected.id + '/list/',
-    chem: (selected) => host + '/base/api/chem/' + selected.id + '/list/',
-    ws: (selected) => host + '/base/api/ws/' + selected.id + '/plot/',
+    reg: ({ id }) => host + '/base/api/regime/' + id + '/plot/',
+    gis: ({ id }) => host + '/base/api/gph/' + id + '/list/',
+    efw: ({ id }) => host + '/base/api/efw/' + id + '/list/',
+    chem: ({ id }) => host + '/base/api/chem/' + id + '/list/',
+    ws: ({ id }) => host + '/base/api/ws/' + id + '/plot/',
     mon: (selected) => 'https://openweathermap.org/weathermap?basemap=map&cities=false&layer=precipitation&lat=0&lon=0&zoom=2',
+    protocol: ({ id }) => host + '/base/api/fields/' + id + '/protocol/',
+    balances: ({ id }) => host + '/base/api/fields/' + id + '/balances/',
+    plan: ({ id }) => host + '/base/api/fields/' + id + '/plan/',
+    report: ({ id }) => host + '/base/api/fields/' + id + '/report/',
+    documents: ({ id }) => host + '/base/api/fields/' + id + '/documents/',
+    license: ({ id }) => host + '/base/api/intakes/' + id + '/license/',
+    wells: ({ id }) => host + '/base/api/intakes/' + id + '/wells/',
+    deadlines: ({ id }) => host + '/base/api/intakes/' + id + '/deadlines/',
+    withdrawal: ({ id }) => host + '/base/api/intakes/' + id + '/withdrawal/'
   }
 }

@@ -8,6 +8,7 @@ export default {
     controls.className = 'switcher-controls'
     options.forEach((item) => {
       const a = accordion.create({ text: item.title, active: item.visible, name: item.key })
+      controls[item.key] = a
       item.children?.forEach(child => {
         // const t = tap.create({
         //   // parent: div,

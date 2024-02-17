@@ -25,6 +25,7 @@ import switcherModule from './controls/switcher'
 
 import wells from './options/wells'
 import switcher from './options/switcher'
+import filterList from './options/filterList'
 
 import throttling from './utils/throttling'
 
@@ -76,7 +77,7 @@ export default {
       } else console.error('wells and switcher do not correspond')
     })
     const switcherElement = switcherModule.create(switcher, groups)
-    
+    console.dir(switcherElement)
     // menu
     const menuElement = menuModule.create({
       ruler: {
@@ -160,12 +161,13 @@ export default {
     // zoom
     let visible = false
     const hidden_aquifers = switcher.find(el => el.hidden_aquifers).hidden_aquifers
+    const hidden_filters = switcher.find(el => el.hidden_filters).hidden_filters
     const filterByAquifer = () => {
       const extent = map.getView().calculateExtent(map.getSize())
       const unique = [{
         id: 0,
-        name: '__',
-        index: '__',
+        name: 'нд',
+        index: 'нд',
         color: "#ffffff"
       }]
       wells.forEach(item => {
@@ -179,11 +181,11 @@ export default {
           }
         })
       })
-      switcherElement.children[2].content()
+      switcherElement.aquifers.content()
       unique.sort((a, b) => (b.index > a.index) ? 1 : ((a.index > b.index) ? -1 : 0))
       unique.forEach((el) => {
         switcherModule.createSwitch({
-          target: switcherElement.children[2],
+          target: switcherElement.aquifers,
           title: `${el.index} / ${el.name}`,
           visible: !hidden_aquifers.has(el.index),
           color: el.color,
@@ -194,6 +196,18 @@ export default {
         })
       })
     }
+    filterList.forEach((el) => {
+      switcherModule.createSwitch({
+        target: switcherElement.filters,
+        title: el.title,
+        visible: el.visible,
+        handler: (v) => {
+          v ?  hidden_filters.add(el.key) : hidden_filters.delete(el.key)
+          pointLayers.visibleFiltersPoints(el.key, v)
+        }
+      })
+    })
+    
     
     map.getView().on('change:resolution', throttling(() => {
       const currentZoom = map.getView().getZoom()
