@@ -61,7 +61,7 @@ export default {
     return !filterList.some(el => hidden_filters.has(el.key) && props[el.key] === 0)
   },
   checkAquifers(aquifer_usage, hidden_aquifers) {
-    return !aquifer_usage?.some(e => hidden_aquifers.has(e.index))
+    return aquifer_usage ? !aquifer_usage.some(e => hidden_aquifers.has(e.index)) : false
   },
   visibleFiltersPoints(k, v, hidden_filters, hidden_aquifers) {
     this.wells.forEach(item => {
