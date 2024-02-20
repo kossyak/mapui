@@ -2,22 +2,22 @@ export default [
   {
     key: 'regime_count',
     title: 'График режимных наблюдений',
-    visible: false
+    visible: true
   },{
     key: 'lithology_count',
     title: 'Разрез скважины',
-    visible: false
+    visible: true
   },{
     key: 'geophysics_count',
     title: 'Данные ГИС',
-    visible: false
+    visible: true
   },{
     key: 'efw_count',
     title: 'Данные по ОФР',
-    visible: false
+    visible: true
   },{
     key: 'sample_count',
     title: 'Химический анализ',
-    visible: false
+    visible: true
   }
 ]

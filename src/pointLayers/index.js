@@ -1,14 +1,14 @@
 import VectorLayer from 'ol/layer/Vector'
 import { pointStyle, labelStyle } from './style'
 import { Style } from 'ol/style'
+import filterList from '../options/filterList'
 
 export default {
   wells: [],
   pointSource: {},
-  create(pointSource, wells, hidden_aquifers) {
+  create(pointSource, wells) {
     this.pointSource = pointSource
     this.wells = wells
-    this.hidden_aquifers = hidden_aquifers
     const layers = {}
     wells.forEach(item => {
       const key = item.key
@@ -23,42 +23,61 @@ export default {
     })
     return layers
   },
-  visibleAquiferPoints(aquifer_index, v) {
+  visibleAquiferPoints(aquifer_index, v, hidden_filters) {
     this.wells.forEach(item => {
       const key = item.key
       this.pointSource[key].getFeatures().forEach((feature) => {
-        const prop = feature.getProperties()
-        const aquifer_usage = prop.aquifer_usage
+        const props = feature.getProperties()
+        const aquifer_usage = props.aquifer_usage
         if (aquifer_usage) {
           aquifer_usage.forEach(e => {
             if (e.index === aquifer_index) {
-              v ? feature.setStyle(feature._style) : feature.setStyle(new Style({}))
-              feature._hidden = !v
+              if (v) {
+                if (this.checkFilter(hidden_filters, props)) {
+                  feature.setStyle(feature._style)
+                  feature._hidden = false
+                }
+              } else {
+                feature.setStyle(new Style({}))
+                feature._hidden = true
+              }
             }
           })
         } else {
-          v ? feature.setStyle(pointStyle(feature, '#ffffff', prop.typo.color)) : feature.setStyle(new Style({}))
-          feature._hidden = !v
+          if (v) {
+            if (this.checkFilter(hidden_filters, props)) {
+              feature.setStyle(pointStyle(feature, '#ffffff', props.typo.color))
+              feature._hidden = false
+            }
+          } else {
+            feature.setStyle(new Style({}))
+            feature._hidden = true
+          }
         }
       })
     })
   },
-  visibleFiltersPoints(k, v) {
+  checkFilter(hidden_filters, props) {
+    return !filterList.some(el => hidden_filters.has(el.key) && props[el.key] === 0)
+  },
+  checkAquifers(aquifer_usage, hidden_aquifers) {
+    return !aquifer_usage?.some(e => hidden_aquifers.has(e.index))
+  },
+  visibleFiltersPoints(k, v, hidden_filters, hidden_aquifers) {
     this.wells.forEach(item => {
       const key = item.key
       this.pointSource[key].getFeatures().forEach((feature) => {
-        const prop = feature.getProperties()
+        const props = feature.getProperties()
         if (v) {
-          if (!prop[k]) {
-            feature.setStyle(new Style({}))
-            feature._hidden = !v
-          } else {
+          if (this.checkFilter(hidden_filters, props) && this.checkAquifers(props.aquifer_usage, hidden_aquifers)) {
             feature.setStyle(feature._style)
-            feature._hidden = !v
+            feature._hidden = false
           }
         } else {
-          feature.setStyle(feature._style)
-          feature._hidden = !v
+          if (!props[k]) {
+            feature.setStyle(new Style({}))
+            feature._hidden = true
+          }
         }
       })
     })
