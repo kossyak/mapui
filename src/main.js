@@ -202,7 +202,7 @@ export default {
         title: el.title,
         visible: el.visible,
         handler: (v) => {
-          v ? hidden_filters.delete(el.key) : hidden_filters.add(el.key)
+          v ? hidden_filters.add(el.key) : hidden_filters.delete(el.key)
           pointLayers.visibleFiltersPoints(el.key, v, hidden_filters, hidden_aquifers)
         }
       })

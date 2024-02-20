@@ -46,7 +46,7 @@ export default {
         } else {
           if (v) {
             if (this.checkFilter(hidden_filters, props)) {
-              feature.setStyle(pointStyle(feature, '#ffffff', props.typo.color))
+              feature.setStyle(feature._style)
               feature._hidden = false
             }
           } else {
@@ -58,10 +58,10 @@ export default {
     })
   },
   checkFilter(hidden_filters, props) {
-    return !filterList.some(el => hidden_filters.has(el.key) && props[el.key] === 0)
+    return hidden_filters.size ? !filterList.some(el => hidden_filters.has(el.key) && props[el.key] === 0) : true
   },
   checkAquifers(aquifer_usage, hidden_aquifers) {
-    return aquifer_usage ? !aquifer_usage.some(e => hidden_aquifers.has(e.index)) : false
+    return aquifer_usage ? !aquifer_usage.some(e => hidden_aquifers.has(e.index)) : !hidden_aquifers.has('нд')
   },
   visibleFiltersPoints(k, v, hidden_filters, hidden_aquifers) {
     this.wells.forEach(item => {
@@ -69,14 +69,14 @@ export default {
       this.pointSource[key].getFeatures().forEach((feature) => {
         const props = feature.getProperties()
         if (v) {
-          if (this.checkFilter(hidden_filters, props) && this.checkAquifers(props.aquifer_usage, hidden_aquifers)) {
-            feature.setStyle(feature._style)
-            feature._hidden = false
-          }
-        } else {
           if (!props[k]) {
             feature.setStyle(new Style({}))
             feature._hidden = true
+          }
+        } else {
+          if (this.checkFilter(hidden_filters, props) && this.checkAquifers(props.aquifer_usage, hidden_aquifers)) {
+            feature.setStyle(feature._style)
+            feature._hidden = false
           }
         }
       })
