@@ -52,19 +52,19 @@ export default {
         layers: [intakes]
       }),
       p26: new GroupLayer({
-        visible: true,
+        visible: false,
         layers: [p26, p26Label]
       }),
       p31: new GroupLayer({
-        visible: true,
+        visible: false,
         layers: [p31, p31Label]
       }),
       p43: new GroupLayer({
-        visible: true,
+        visible: false,
         layers: [p43, p43Label]
       }),
       p654: new GroupLayer({
-        visible: true,
+        visible: false,
         layers: [p654, p654Label]
       })
     }

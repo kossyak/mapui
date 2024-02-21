@@ -3,7 +3,7 @@ import './style.css'
 import Map from 'ol/Map'
 import View from 'ol/View'
 import { defaults as defaultInteractions } from 'ol/interaction'
-import { containsCoordinate } from 'ol/extent'
+import { boundingExtent, containsCoordinate } from 'ol/extent'
 import { defaults } from 'ol/control/defaults'
 import { transform } from 'ol/proj'
 import translateModule from './interactions/translate'
@@ -18,6 +18,7 @@ import measureModule from './controls/measure'
 
 import pointSource from './pointSource'
 import pointLayers from './pointLayers'
+import pointClusters from './pointLayers/clusters'
 import groupsModule from './groups'
 
 import menuModule from './controls/munu'
@@ -41,7 +42,7 @@ export default {
   },
   init(target, result, config, coordinate) {
     const ui = UI.create(target) // { navigate, info }
-    const zoom = 13
+    const zoom = 12
     const zoomLabel = 13
     const wellsJson = result[0]
     const fieldsJson = result[1]
@@ -64,6 +65,7 @@ export default {
     })
     const pointSrc = pointSource.getPointSource(wells, wellsJson)
     const layers = pointLayers.create(pointSrc, wells)
+    const layersClusters = pointClusters.create(pointSrc, wells)
     const allLayers = { fields: fieldsPolygon.layer, intakes: intakesPolygon.layer, ...layers }
     const groups = groupsModule.create(allLayers)
     const { mousePositionControl, scaleLineControl, selectControlModule } = controls
@@ -146,7 +148,7 @@ export default {
     const map = new Map({
       interactions: defaultInteractions().extend([intakesPolygon.interaction, fieldsPolygon.interaction, select, translate]),
       controls: defaults().extend([mousePositionControl, scaleLineControl, menuControl, infoControl]),
-      layers: Object.values(groups),
+      layers: [...Object.values(groups), layersClusters],
       view: new View({ center: transform(coordinate || [36.1874, 51.7373], 'EPSG:4326', 'EPSG:3857'), zoom }),
       target: ui.map
     })
@@ -219,16 +221,40 @@ export default {
             layers.array_[1].setVisible(v)
           })
         }
+        if (v) {
+          layersClusters.setVisible(false)
+          wells.forEach(item => {
+            groups[item.key].setVisible(v)
+          })
+        } else {
+          wells.forEach(item => {
+            groups[item.key].setVisible(v)
+          })
+          layersClusters.setVisible(true)
+        }
       }
       visibleLabels(currentZoom > zoomLabel)
       filterByAquifer()
     }, 200))
+    map.on('click', (e) => {
+      layersClusters.getFeatures(e.pixel).then((clickedFeatures) => {
+        if (clickedFeatures.length) {
+          // Get clustered Coordinates
+          const features = clickedFeatures[0].get('features')
+          const extent = boundingExtent(
+            features.map((r) => r.getGeometry().getCoordinates())
+          )
+          map.getView().fit(extent, { maxZoom: zoomLabel + 1, duration: 500, zoom: 13, padding: [50, 50, 50, 50]})
+        }
+      })
+    })
+    
     map.getView().dispatchEvent('change:resolution')
     map.on("moveend", () => filterByAquifer())
     
     const tooltip = tooltipOverlay.create(map)
     map.addInteraction(dragBox)
-    map.addOverlay(tooltip)
+    // map.addOverlay(tooltip)
     // this.animate(map)
     // map.getInteractions().extend([selectInteraction]);
   }
