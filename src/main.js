@@ -238,18 +238,18 @@ export default {
       visibleLabels(currentZoom > zoomLabel)
       filterByAquifer()
     }, 200))
-    // map.on('click', (e) => {
-    //   layersClusters.getFeatures(e.pixel).then((clickedFeatures) => {
-    //     if (clickedFeatures.length) {
-    //       // Get clustered Coordinates
-    //       const features = clickedFeatures[0].get('features')
-    //       const extent = boundingExtent(
-    //         features.map((r) => r.getGeometry().getCoordinates())
-    //       )
-    //       map.getView().fit(extent, { maxZoom: zoomLabel + 1, duration: 500, zoom: 13, padding: [50, 50, 50, 50]})
-    //     }
-    //   })
-    // })
+    map.on('click', (e) => {
+      layersClusters.getFeatures(e.pixel).then((clickedFeatures) => {
+        if (clickedFeatures.length) {
+          // Get clustered Coordinates
+          const features = clickedFeatures[0].get('features')
+          const extent = boundingExtent(
+            features.map((r) => r.getGeometry().getCoordinates())
+          )
+          map.getView().fit(extent, { maxZoom: zoomLabel + 1, duration: 500, zoom: 13, padding: [50, 50, 50, 50]})
+        }
+      })
+    })
     
     map.getView().dispatchEvent('change:resolution')
     map.on("moveend", () => filterByAquifer())
