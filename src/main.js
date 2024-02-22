@@ -126,16 +126,12 @@ export default {
     dragBox.on('boxend', () => {
       const extent = dragBox.getGeometry().getExtent()
       const boxFeatures = []
-      // for (const key in pointSource) {
-      //   pointSource[key].forEachFeatureIntersectingExtent(extent, (feature) => {
-      //     const target = switcher.at(0).children.find((el) => el.typo === feature.getProperties().typo.id)
-      //     target?.visible && !feature._hidden && boxFeatures.push(feature)
-      //   })
-      // }
-      pointFeatures.forEachFeatureIntersectingExtent(extent, (feature) => {
-        const target = switcher.at(0).children.find((el) => el.typo === feature.getProperties().typo.id)
-        target?.visible && !feature._hidden && boxFeatures.push(feature)
-      })
+      for (const key in pointSource) {
+        pointSource[key].forEachFeatureIntersectingExtent(extent, (feature) => {
+          const target = switcher.at(0).children.find((el) => el.typo === feature.getProperties().typo.id)
+          target?.visible && !feature._hidden && boxFeatures.push(feature)
+        })
+      }
       selectedFeatures.extend(boxFeatures)
       selectControl.update(selectedFeatures.getArray())
     })
