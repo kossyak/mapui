@@ -7,7 +7,7 @@ export default {
     return el
   },
   content(el) {
-    const cont = this.create({ parent: el, tag: 'div', name: 'content' })
+    const cont = this.create({ parent: el, tag: 'fieldset', name: 'content' })
     el.content = (v) => {
       cont.innerHTML = ''
       v instanceof Element ? cont.append(v) : cont.innerHTML = v || ''

@@ -2,13 +2,21 @@ import { Cluster } from 'ol/source.js'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import { clusterStyle } from '../style'
+import GeoJSON from 'ol/format/GeoJSON'
 
 export default {
-  create(pointSource, wells, map) {
-    const source = new VectorSource({})
-    wells.forEach(item => {
-      source.addFeatures(pointSource[item.key].getFeatures())
+  create(wells, points) {
+    console.log(points)
+    const features = new GeoJSON().readFeatures({
+        type: 'FeatureCollection',
+        crs: {type: 'name', properties: {name: 'EPSG:4326'}},
+        features:points
+      }, {
+      dataProjection: 'EPSG:4326',
+      featureProjection: 'EPSG:3857'
     })
+    
+    const source = new VectorSource({ features })
     const clusterSource = new Cluster({
       // distance: parseInt(distanceInput.value, 10), 40
       // minDistance: parseInt(minDistanceInput.value, 10),

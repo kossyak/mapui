@@ -16,7 +16,7 @@ import polygons from './interactions/polygons'
 import controls from './controls'
 import measureModule from './controls/measure'
 
-import pointSource from './pointSource'
+import pointSources from './pointSource'
 import pointLayers from './pointLayers'
 import pointClusters from './pointLayers/clusters'
 import groupsModule from './groups'
@@ -63,9 +63,9 @@ export default {
         fillColor: [0, 0, 128, 0.4]
       }
     })
-    const pointSrc = pointSource.getPointSource(wells, wellsJson)
-    const layers = pointLayers.create(pointSrc, wells)
-    const layersClusters = pointClusters.create(pointSrc, wells)
+    const { pointSource, pointFeatures } = pointSources.getPointSource(wells, wellsJson)
+    const layers = pointLayers.create(pointSource, wells, pointFeatures)
+    const layersClusters = pointClusters.create(wells, wellsJson)
     const allLayers = { fields: fieldsPolygon.layer, intakes: intakesPolygon.layer, ...layers }
     const groups = groupsModule.create(allLayers)
     const { mousePositionControl, scaleLineControl, selectControlModule } = controls
@@ -126,12 +126,16 @@ export default {
     dragBox.on('boxend', () => {
       const extent = dragBox.getGeometry().getExtent()
       const boxFeatures = []
-      for (const key in pointSrc) {
-        pointSrc[key].forEachFeatureIntersectingExtent(extent, (feature) => {
-          const target = switcher.at(0).children.find((el) => el.typo === feature.getProperties().typo.id)
-          target?.visible && !feature._hidden && boxFeatures.push(feature)
-        })
-      }
+      // for (const key in pointSource) {
+      //   pointSource[key].forEachFeatureIntersectingExtent(extent, (feature) => {
+      //     const target = switcher.at(0).children.find((el) => el.typo === feature.getProperties().typo.id)
+      //     target?.visible && !feature._hidden && boxFeatures.push(feature)
+      //   })
+      // }
+      pointFeatures.forEachFeatureIntersectingExtent(extent, (feature) => {
+        const target = switcher.at(0).children.find((el) => el.typo === feature.getProperties().typo.id)
+        target?.visible && !feature._hidden && boxFeatures.push(feature)
+      })
       selectedFeatures.extend(boxFeatures)
       selectControl.update(selectedFeatures.getArray())
     })
@@ -172,16 +176,13 @@ export default {
         index: 'нд',
         color: "#ffffff"
       }]
-      wells.forEach(item => {
-        const key = item.key
-        pointSrc[key].getFeatures().forEach((feature) => {
-          if (containsCoordinate(extent, feature.getGeometry().getCoordinates())) {
-            const aquifer_usage = feature.getProperties().aquifer_usage
-            aquifer_usage?.forEach(e => {
-              if (!unique.some((el) => el.index === e.index)) unique.push(e)
-            })
-          }
-        })
+      pointFeatures.forEach((feature) => {
+        if (containsCoordinate(extent, feature.getGeometry().getCoordinates())) {
+          const aquifer_usage = feature.getProperties().aquifer_usage
+          aquifer_usage?.forEach(e => {
+            if (!unique.some((el) => el.index === e.index)) unique.push(e)
+          })
+        }
       })
       switcherElement.aquifers.content()
       unique.sort((a, b) => (b.index > a.index) ? 1 : ((a.index > b.index) ? -1 : 0))
@@ -209,8 +210,11 @@ export default {
         }
       })
     })
-    
-    
+    const switcherDisabled = (v) => {
+      switcherElement.wells.children[1].children[0].disabled = v
+      switcherElement.aquifers.children[1].children[0].disabled = v
+      switcherElement.filters.children[1].children[0].disabled = v
+    }
     map.getView().on('change:resolution', throttling(() => {
       const currentZoom = map.getView().getZoom()
       const visibleLabels = (v) => {
@@ -226,35 +230,37 @@ export default {
           wells.forEach(item => {
             groups[item.key].setVisible(v)
           })
+          switcherDisabled(false)
         } else {
           wells.forEach(item => {
             groups[item.key].setVisible(v)
           })
           layersClusters.setVisible(true)
+          switcherDisabled(true)
         }
       }
       visibleLabels(currentZoom > zoomLabel)
       filterByAquifer()
     }, 200))
-    map.on('click', (e) => {
-      layersClusters.getFeatures(e.pixel).then((clickedFeatures) => {
-        if (clickedFeatures.length) {
-          // Get clustered Coordinates
-          const features = clickedFeatures[0].get('features')
-          const extent = boundingExtent(
-            features.map((r) => r.getGeometry().getCoordinates())
-          )
-          map.getView().fit(extent, { maxZoom: zoomLabel + 1, duration: 500, zoom: 13, padding: [50, 50, 50, 50]})
-        }
-      })
-    })
+    // map.on('click', (e) => {
+    //   layersClusters.getFeatures(e.pixel).then((clickedFeatures) => {
+    //     if (clickedFeatures.length) {
+    //       // Get clustered Coordinates
+    //       const features = clickedFeatures[0].get('features')
+    //       const extent = boundingExtent(
+    //         features.map((r) => r.getGeometry().getCoordinates())
+    //       )
+    //       map.getView().fit(extent, { maxZoom: zoomLabel + 1, duration: 500, zoom: 13, padding: [50, 50, 50, 50]})
+    //     }
+    //   })
+    // })
     
     map.getView().dispatchEvent('change:resolution')
     map.on("moveend", () => filterByAquifer())
     
     const tooltip = tooltipOverlay.create(map)
     map.addInteraction(dragBox)
-    // map.addOverlay(tooltip)
+    map.addOverlay(tooltip)
     // this.animate(map)
     // map.getInteractions().extend([selectInteraction]);
   }

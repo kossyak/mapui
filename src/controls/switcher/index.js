@@ -25,7 +25,7 @@ export default {
         this.createSwitch({
           target: a,
           title: child.title,
-          visible: groups[child.key].getVisible(),
+          visible: true,
           color: child.color,
           handler: (v) => {
             child.visible = v

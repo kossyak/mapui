@@ -21,7 +21,7 @@
   background-color: #26282b;
   font-size: 13.5px;
 }
-.mui button[disabled] {
+.mui button[disabled], .mui fieldset[disabled] {
   opacity: .4;
 }
 .mui aside button {
@@ -43,6 +43,14 @@
 .mui [hidden] {
   display: none;
 }
+
+.mui fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-inline-size: initial;
+}
+
 .mui aside {
   flex-basis: 0;
   overflow-x: hidden;
@@ -58,10 +66,12 @@
   /*white-space: nowrap;*/
   overflow: auto;
   opacity: 0;
-  padding: 22px;
+
   transition: opacity .3s ease-in .12s;
 }
-
+.mui-info > .mui-content {
+  padding: 22px;
+}
 aside.mui-navigate > div.mui-content {
   padding: 0;
   width: 220px;

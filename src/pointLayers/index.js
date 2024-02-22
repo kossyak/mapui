@@ -6,7 +6,8 @@ import filterList from '../options/filterList'
 export default {
   wells: [],
   pointSource: {},
-  create(pointSource, wells) {
+  create(pointSource, wells, pointFeatures) {
+    this.pointFeatures = pointFeatures
     this.pointSource = pointSource
     this.wells = wells
     const layers = {}
@@ -24,9 +25,7 @@ export default {
     return layers
   },
   visibleAquiferPoints(aquifer_index, v, hidden_filters) {
-    this.wells.forEach(item => {
-      const key = item.key
-      this.pointSource[key].getFeatures().forEach((feature) => {
+      this.pointFeatures.forEach((feature) => {
         const props = feature.getProperties()
         const aquifer_usage = props.aquifer_usage
         if (aquifer_usage) {
@@ -55,7 +54,6 @@ export default {
           }
         }
       })
-    })
   },
   checkFilter(hidden_filters, props) {
     return hidden_filters.size ? !filterList.some(el => hidden_filters.has(el.key) && props[el.key] === 0) : true
@@ -64,22 +62,19 @@ export default {
     return aquifer_usage ? !aquifer_usage.some(e => hidden_aquifers.has(e.index)) : !hidden_aquifers.has('нд')
   },
   visibleFiltersPoints(k, v, hidden_filters, hidden_aquifers) {
-    this.wells.forEach(item => {
-      const key = item.key
-      this.pointSource[key].getFeatures().forEach((feature) => {
-        const props = feature.getProperties()
-        if (v) {
-          if (!props[k]) {
-            feature.setStyle(new Style({}))
-            feature._hidden = true
-          }
-        } else {
-          if (this.checkFilter(hidden_filters, props) && this.checkAquifers(props.aquifer_usage, hidden_aquifers)) {
-            feature.setStyle(feature._style)
-            feature._hidden = false
-          }
+    this.pointFeatures.forEach((feature) => {
+      const props = feature.getProperties()
+      if (v) {
+        if (!props[k]) {
+          feature.setStyle(new Style({}))
+          feature._hidden = true
         }
-      })
+      } else {
+        if (this.checkFilter(hidden_filters, props) && this.checkAquifers(props.aquifer_usage, hidden_aquifers)) {
+          feature.setStyle(feature._style)
+          feature._hidden = false
+        }
+      }
     })
   }
 }

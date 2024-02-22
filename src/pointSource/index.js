@@ -11,16 +11,22 @@ export default {
       dataProjection: 'EPSG:4326',
       featureProjection: 'EPSG:3857'
     })
-    return new VectorSource({
+    const source = new VectorSource({
       // url: 'app/map/points',
       // format: new GeoJSON(),
       wrapX: true,
       features
     })
+    return { source, features }
   },
   getPointSource(wells, points) {
     const pointSource = {}
-    wells.forEach(item => pointSource[item.key] = this.getSource(item.typo, points))
-    return pointSource
+    const pointFeatures = []
+    wells.forEach(item => {
+      const { source, features } = this.getSource(item.typo, points)
+      pointSource[item.key] = source
+      pointFeatures.push(...features)
+    })
+    return { pointSource, pointFeatures }
   }
 }
