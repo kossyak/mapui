@@ -6,7 +6,6 @@ import GeoJSON from 'ol/format/GeoJSON'
 
 export default {
   create(wells, points) {
-    console.log(points)
     const features = new GeoJSON().readFeatures({
         type: 'FeatureCollection',
         crs: {type: 'name', properties: {name: 'EPSG:4326'}},

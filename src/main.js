@@ -63,6 +63,7 @@ export default {
         fillColor: [0, 0, 128, 0.4]
       }
     })
+    const bus = {}
     const { pointSource, pointFeatures } = pointSources.getPointSource(wells, wellsJson)
     const layers = pointLayers.create(pointSource, wells, pointFeatures)
     const layersClusters = pointClusters.create(wells, wellsJson)
@@ -79,7 +80,6 @@ export default {
       } else console.error('wells and switcher do not correspond')
     })
     const switcherElement = switcherModule.create(switcher, groups)
-    console.dir(switcherElement)
     // menu
     const menuElement = menuModule.create({
       ruler: {
@@ -116,7 +116,7 @@ export default {
         }
       }
     })
-    const selectControl = selectControlModule.create(ui, config)
+    const selectControl = selectControlModule.create(ui, config, bus)
     const select = new Select({
       layers: Object.values(allLayers)
     })
@@ -253,10 +253,10 @@ export default {
     
     map.getView().dispatchEvent('change:resolution')
     map.on("moveend", () => filterByAquifer())
-    
-    const tooltip = tooltipOverlay.create(map)
+  
+    bus.tooltip = tooltipOverlay.create(map)
     map.addInteraction(dragBox)
-    map.addOverlay(tooltip)
+    map.addOverlay(bus.tooltip)
     // this.animate(map)
     // map.getInteractions().extend([selectInteraction]);
   }

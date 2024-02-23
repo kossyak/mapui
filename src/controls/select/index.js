@@ -7,13 +7,13 @@ import mapping from '../../utils/mapping'
 import MS from '../../microservice'
 import models from '../../options/models'
 
-
 export default {
   selected: {},
   selectedAll: [],
   config: {},
-  create(ui, config) {
+  create(ui, config, bus) {
     this.config = config
+    this.bus = bus
     const infoPanel = this.infoElement()
     ui.navigate.classList.add('info')
     const exportBtn = tap.create({
@@ -122,6 +122,8 @@ export default {
         onclick: (v) => {
           this.selected = v.selected
           this.openExtension(ui)
+          this.bus.tooltip.setPosition(v.selected.geometry.getCoordinates())
+          this.bus.tooltip.values_.element.content.innerHTML = `<b>ГВК:</b> ` + v.selected.gvk || 'Н/Д'
         }
       })
       ui.navigate.content(l)
