@@ -34,6 +34,8 @@ import UI from './ui'
 import DragBox from 'ol/interaction/DragBox'
 import { platformModifierKeyOnly } from 'ol/events/condition'
 
+import pointActive from './pointActive'
+
 
 export default {
   animate(map) {
@@ -41,6 +43,7 @@ export default {
     window.requestAnimationFrame(() => this.animate(map))
   },
   init(target, result, config, coordinate) {
+    const bus = {}
     const ui = UI.create(target) // { navigate, info }
     const zoom = 12
     const zoomLabel = 13
@@ -63,7 +66,6 @@ export default {
         fillColor: [0, 0, 128, 0.4]
       }
     })
-    const bus = {}
     const { pointSource, pointFeatures } = pointSources.getPointSource(wells, wellsJson)
     const layers = pointLayers.create(pointSource, wells, pointFeatures)
     const layersClusters = pointClusters.create(wells, wellsJson)
@@ -116,7 +118,8 @@ export default {
         }
       }
     })
-    const selectControl = selectControlModule.create(ui, config, bus)
+    pointActive.create(bus)
+    const selectControl = selectControlModule.create(ui, config, pointActive)
     const select = new Select({
       layers: Object.values(allLayers)
     })
@@ -135,9 +138,15 @@ export default {
       selectedFeatures.extend(boxFeatures)
       selectControl.update(selectedFeatures.getArray())
     })
-    dragBox.on('boxstart', () => selectedFeatures.clear())
+    dragBox.on('boxstart', () => {
+      selectedFeatures.clear()
+      pointActive.remove()
+    })
     // selectedFeatures.on(['add', 'remove'], function() {})
-    ui.navigate.on('close', () => selectedFeatures.clear())
+    ui.navigate.on('close', () => {
+      selectedFeatures.clear()
+      pointActive.remove()
+    })
     
     const translate = translateModule.create(select)
     
@@ -153,7 +162,7 @@ export default {
       target: ui.map
     })
     const measure = measureModule.create(map)
-    
+    bus.map = map
     // map.on('click', function(e) {
     //   if (e.originalEvent.ctrlKey && select.getFeatures().array_.length > 0) {
     //     console.log(222)
@@ -254,9 +263,9 @@ export default {
     map.getView().dispatchEvent('change:resolution')
     map.on("moveend", () => filterByAquifer())
   
-    bus.tooltip = tooltipOverlay.create(map)
+    const tooltip = tooltipOverlay.create(map)
     map.addInteraction(dragBox)
-    map.addOverlay(bus.tooltip)
+    map.addOverlay(tooltip)
     // this.animate(map)
     // map.getInteractions().extend([selectInteraction]);
   }

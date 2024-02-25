@@ -11,9 +11,9 @@ export default {
   selected: {},
   selectedAll: [],
   config: {},
-  create(ui, config, bus) {
+  create(ui, config, pointActive) {
     this.config = config
-    this.bus = bus
+    this.pointActive = pointActive
     const infoPanel = this.infoElement()
     ui.navigate.classList.add('info')
     const exportBtn = tap.create({
@@ -122,8 +122,8 @@ export default {
         onclick: (v) => {
           this.selected = v.selected
           this.openExtension(ui)
-          this.bus.tooltip.setPosition(v.selected.geometry.getCoordinates())
-          this.bus.tooltip.values_.element.content.innerHTML = `<b>ГВК:</b> ` + v.selected.gvk || 'Н/Д'
+          const coordinates = v.selected.geometry.getCoordinates()
+          this.pointActive.move(coordinates)
         }
       })
       ui.navigate.content(l)
@@ -131,6 +131,7 @@ export default {
     } else {
       ui.navigate.content('')
       ui.navigate.visible(false)
+      this.pointActive.remove()
     }
   }
 }
