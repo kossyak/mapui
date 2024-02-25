@@ -34,7 +34,7 @@ import UI from './ui'
 import DragBox from 'ol/interaction/DragBox'
 import { platformModifierKeyOnly } from 'ol/events/condition'
 
-import pointActive from './pointActive'
+import pointActive from './pointLayers/active'
 
 
 export default {
