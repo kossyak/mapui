@@ -42,7 +42,7 @@ export  default {
     console.time("for loop");
     await Promise.all(promises)
     console.timeEnd("for loop");
-    await new Promise(r => setTimeout(r, 500000))
+    await new Promise(r => setTimeout(r, 50))
     return results
   }
 }
