@@ -47,9 +47,7 @@ export default {
     const ui = UI.create(target) // { navigate, info }
     const zoom = 12
     const zoomLabel = 13
-    const wellsJson = result[0]
-    const fieldsJson = result[1]
-    const intakesJson = result[2]
+    const { wellsJson, fieldsJson, intakesJson } = result
     const fieldsPolygon = polygons.create({
       features: fieldsJson,
       type: 'fields',
@@ -125,7 +123,10 @@ export default {
     })
     const selectedFeatures = select.getFeatures()
     const dragBox = new DragBox({ condition: platformModifierKeyOnly })
-    select.on('select', (e) => selectControl.update(selectedFeatures.getArray()))
+    select.on('select', (e) => {
+      pointActive.remove()
+      selectControl.update(selectedFeatures.getArray())
+    })
     dragBox.on('boxend', () => {
       const extent = dragBox.getGeometry().getExtent()
       const boxFeatures = []

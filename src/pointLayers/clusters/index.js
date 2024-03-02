@@ -32,16 +32,16 @@ const icon = (feature) => {
     canvas.height = 20;
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
-  const radius = 70;
+  const radius = 10;
   
   context.beginPath();
   context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
   context.fillStyle = 'green';
   context.fill();
-  context.lineWidth = 5;
+  context.lineWidth = 0;
   context.strokeStyle = '#003300';
   context.stroke();
-    return createStyle(undefined, canvas)
+  return createStyle(undefined, canvas)
 }
 
 
@@ -65,16 +65,16 @@ export default {
     const styleCache = {}
     return new VectorLayer({
       source: clusterSource,
-      style: icon
-      // style: (feature) => {
-      //   const size = feature.get('features').length
-      //     let style = styleCache[size]
-      //     if (!style) {
-      //       style = clusterStyle(size)
-      //       styleCache[size] = style
-      //     }
-      //     return style
-      //   }
+      // style: icon
+      style: (feature) => {
+        const size = feature.get('features').length
+          let style = styleCache[size]
+          if (!style) {
+            style = clusterStyle(size)
+            styleCache[size] = style
+          }
+          return style
+        }
     })
   }
 }
