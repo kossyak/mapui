@@ -25,12 +25,11 @@ export default class MS {
       timepast = true
     }, 500)
     iframe.addEventListener('load',  async () => {
-      if (!timepast && !iframe.srcdoc) error()
       try {
         await iframe.contentWindow.create?.(entry)
         onload?.()
-      } catch (error) {
-        console.log(error)
+      } catch (err) {
+        if (!timepast && !iframe.srcdoc) error()
       }
     }, true)
     iframe.onerror = () => error()
