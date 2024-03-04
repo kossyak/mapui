@@ -1,5 +1,5 @@
-import secret from '../secret'
-import progress from '../src/progressbar'
+import secret from '../../secret'
+import progress from '../progressbar'
 
 export  default {
   total: 0,
@@ -7,15 +7,16 @@ export  default {
   progress: null,
   update(label) {
     this.loaded++
-    this.progress.value = Math.floor((this.loaded / this.total) * 100)
+    this.progress.style.setProperty('--value', Math.floor((this.loaded / this.total) * 100) + '%');
     this.progress.dataset.label = `Loading ${label}...`
   },
-  async init(api) {
+  async init(target, api) {
     let results = {}
-    this.progress = document.querySelector('progress')
-    this.total = progress.length
+    target.innerHTML = progress.template
+    this.progress = document.querySelector('.progress')
+    this.total = progress.data.length
     const promises = []
-    progress.forEach(el => {
+    progress.data.forEach(el => {
       promises.push(
         new Promise((resolve, reject) => {
           fetch(api[el.key].get, {

@@ -1,3 +1,14 @@
+body {
+  margin: 0;
+  height: 100vh;
+  background-color: var(--black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
 .ol-zoom {
   right: 15px;
   left: auto;

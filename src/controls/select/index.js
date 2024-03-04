@@ -6,6 +6,7 @@ import list from '../../ui/components/list'
 import mapping from '../../utils/mapping'
 import MS from '../../microservice'
 import models from '../../options/models'
+import LogicalNary from "ol/format/filter/LogicalNary";
 
 export default {
   selected: {},
@@ -107,8 +108,14 @@ export default {
       list: details[this.selected.model],
       onclick: (item, index) => {
         ui.navigate.extension.setTitle(item.title)
-        const content = details[this.selected.model][index].view?.(this.selected, this.config)
-        if (content) ui.navigate.extension.content(content)
+        const iframe = details[this.selected.model][index].view?.(this.selected, this.config)
+        if (iframe) {
+          ui.navigate.extension.classList.add('spinner')
+          iframe.addEventListener('load', () => {
+            ui.navigate.extension.classList.remove('spinner')
+          }, true)
+          ui.navigate.extension.content(iframe)
+        }
       }
     })
     ui.navigate.extension.addContent(listEx)

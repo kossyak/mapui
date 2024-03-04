@@ -197,6 +197,7 @@ aside.mui-navigate > div.mui-content {
   padding: 22px;
   overflow: auto;
   min-width: 300px;
+  position: relative;
 }
 
 .mui-full {

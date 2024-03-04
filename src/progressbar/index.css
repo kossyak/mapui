@@ -1,0 +1,32 @@
+.progress {
+  background-color: var(--gray600);
+  width: 136px;
+  height: 3px;
+  position: relative;
+  --value: 0;
+}
+.progress:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: white;
+  width: var(--value);
+  height: 100%;
+  transition: width .4s ease-in;
+}
+.progress:after {
+  content: attr(data-label);
+  position:absolute;
+  color: var(--gray300);
+  padding: .5em 0;
+  left:0;
+  right:0;
+  height: 2em;
+}
+
+#root > svg {
+  display: block;
+  width: 56px;
+  margin: 0 auto 26px auto;
+}

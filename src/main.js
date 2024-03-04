@@ -1,5 +1,6 @@
 import 'ol/ol.css'
 import './style.css'
+import '../src/spinner/index.css'
 import Map from 'ol/Map'
 import View from 'ol/View'
 import { defaults as defaultInteractions } from 'ol/interaction'
@@ -35,14 +36,15 @@ import DragBox from 'ol/interaction/DragBox'
 import { platformModifierKeyOnly } from 'ol/events/condition'
 
 import pointActive from './pointLayers/active'
-
+import loader from "./loader"
 
 export default {
   animate(map) {
     map.render()
     window.requestAnimationFrame(() => this.animate(map))
   },
-  init(target, result, config, coordinate) {
+  async init(target, api, config, coordinate) {
+    const result = await loader.init(target, api)
     const bus = {}
     const ui = UI.create(target) // { navigate, info }
     const zoom = 12
