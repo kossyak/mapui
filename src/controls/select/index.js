@@ -108,13 +108,15 @@ export default {
       list: details[this.selected.model],
       onclick: (item, index) => {
         ui.navigate.extension.setTitle(item.title)
-        const iframe = details[this.selected.model][index].view?.(this.selected, this.config)
-        if (iframe) {
-          ui.navigate.extension.classList.add('spinner')
-          iframe.addEventListener('load', () => {
-            ui.navigate.extension.classList.remove('spinner')
-          }, true)
-          ui.navigate.extension.content(iframe)
+        const content = details[this.selected.model][index].view?.(this.selected, this.config)
+        if (content) {
+          if (content.tagName === 'IFRAME') {
+            ui.navigate.extension.classList.add('spinner')
+            content.addEventListener('load', () => {
+              ui.navigate.extension.classList.remove('spinner')
+            }, true)
+          }
+          ui.navigate.extension.content(content)
         }
       }
     })
