@@ -82,11 +82,12 @@ export default {
       if (!value ||value.length < 3) return
       const data = await loader.search(api, value)
       const list = data.results.map(el => {
+        console.log(result[el.model + 'Json'])
         const item = result[el.model + 'Json']?.find(o => o.id === el.object_id)
         if (item) {
           const label = searchFields[el.model]?.(item) || el.model
-          return { id: el.id, label, model: el.model }
-        } else return { id: el.id, label: `н/д для ${el.id}(${el.model})`, model: el.model }
+          return { id: el.object_id, label, model: el.model }
+        } else return { id: el.object_id, label: `н/д для ${el.object_id}(${el.model})`, model: el.model }
       })
       ui.search.dropdown(list)
     })
@@ -153,6 +154,7 @@ export default {
       },
       ruler: {
         content: '📏',
+        title: 'Линейка',
         toggle: true,
         onclick: (active) => {
           active ? measure.init() : measure.destroy()
@@ -186,7 +188,10 @@ export default {
       },
       refresh: {
         content: '↺',
-        onclick: () => localStorage.removeItem('data')
+        onclick: () => {
+          localStorage.removeItem('data')
+          alert('Кэш очищен')
+        }
       }
     })
     pointActive.create(bus)

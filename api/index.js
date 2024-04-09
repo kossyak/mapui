@@ -7,11 +7,11 @@ export default {
     set: host + '/base/api/wells/'
   },
   fieldsJson: {
-    get: host + '/base/api/fields/?format=json&limit=300', // host + '/base/api/fields/?format=json',
+    get: host + '/base/api/fields/?format=json&limit=5000', // host + '/base/api/fields/?format=json',
     set: host + '/base/api/fields/',
   },
   intakesJson: {
-    get: host + '/base/api/intakes/?format=json&limit=300', // host + '/base/api/intakes/?format=json',
+    get: host + '/base/api/intakes/?format=json&limit=5000', // host + '/base/api/intakes/?format=json',
     set: host + '/base/api/intakes/'
   },
   search: host + '/fts/api/fts/?search=',
