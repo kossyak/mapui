@@ -6,6 +6,8 @@ import GeoJSON from 'ol/format/GeoJSON'
 
 import { Icon, Style, Fill, Text } from 'ol/style'
 
+import chart from './chart'
+
 function createStyle(src, img) {
   return new Style({
     image: new Icon({
@@ -21,29 +23,8 @@ function createStyle(src, img) {
         color: '#fff'
       })
     })
-  });
+  })
 }
-
-
-const icon = (feature) => {
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-    canvas.width = 20;
-    canvas.height = 20;
-  const centerX = canvas.width / 2;
-  const centerY = canvas.height / 2;
-  const radius = 10;
-  
-  context.beginPath();
-  context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-  context.fillStyle = 'green';
-  context.fill();
-  context.lineWidth = 0;
-  context.strokeStyle = '#003300';
-  context.stroke();
-  return createStyle(undefined, canvas)
-}
-
 
 export default {
   create(wells, points) {
@@ -66,15 +47,46 @@ export default {
     return new VectorLayer({
       source: clusterSource,
       // style: icon
+      // style: (feature) => {
+      //   const size = feature.get('features').length
+      //     let style = styleCache[size]
+      //     if (!style) {
+      //       style = clusterStyle(size)
+      //       styleCache[size] = style
+      //     }
+      //     return style
+      //   }
       style: (feature) => {
-        const size = feature.get('features').length
-          let style = styleCache[size]
-          if (!style) {
-            style = clusterStyle(size)
-            styleCache[size] = style
-          }
-          return style
-        }
+        const un = []
+        feature.get('features').forEach( f => {
+          f.values_.aquifer_usage?.forEach(aq => {
+            const index = un.findIndex(t => t.id === aq.id)
+            if (index === -1) {
+              un.push({id: aq.id, count: 1, color: aq.color})
+            } else {
+              un[index].count += 1
+            }
+          })
+        })
+        return new Style({
+          image: new Icon({
+            crossOrigin: 'anonymous',
+            img: chart.create({
+              data: un.map(el => el.count),
+              colors: un.map(el => el.color),
+              holeSize: 0.7,
+              radius: 15,
+              stroke: 0.5
+            })
+          }),
+          text: new Text({
+            text: (feature.get('features')).length.toString(),
+            fill: new Fill({
+              color: '#000'
+            })
+          })
+        })
+      }
     })
   }
 }

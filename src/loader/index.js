@@ -10,6 +10,16 @@ export  default {
     this.progress.style.setProperty('--value', Math.floor((this.loaded / this.total) * 100) + '%');
     this.progress.dataset.label = `Loading ${label}...`
   },
+  async search(api, value) {
+    const response = await fetch(api.search + value + '&limit=5', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': secret.Authorization
+      }
+    })
+    return await response.json()
+  },
   async init(target, api) {
     let results = {}
     target.innerHTML = progress.template
@@ -40,10 +50,16 @@ export  default {
         }
       ))
     })
+    const data = await localStorage.getItem('data')
+    if (data) {
+      return await JSON.parse(data)
+    }
     console.time("for loop");
     await Promise.all(promises)
     console.timeEnd("for loop");
-    await new Promise(r => setTimeout(r, 50))
+    
+    localStorage.setItem('data', JSON.stringify(results))
+    // await new Promise(r => setTimeout(r, 50))
     return results
   }
 }

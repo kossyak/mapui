@@ -45,7 +45,7 @@ export default [
     key: 'intakes',
     title: 'Водозаборы',
     fields: [{
-      key: 'intake_name',
+      key: 'name',
       title: 'Владелец',
       checked: true
     },{
@@ -58,7 +58,7 @@ export default [
     key: 'fields',
     title: 'Месторождения',
     fields: [{
-      key: 'field_name',
+      key: 'name',
       title: 'Наименование',
       checked: true
     },{

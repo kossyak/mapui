@@ -32,7 +32,7 @@ export default {
       let tooltipText = ''
       const tooltipSet = []
       features.forEach((feature) => {
-        const { geometry, name, typo, gvk, field_name, intake_name } = feature.getProperties()
+        const { model, geometry, name, typo, gvk } = feature.getProperties()
         const type = geometry.getType()
         if (type === 'Point') {
           this.coordinates = geometry.getCoordinates()
@@ -42,8 +42,8 @@ export default {
           }
         } else if (type === 'Polygon' || type === 'MultiPolygon') {
           this.coordinates = event.coordinate
-          if (field_name) tooltipText += add('Месторождение', field_name || '-')
-          if (intake_name) tooltipText += add('Владелец ВЗУ', intake_name)
+          if (model === 'fields') tooltipText += add('Месторождение', name || '-')
+          if (model === 'intake') tooltipText += add('Владелец ВЗУ', name)
         }
       })
       tooltip.setPosition(this.coordinates)

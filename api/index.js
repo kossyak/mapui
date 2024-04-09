@@ -2,22 +2,27 @@ import config from '../config.js'
 
 const host = config.host
 export default {
-  wellsJson : {
-    get: host + '/base/api/wells/?format=json&limit=300', // 'https://darcydb.ru/base/api/wells/?format=json&limit=300', // '/wells.json', // host + '/base/api/wells/?format=json&limit=300', //'https://darcydb.ru/base/api/wells/?format=json&limit=5000', // host + '/base/api/wells/?format=json&limit=5000',
+  wellsJson: {
+    get: host + '/base/api/wells/?format=json&limit=5000', // 'https://darcydb.ru/base/api/wells/?format=json&limit=300', // '/wells.json', // host + '/base/api/wells/?format=json&limit=300', //'https://darcydb.ru/base/api/wells/?format=json&limit=5000', // host + '/base/api/wells/?format=json&limit=5000',
     set: host + '/base/api/wells/'
   },
-  fieldsJson : {
+  fieldsJson: {
     get: host + '/base/api/fields/?format=json&limit=300', // host + '/base/api/fields/?format=json',
     set: host + '/base/api/fields/',
   },
-  intakesJson : {
+  intakesJson: {
     get: host + '/base/api/intakes/?format=json&limit=300', // host + '/base/api/intakes/?format=json',
     set: host + '/base/api/intakes/'
   },
-  samplesJson: {
-    get: host + '/base/api/samples/?format=json&limit=300', // host + '/base/api/intakes/?format=json',
-    set: host + '/base/api/samples/'
-  },
+  search: host + '/fts/api/fts/?search=',
+  // sectionsJson: {
+  //   get: host + '/base/api/sections/?format=json&limit=300',
+  //   set: host + '/base/api/sections/'
+  // },
+  // licenseJson: {
+  //   get: host + '/base/api/license/?format=json&limit=300',
+  //   set: host + '/base/api/license/'
+  // },
   async updateCoordinates(featureId, coordinates, type) {
     const url = `${this[type].set}${featureId}`
     const data = { coordinates }

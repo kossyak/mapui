@@ -18,9 +18,5 @@ export default {
   {
     key: 'intakesJson',
     label: 'intakes'
-  },
-  {
-    key: 'samplesJson',
-    label: 'samples'
   }]
 }

@@ -31,6 +31,12 @@ body {
   height: 100%;
 }
 
+.mui input, .mui button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: normal;
+}
+
 iframe {
   display: block;
 }

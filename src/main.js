@@ -28,6 +28,7 @@ import switcherModule from './controls/switcher'
 import wells from './options/wells'
 import switcher from './options/switcher'
 import filterList from './options/filterList'
+import searchFields from './options/search'
 
 import throttling from './utils/throttling'
 
@@ -43,10 +44,12 @@ export default {
     map.render()
     window.requestAnimationFrame(() => this.animate(map))
   },
+  searchResults: [],
   async init(target, api, config, coordinate) {
     const result = await loader.init(target, api)
     const bus = {}
     const ui = UI.create(target) // { navigate, info }
+
     const zoom = 12
     const zoomLabel = 13
     const { wellsJson, fieldsJson, intakesJson } = result
@@ -72,7 +75,53 @@ export default {
     const allLayers = { fields: fieldsPolygon.layer, intakes: intakesPolygon.layer, ...layers }
     const groups = groupsModule.create(allLayers)
     const { mousePositionControl, scaleLineControl, selectControlModule } = controls
-  
+    
+    // search
+    ui.search.on('change', async (e) => {
+      const value = e.detail?.value
+      if (!value ||value.length < 3) return
+      const data = await loader.search(api, value)
+      this.searchResults = []
+      const list = data.results.map(el => {
+        const item = result[el.model + 'Json']?.find(o => o.id === el.id)
+        item ? this.searchResults.push(item) : console.error('search error')
+        return { id: el.id, label: searchFields[el.model](item)}
+      })
+      console.log(this.searchResults)
+      ui.search.dropdown(list)
+    })
+    ui.search.on('select', async (e) => {
+      const id = e.detail?.id
+      const item = pointFeatures.find(o => o.id_ === id)
+      if (item) {
+        const features = select.getFeatures()
+        console.log(features.getArray())
+        if (features.getArray().findIndex(o => o.id_ === id) === -1) features.push(item);
+        // map.getView().setZoom(zoomLabel + 1)
+        // map.getView().setCenter(item.getGeometry().getCoordinates())
+        map.getView().animate({ zoom: zoomLabel + 1, center: item.getGeometry().getCoordinates(), duration: 800 });
+      }
+    })
+    
+    
+    let isCluster = true
+    const switchCluster = (v) => {
+      if (v) {
+        layersClusters.setVisible(false)
+        wells.forEach(item => {
+          groups[item.key].setVisible(v)
+        })
+        switcherDisabled(false)
+      } else {
+        wells.forEach(item => {
+          groups[item.key].setVisible(v)
+        })
+        layersClusters.setVisible(true)
+        switcherDisabled(true)
+      }
+    }
+    
+    
     // switcher
     wells.forEach((item) => {
       const target = switcher[0].children.find(el => el.key === item.key)
@@ -84,6 +133,23 @@ export default {
     const switcherElement = switcherModule.create(switcher, groups)
     // menu
     const menuElement = menuModule.create({
+      search: {
+        content: '🔍',
+        title: 'Полнотекстовый поиск',
+        toggle: true,
+        onclick: (active) => {
+          // active ? measure.init() : measure.destroy()
+        }
+      },
+      cluster: {
+        content: '👓',
+        title: 'Кластеризация',
+        toggle: true,
+        onclick: (v) => {
+          isCluster = !isCluster
+          switchCluster(v)
+        }
+      },
       ruler: {
         content: '📏',
         toggle: true,
@@ -92,7 +158,7 @@ export default {
         }
       },
       editBtn: {
-        content: '✎', // svg,
+        content: '✏️', // svg,
         title: 'Редактировать',
         toggle: true,
         onclick: (isActive) => {
@@ -116,6 +182,10 @@ export default {
           ui.info.content(switcherElement)
           ui.info.visible(true)
         }
+      },
+      refresh: {
+        content: '↺',
+        onclick: () => localStorage.removeItem('data')
       }
     })
     pointActive.create(bus)
@@ -127,6 +197,9 @@ export default {
     const dragBox = new DragBox({ condition: platformModifierKeyOnly })
     select.on('select', (e) => {
       pointActive.remove()
+      selectControl.update(selectedFeatures.getArray())
+    })
+    select.getFeatures().on('add', (e) => {
       selectControl.update(selectedFeatures.getArray())
     })
     dragBox.on('boxend', () => {
@@ -233,19 +306,7 @@ export default {
             layers.array_[1].setVisible(v)
           })
         }
-        if (v) {
-          layersClusters.setVisible(false)
-          wells.forEach(item => {
-            groups[item.key].setVisible(v)
-          })
-          switcherDisabled(false)
-        } else {
-          wells.forEach(item => {
-            groups[item.key].setVisible(v)
-          })
-          layersClusters.setVisible(true)
-          switcherDisabled(true)
-        }
+        if (isCluster) switchCluster(v)
       }
       visibleLabels(currentZoom > zoomLabel)
       filterByAquifer()

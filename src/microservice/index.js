@@ -5,7 +5,7 @@ export default class MS {
     const iframe = document.createElement('iframe')
     this.iframe = iframe
     this.url = url
-    iframe.sandbox = 'allow-same-origin allow-scripts'
+    iframe.sandbox = 'allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox allow-downloads'
     iframe.src = url
     iframe.width = width
     iframe.height = height

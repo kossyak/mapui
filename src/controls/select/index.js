@@ -6,7 +6,6 @@ import list from '../../ui/components/list'
 import mapping from '../../utils/mapping'
 import MS from '../../microservice'
 import models from '../../options/models'
-import LogicalNary from "ol/format/filter/LogicalNary";
 
 export default {
   selected: {},
@@ -47,7 +46,7 @@ export default {
     return container
   },
   getFields(selected) {
-    const { model, gvk, name, typo, head, intake, field, aquifer_usage, field_name, intake_name } = selected
+    const { model, gvk, name, typo, head, intake, field, aquifer_usage } = selected
     if (model === 'wells') {
       return [
         { label: 'Номер ГВК', value: gvk, type: 'number', name: 'n1' },
@@ -61,9 +60,9 @@ export default {
         // { label: 'В.Д', value: coordinates[0][1], type: 'number', name: 'n8'  },
       ]
     } else if (model === 'fields') {
-      return [{ label: 'Наименование', value: field_name, name: 'n9'  }]
+      return [{ label: 'Наименование', value: name, name: 'n9'  }]
     } else if (model === 'intakes') {
-      return [{ label: 'Владелец', value: intake_name, name: 'n10'  }]
+      return [{ label: 'Владелец', value: name, name: 'n10'  }]
     }
   },
   fieldsToHTML(fields) {
@@ -79,11 +78,11 @@ export default {
       const selected = mapping(s)
       this.selectedAll.push(selected)
       const add = (label, text) => text ? `<div><span>${label}: </span>${text || '-'}</div>` : ''
-      const { model, gvk, name, typo, aquifer_usage, field_name, intake_name } = selected
+      const { model, gvk, name, typo, aquifer_usage } = selected
       let title = ''
       if (model === 'wells') title = add('Номер', name || 'б/н') + add('Номер ГВК', gvk || 'Н/Д') + add('Тип', typo?.name) + add('Горизонт', aquifer_usage?.map(el => el.index))
-      if (model === 'intakes') title = add('Тип', 'Водозаборы') + add('Владелец', intake_name)
-      if (model === 'fields') title =  add('Тип', 'Месторождения') + add('Наименование', field_name)
+      if (model === 'intakes') title = add('Тип', 'Водозаборы') + add('Владелец', name)
+      if (model === 'fields') title =  add('Тип', 'Месторождения') + add('Наименование', name)
       list.push({ selected, title })
     })
     return list

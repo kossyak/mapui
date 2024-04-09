@@ -15,7 +15,6 @@ export default {
     // обработка получения координат, в зависимости от источника
     const features = event.features.getArray()
     features.forEach((feature) => {
-      let type
       let coordinates
       // для точки
       if (feature.getGeometry().getType() === 'Point') {
@@ -38,17 +37,18 @@ export default {
         )
       }
       const featureId = feature.get('pk')
-      if (feature.getGeometry().getType() === 'Point') {
-        type = 'wells'
-      } else if (feature.getGeometry().getType() === 'Polygon' || feature.getGeometry().getType() === 'MultiPolygon') {
-        const properties = feature.getProperties()
-        if (properties.field_name) {
-          type = 'fields'
-        } else if (properties.intake_name) {
-          type = 'vzu'
-        }
-      }
-      api.updateCoordinates(featureId, coordinates, type)
+      const properties = feature.getProperties()
+      // if (feature.getGeometry().getType() === 'Point') {
+      //   type = 'wells'
+      // } else if (feature.getGeometry().getType() === 'Polygon' || feature.getGeometry().getType() === 'MultiPolygon') {
+      //   const properties = feature.getProperties()
+      //   if (properties.field_name) {
+      //     type = 'fields'
+      //   } else if (properties.intake_name) {
+      //     type = 'vzu'
+      //   }
+      // }
+      api.updateCoordinates(featureId, coordinates, properties?.model)
     })
   }
 }

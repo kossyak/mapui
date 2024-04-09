@@ -1,5 +1,6 @@
 import './index.css'
 import './components/arrowIcon/index.css'
+import './components/search/index.css'
 import element from './components/element'
 
 export default {
@@ -9,12 +10,46 @@ export default {
     const navigate = this.aside(target, 'navigate')
     this.extension(navigate)
     const map = element.create({ parent: target, name: 'map' })
+    const search = this.search(target)
     const info = this.aside(target, 'info')
-    return { map, navigate, info }
+    return { map, navigate, info, search }
+  },
+  debounce(func, ms) {
+    let timeout;
+    return function() {
+      clearTimeout(timeout)
+      timeout = setTimeout(() => func.apply(this, arguments), ms)
+    }
+  },
+  search(target) {
+    const search = element.create({ parent: target, name: 'search' })
+    const input = element.create({ parent: search, name: 'search-input', tag: 'input' })
+    const dropdown = element.create({ parent: search, name: 'dropdown' })
+    input.type = 'search'
+    search.on = (event, handler) => search.addEventListener(event, handler, false)
+    input.oninput = this.debounce((event) => {
+        const customEvent = new CustomEvent('change', { detail: {value: event.target.value }})
+        search.dispatchEvent(customEvent)
+    }, 200)
+    input.onfocus = () => {
+      dropdown.style.display = 'block'
+    }
+    input.onblur = () => {
+      dropdown.style.display = 'none'
+    }
+    search.dropdown = (list) => {
+      dropdown.innerHTML = list.reduce((accum, current) => accum + `<button data-id="${current.id}">${current.label}</button>`, '')
+    }
+    dropdown.onmousedown = (event) => {
+      const id = +event.target.dataset.id
+      const customEvent = new CustomEvent('select', { bubbles: true, cancelable: true, detail: { id } })
+      search.dispatchEvent(customEvent)
+    }
+    return search
   },
   aside(target, name) {
     const el = element.create({ parent: target, tag: 'aside', name, content: true })
-    el.on = (event, handlers) => el.addEventListener(event, handlers, false)
+    el.on = (event, handler) => el.addEventListener(event, handler, false)
     const direction = name === 'navigate' ? 'left' : 'right'
     this.close(el, direction)
     this.visible(el)
