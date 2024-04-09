@@ -38,11 +38,12 @@ export default {
       dropdown.style.display = 'none'
     }
     search.dropdown = (list) => {
-      dropdown.innerHTML = list.reduce((accum, current) => accum + `<button data-id="${current.id}">${current.label}</button>`, '')
+      dropdown.innerHTML = list.reduce((accum, current) => accum + `<button data-id="${current.id}" data-model="${current.model}">${current.label}</button>`, '')
     }
     dropdown.onmousedown = (event) => {
       const id = +event.target.dataset.id
-      const customEvent = new CustomEvent('select', { bubbles: true, cancelable: true, detail: { id } })
+      const model = event.target.dataset.model
+      const customEvent = new CustomEvent('select', { bubbles: true, cancelable: true, detail: { id, model } })
       search.dispatchEvent(customEvent)
     }
     return search

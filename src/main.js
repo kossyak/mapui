@@ -82,16 +82,17 @@ export default {
       if (!value ||value.length < 3) return
       const data = await loader.search(api, value)
       const list = data.results.map(el => {
-        const item = result[el.model + 'Json']?.find(o => o.id === el.id)
+        const item = result[el.model + 'Json']?.find(o => o.id === el.object_id)
         if (item) {
           const label = searchFields[el.model]?.(item) || el.model
-          return { id: el.id, label }
-        } else return { label: `н/д для ${el.id}(${el.model})` }
+          return { id: el.id, label, model: el.model }
+        } else return { id: el.id, label: `н/д для ${el.id}(${el.model})`, model: el.model }
       })
       ui.search.dropdown(list)
     })
     ui.search.on('select', async (e) => {
       const id = e.detail?.id
+      const model = e.detail?.model
       const item = pointFeatures.find(o => o.id_ === id)
       if (item) {
         const features = select.getFeatures()
