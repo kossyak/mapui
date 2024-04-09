@@ -32,7 +32,7 @@ export default {
         search.dispatchEvent(customEvent)
     }, 200)
     input.onfocus = () => {
-      dropdown.style.display = 'block'
+      dropdown.style.display = 'grid'
     }
     input.onblur = () => {
       dropdown.style.display = 'none'

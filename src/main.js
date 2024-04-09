@@ -81,13 +81,13 @@ export default {
       const value = e.detail?.value
       if (!value ||value.length < 3) return
       const data = await loader.search(api, value)
-      this.searchResults = []
       const list = data.results.map(el => {
         const item = result[el.model + 'Json']?.find(o => o.id === el.id)
-        item ? this.searchResults.push(item) : console.error('search error')
-        return { id: el.id, label: searchFields[el.model](item)}
+        if (item) {
+          const label = searchFields[el.model]?.(item) || el.model
+          return { id: el.id, label }
+        } else return { label: `н/д для ${el.id}(${el.model})` }
       })
-      console.log(this.searchResults)
       ui.search.dropdown(list)
     })
     ui.search.on('select', async (e) => {
