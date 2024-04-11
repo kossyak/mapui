@@ -39,7 +39,6 @@
 .mui-search-tabs .mui-li.active {
   background-color: white;
   color: var(--black);
-  font-weight: 600;
 }
 .mui-search-tabs .mui-li:hover {
   background-color: #f0f0f0;
