@@ -1,15 +1,19 @@
 .mui-search {
-  min-width: 300px;
-  background-color: white;
-  padding: 4px;
-  border-radius: 8px;
+  min-width: 360px;
+  max-width: 520px;
   position: absolute;
   top: 15px;
   left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+  margin-left: -180px;
 }
-.mui-search:after {
+.mui-search-wr {
+  position: relative;
+  background-color: white;
+  padding: 4px;
+  border-radius: 8px;
+
+}
+.mui-search-wr:before {
   content: '';
   position: absolute;
   width: 20px;
@@ -19,6 +23,30 @@
   background: url("./search.svg") no-repeat;
   background-size: contain;
   background-position: center;
+}
+.mui-search-tabs {
+  display: flex;
+  transform: translateY(8px);
+}
+.mui-search-tabs .mui-li {
+  width: auto;
+  padding: 8px 13px 14px;
+  color: white;
+  background-color: #000000aa;
+  border-radius: 8px 8px 0 0;
+  outline: 1px solid var(--gray100);
+}
+.mui-search-tabs .mui-li.active {
+  background-color: white;
+  color: var(--black);
+  font-weight: 600;
+}
+.mui-search-tabs .mui-li:hover {
+  background-color: #f0f0f0;
+  color: var(--black);
+}
+.mui-search-tabs i {
+  display: none;
 }
 .mui-search-input {
   padding: .5em 32px .5em .8em;
@@ -35,6 +63,7 @@
 .mui-dropdown {
   border-top: 1px solid var(--gray100);
   margin: .3em 0;
+  overflow: hidden;
 }
 .mui-dropdown:empty {
   border: 0;

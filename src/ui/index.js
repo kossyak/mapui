@@ -2,6 +2,8 @@ import './index.css'
 import './components/arrowIcon/index.css'
 import './components/search/index.css'
 import element from './components/element'
+import list from './components/list'
+import filterSearch from '../options/filterSearch'
 
 export default {
   create(target) {
@@ -22,25 +24,40 @@ export default {
     }
   },
   search(target) {
+    let index = filterSearch.findIndex(e => e.active)
+    const handler = () => {
+      const customEvent = new CustomEvent('search', { detail: { value: input.value, tab: filterSearch[index] }})
+      search.dispatchEvent(customEvent)
+    }
+    
     const search = element.create({ parent: target, name: 'search' })
-    const input = element.create({ parent: search, name: 'search-input', tag: 'input' })
-    const dropdown = element.create({ parent: search, name: 'dropdown' })
+    const tabs = list.create({
+      parent: search,
+      list: filterSearch,
+      name: 'search-tabs',
+      onclick: (l, i) => {
+        index = i
+        handler()
+        input.focus()
+      }
+    })
+    const wr = element.create({ parent: search, name: 'search-wr' })
+    const input = element.create({ parent: wr, name: 'search-input', tag: 'input' })
+    const dropdown = element.create({ parent: wr, name: 'dropdown' })
     input.type = 'search'
+    input.focus()
     search.on = (event, handler) => search.addEventListener(event, handler, false)
-    input.oninput = this.debounce((event) => {
-        const customEvent = new CustomEvent('change', { detail: {value: event.target.value }})
-        search.dispatchEvent(customEvent)
-    }, 200)
+    input.oninput = this.debounce(handler, 200)
     input.onfocus = () => {
       dropdown.style.display = 'grid'
     }
-    input.onblur = () => {
-      dropdown.style.display = 'none'
-    }
+    document.body.addEventListener('click', (event) => {
+      if (!event.target.closest('.mui-search')) dropdown.style.display = 'none'
+    })
     search.dropdown = (list) => {
-      dropdown.innerHTML = list.reduce((accum, current) => accum + `<button data-id="${current.id}" data-model="${current.model}">${current.label}</button>`, '')
+      dropdown.innerHTML = list.reduce((accum, current) => accum + `<button data-id="${current.id}" data-model="${current.model}" title="${current.label}">${current.label}</button>`, '')
     }
-    dropdown.onmousedown = (event) => {
+    dropdown.onclick = (event) => {
       const id = +event.target.dataset.id
       const model = event.target.dataset.model
       const customEvent = new CustomEvent('select', { bubbles: true, cancelable: true, detail: { id, model } })

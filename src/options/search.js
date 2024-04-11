@@ -1,12 +1,9 @@
-import {log} from "ol/console";
-
 export default {
   wells(item) {
     const { name, typo, gvk, intake, field } = item.properties
     return [name, typo.name, gvk, intake?.name || 'н/д', field?.properties.name || 'н/д'].join(', ')
   },
   intakes(item) {
-    log(item.properties)
     const { name } = item.properties
     return [name].join(', ')
   },

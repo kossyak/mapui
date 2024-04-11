@@ -23,7 +23,7 @@
 .mui button[disabled], .mui fieldset[disabled] {
   opacity: .4;
 }
-.mui aside button {
+.mui aside button, .mui-li {
   background-color: transparent;
   text-align: left;
   border: none;

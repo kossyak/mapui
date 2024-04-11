@@ -77,12 +77,13 @@ export default {
     const { mousePositionControl, scaleLineControl, selectControlModule } = controls
     
     // search
-    ui.search.on('change', async (e) => {
+    ui.search.on('search', async (e) => {
       const value = e.detail?.value
+      const tab = e.detail?.tab
+      console.log(tab.content_types)
       if (!value ||value.length < 3) return
-      const data = await loader.search(api, value)
+      const data = await loader.search(api, value, tab)
       const list = data.results.map(el => {
-        console.log(result[el.model + 'Json'])
         const item = result[el.model + 'Json']?.find(o => o.id === el.object_id)
         if (item) {
           const label = searchFields[el.model]?.(item) || el.model
