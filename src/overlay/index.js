@@ -44,6 +44,7 @@ export default {
           this.coordinates = event.coordinate
           if (model === 'fields') tooltipText += add('Месторождение', name || '-')
           if (model === 'intake') tooltipText += add('Владелец ВЗУ', name)
+          if (model === 'license') tooltipText += add('Номер Лицензии', name)
         }
       })
       tooltip.setPosition(this.coordinates)

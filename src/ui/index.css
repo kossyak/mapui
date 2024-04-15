@@ -85,7 +85,6 @@ aside.mui-info > div.mui-content {
   flex-basis: 280px;
 }
 
-
 .mui aside[visible] > .mui-content {
   opacity: 1;
 }

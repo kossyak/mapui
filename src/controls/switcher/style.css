@@ -1,18 +1,19 @@
-.switcher-controls .mui-content button.active:before {
+.switcher-controls .mui-content button.active:before, .mui-dropdown button:before {
     position: absolute;
     content: '';
     display: block;
     height: 7px;
     width: 10px;
     left: 5px;
-    top: 10px;
     rotate: -45deg;
     border-left: 3px solid;
     border-bottom: 3px solid;
     border-color: var(--white200);
 }
 
-.mui-accordion[name="wells"] .mui-content button.active:before, .mui-accordion[name="aquifers"] .mui-content button.active:before {
+.mui-accordion[name="wells"] .mui-content button.active:before,
+.mui-accordion[name="aquifers"] .mui-content button.active:before,
+.mui-dropdown [name="wells"]:before {
     border-radius: 10px;
     height: 11px;
     width: 11px;
@@ -20,7 +21,9 @@
     outline: 1px solid var(--white100);
     border: 0;
 }
-.mui-accordion[name="polygons"] .mui-content button.active:before {
+
+.mui-accordion[name="polygons"] .mui-content button.active:before,
+.mui-dropdown [name="polygons"]:before {
     height: 11px;
     width: 11px;
     background-color: var(--color);

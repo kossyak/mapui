@@ -28,7 +28,7 @@
   display: flex;
   transform: translateY(8px);
 }
-.mui-search-tabs .mui-li {
+.mui .mui-search-tabs .mui-li {
   width: auto;
   padding: 8px 13px 14px;
   color: white;
@@ -36,15 +36,15 @@
   border-radius: 8px 8px 0 0;
   outline: 1px solid var(--gray100);
 }
-.mui-search-tabs .mui-li.active {
+.mui .mui-search-tabs .mui-li.active {
   background-color: white;
   color: var(--black);
 }
-.mui-search-tabs .mui-li:hover {
+.mui .mui-search-tabs .mui-li:hover {
   background-color: #f0f0f0;
   color: var(--black);
 }
-.mui-search-tabs i {
+.mui .mui-search-tabs i {
   display: none;
 }
 .mui-search-input {
@@ -62,20 +62,28 @@
 .mui-dropdown {
   border-top: 1px solid var(--gray100);
   margin: .3em 0;
+  padding: .5em;
   overflow: hidden;
 }
 .mui-dropdown:empty {
   border: 0;
 }
 .mui-dropdown button {
-  padding: .5em .8em;
+  position: relative;
+  padding: .5em .8em .5em 2em;
   background-color: transparent;
   cursor: pointer;
   border: 0;
   text-wrap: nowrap;
   width: 100%;
   text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
   color: var(--gray600);
+}
+.mui-dropdown button:before {
+  top:.8em
 }
 .mui-dropdown button:hover {
   background-color: var(--gray100);

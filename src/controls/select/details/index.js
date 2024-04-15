@@ -77,6 +77,12 @@ export default {
       }
     },
   ],
+  license: [
+    {
+      title: 'Координаты',
+      view: (selected) => coordinatesHTML(selected.coordinates)
+    }
+  ],
   wells: [{
       title: 'Координаты',
       view: (selected) => coordinatesHTML(selected.coordinates)

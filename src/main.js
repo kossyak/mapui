@@ -28,7 +28,7 @@ import switcherModule from './controls/switcher'
 import wells from './options/wells'
 import switcher from './options/switcher'
 import filterList from './options/filterList'
-import searchFields from './options/search'
+import searchDropdown from './search'
 
 import throttling from './utils/throttling'
 
@@ -52,57 +52,86 @@ export default {
 
     const zoom = 12
     const zoomLabel = 13
-    const { wellsJson, fieldsJson, intakesJson } = result
+    const { wellsJson, fieldsJson, intakesJson, licenseJson } = result
     const fieldsPolygon = polygons.create({
-      features: fieldsJson,
+      featuresJSON: fieldsJson,
       type: 'fields',
       style: {
         strokeColor: '#01796f',
-        fillColor: [0, 56, 123, 0.4]
+        fillColor: '#00387B66' // [0, 56, 123, 0.4]
       }
     })
     const intakesPolygon = polygons.create({
-      features: intakesJson,
+      featuresJSON: intakesJson,
       type: 'intakes',
       style: {
         strokeColor: 'blue',
-        fillColor: [0, 0, 128, 0.4]
+        fillColor: '#00008066' // [0, 0, 128, 0.4]
       }
     })
-    const { pointSource, pointFeatures } = pointSources.getPointSource(wells, wellsJson)
-    const layers = pointLayers.create(pointSource, wells, pointFeatures)
+    const licensePolygon = polygons.create({
+      featuresJSON: licenseJson,
+      type: 'license',
+      style: {
+        strokeColor: 'gray',
+        fillColor: '#99999999'
+      }
+    })
+    const fieldsFeatures = fieldsPolygon.features
+    const intakesFeatures = intakesPolygon.features
+    const licenseFeatures = licensePolygon.features
+    
+    const { wellsSource, wellsFeatures } = pointSources.getPointSource(wells, wellsJson)
+    const layers = pointLayers.create(wellsSource, wells, wellsFeatures)
     const layersClusters = pointClusters.create(wells, wellsJson)
-    const allLayers = { fields: fieldsPolygon.layer, intakes: intakesPolygon.layer, ...layers }
+    const allLayers = { fields: fieldsPolygon.layer, intakes: intakesPolygon.layer, license: licensePolygon.layer, ...layers }
     const groups = groupsModule.create(allLayers)
     const { mousePositionControl, scaleLineControl, selectControlModule } = controls
     
     // search
-    ui.search.on('search', async (e) => {
+    ui.search.on('action', async (e) => {
+      if (e.type !== 'action') return
       const value = e.detail?.value
       const tab = e.detail?.tab
-      console.log(tab.content_types)
-      if (!value ||value.length < 3) return
+      if (!value ||value.length < 2) return
       const data = await loader.search(api, value, tab)
-      const list = data.results.map(el => {
-        const item = result[el.model + 'Json']?.find(o => o.id === el.object_id)
-        if (item) {
-          const label = searchFields[el.model]?.(item) || el.model
-          return { id: el.object_id, label, model: el.model }
-        } else return { id: el.object_id, label: `н/д для ${el.object_id}(${el.model})`, model: el.model }
-      })
-      ui.search.dropdown(list)
+      const html = searchDropdown.render(data, result)
+      ui.search.dropdown(html)
     })
-    ui.search.on('select', async (e) => {
+    ui.search.on('active', async (e) => {
+      if (e.type !== 'active') return
       const id = e.detail?.id
       const model = e.detail?.model
-      const item = pointFeatures.find(o => o.id_ === id)
+      const allFeatures = { fieldsFeatures, intakesFeatures, licenseFeatures, wellsFeatures }
+      const item = allFeatures[model + 'Features'].find(o => o.id_ === id)
       if (item) {
         const features = select.getFeatures()
         console.log(features.getArray())
         if (features.getArray().findIndex(o => o.id_ === id) === -1) features.push(item);
         // map.getView().setZoom(zoomLabel + 1)
         // map.getView().setCenter(item.getGeometry().getCoordinates())
-        map.getView().animate({ zoom: zoomLabel + 1, center: item.getGeometry().getCoordinates(), duration: 800 });
+        // console.log(item.geometry.bounds)
+        const geom = item.getGeometry()
+        if (!geom) return
+        let coords
+        switch (geom.getType()) {
+          case 'Point':
+            coords = geom.getCoordinates()
+            break;
+          case 'LineString':
+            coords = geom.getCoordinateAt(0.5)
+            break;
+          case 'Polygon':
+          case 'MultiPoint':
+          case 'MultiLineString':
+          case 'MultiPolygon':
+            coords = geom.getExtent()
+            break;
+          default:
+            console.error('Unsupported geometry type');
+            break;
+        }
+        map.getView().animate({ zoom: zoomLabel + 1, center: coords, duration: 800 })
       }
     })
     
@@ -135,13 +164,15 @@ export default {
     })
     const switcherElement = switcherModule.create(switcher, groups)
     // menu
+    
     const menuElement = menuModule.create({
       search: {
         content: '🔍',
         title: 'Полнотекстовый поиск',
         toggle: true,
         onclick: (active) => {
-          // active ? measure.init() : measure.destroy()
+          ui.search.hidden = !active
+          ui.search.focus()
         }
       },
       cluster: {
@@ -170,11 +201,13 @@ export default {
             translate.setActive(true)
             fieldsPolygon.interaction.setActive(true)
             intakesPolygon.interaction.setActive(true)
+            licensePolygon.interaction.setActive(true)
             map.removeOverlay(tooltip)
           } else {
             translate.setActive(false)
             fieldsPolygon.interaction.setActive(false)
             intakesPolygon.interaction.setActive(false)
+            licensePolygon.interaction.setActive(true)
             select.getFeatures().clear()
             map.addOverlay(tooltip)
           }
@@ -212,8 +245,8 @@ export default {
     dragBox.on('boxend', () => {
       const extent = dragBox.getGeometry().getExtent()
       const boxFeatures = []
-      for (const key in pointSource) {
-        pointSource[key].forEachFeatureIntersectingExtent(extent, (feature) => {
+      for (const key in wellsSource) {
+        wellsSource[key].forEachFeatureIntersectingExtent(extent, (feature) => {
           const target = switcher.at(0).children.find((el) => el.typo === feature.getProperties().typo.id)
           target?.visible && !feature._hidden && boxFeatures.push(feature)
         })
@@ -238,7 +271,7 @@ export default {
     select.setActive(true)
     
     const map = new Map({
-      interactions: defaultInteractions().extend([intakesPolygon.interaction, fieldsPolygon.interaction, select, translate]),
+      interactions: defaultInteractions().extend([intakesPolygon.interaction, fieldsPolygon.interaction, licensePolygon.interaction, select, translate]),
       controls: defaults().extend([mousePositionControl, scaleLineControl, menuControl, infoControl]),
       layers: [...Object.values(groups), layersClusters],
       view: new View({ center: transform(coordinate || [36.1874, 51.7373], 'EPSG:4326', 'EPSG:3857'), zoom }),
@@ -264,7 +297,7 @@ export default {
         index: 'нд',
         color: "#ffffff"
       }]
-      pointFeatures.forEach((feature) => {
+      wellsFeatures.forEach((feature) => {
         if (containsCoordinate(extent, feature.getGeometry().getCoordinates())) {
           const aquifer_usage = feature.getProperties().aquifer_usage
           aquifer_usage?.forEach(e => {

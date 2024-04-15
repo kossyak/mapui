@@ -7,26 +7,25 @@ import api from '../../../api'
 import GeoJSON from 'ol/format/GeoJSON'
 
 export default {
-  create({ type, features = [], style }) {
-    const source = new VectorSource({
-      features: new GeoJSON().readFeatures({
-        type: 'FeatureCollection',
-        crs: {
-          type: 'name',
-          properties: {
-            name: 'EPSG:4326'
-          }
-        }, features }, {
-          dataProjection: 'EPSG:4326',
-          featureProjection: 'EPSG:3857'
-        })
+  create({ type, featuresJSON = [], style }) {
+    const features = new GeoJSON().readFeatures({
+      type: 'FeatureCollection',
+      crs: {
+        type: 'name',
+        properties: {
+          name: 'EPSG:4326'
+        }
+      }, features: featuresJSON }, {
+      dataProjection: 'EPSG:4326',
+      featureProjection: 'EPSG:3857'
     })
+    const source = new VectorSource({ features })
     const layer = new VectorLayer({
       source: source,
       style: this.polygonStyle(style)
     })
     const interaction = this.addModify(layer, type)
-    return { layer, interaction }
+    return { layer, features, interaction }
   },
   addModify(layer, type) {
     const interaction = new Modify({

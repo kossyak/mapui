@@ -3,7 +3,7 @@ import combine from './combine'
 export default function mapping(target) {
   const properties = target.getProperties()
   const { aquifer_usage, geometry } = properties
-  properties.coordinates = combine(geometry.flatCoordinates)
+  properties.coordinates = geometry ? combine(geometry.flatCoordinates) : null
   properties.id = target.id_
   if (properties.model === 'wells') {
     properties.typo_string = properties.typo?.name || '-'

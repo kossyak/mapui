@@ -20,13 +20,13 @@ export default {
     return { source, features }
   },
   getPointSource(wells, points) {
-    const pointSource = {}
-    const pointFeatures = []
+    const wellsSource = {}
+    const wellsFeatures = []
     wells.forEach(item => {
       const { source, features } = this.getSource(item.typo, points)
-      pointSource[item.key] = source
-      pointFeatures.push(...features)
+      wellsSource[item.key] = source
+      wellsFeatures.push(...features)
     })
-    return { pointSource, pointFeatures }
+    return { wellsSource, wellsFeatures }
   }
 }

@@ -26,7 +26,8 @@ export default {
   search(target) {
     let index = filterSearch.findIndex(e => e.active)
     const handler = () => {
-      const customEvent = new CustomEvent('search', { detail: { value: input.value, tab: filterSearch[index] }})
+      const customEvent = new CustomEvent('action', { detail: { value: input.value, tab: filterSearch[index] }})
+      dropdown.style.display = 'grid'
       search.dispatchEvent(customEvent)
     }
     
@@ -44,8 +45,9 @@ export default {
     const wr = element.create({ parent: search, name: 'search-wr' })
     const input = element.create({ parent: wr, name: 'search-input', tag: 'input' })
     const dropdown = element.create({ parent: wr, name: 'dropdown' })
+    dropdown.innerHTML = '<i>пусто..</i>'
     input.type = 'search'
-    input.focus()
+    
     search.on = (event, handler) => search.addEventListener(event, handler, false)
     input.oninput = this.debounce(handler, 200)
     input.onfocus = () => {
@@ -55,14 +57,24 @@ export default {
       if (!event.target.closest('.mui-search')) dropdown.style.display = 'none'
     })
     search.dropdown = (list) => {
-      dropdown.innerHTML = list.reduce((accum, current) => accum + `<button data-id="${current.id}" data-model="${current.model}" title="${current.label}">${current.label}</button>`, '')
+      dropdown.innerHTML = list || '<i>пусто..</i>'
     }
+    search.focus = () => input.focus()
     dropdown.onclick = (event) => {
+      if (!event.target.closest('.mui-dropdown > button')) return
       const id = +event.target.dataset.id
       const model = event.target.dataset.model
-      const customEvent = new CustomEvent('select', { bubbles: true, cancelable: true, detail: { id, model } })
+      const customEvent = new CustomEvent('active', { bubbles: true, cancelable: true, detail: { id, model } })
       search.dispatchEvent(customEvent)
     }
+    search.hidden = true
+    document.addEventListener('keydown', (event) => {
+      if (event.ctrlKey && event.key === 'f') {
+        event.preventDefault()
+        search.hidden = false
+        input.focus()
+      }
+    })
     return search
   },
   aside(target, name) {

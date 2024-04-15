@@ -63,6 +63,13 @@ export default {
       return [{ label: 'Наименование', value: name, name: 'n9'  }]
     } else if (model === 'intakes') {
       return [{ label: 'Владелец', value: name, name: 'n10'  }]
+    } else if (model === 'license') {
+      const { name, gw_purpose, department } = selected
+      return [
+        { label: 'Номер', value: name, type: 'number', name: 'n7' },
+        { label: 'Назначение', value: gw_purpose, name: 'n8'  },
+        { label: 'Орган выдачи', value: department?.name, name: 'n9'  },
+      ]
     }
   },
   fieldsToHTML(fields) {
@@ -83,6 +90,7 @@ export default {
       if (model === 'wells') title = add('Номер', name || 'б/н') + add('Номер ГВК', gvk || 'Н/Д') + add('Тип', typo?.name) + add('Горизонт', aquifer_usage?.map(el => el.index))
       if (model === 'intakes') title = add('Тип', 'Водозаборы') + add('Владелец', name)
       if (model === 'fields') title =  add('Тип', 'Месторождения') + add('Наименование', name)
+      if (model === 'license') title =  add('Тип', 'Лицензия') + add('Номер', name)
       list.push({ selected, title })
     })
     return list
@@ -130,6 +138,7 @@ export default {
         onclick: (v) => {
           this.selected = v.selected
           this.openExtension(ui)
+          if (!v.selected.geometry) return
           const coordinates = v.selected.geometry.getCoordinates()
           this.pointActive.move(coordinates)
         }

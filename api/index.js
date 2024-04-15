@@ -14,6 +14,10 @@ export default {
     get: host + '/base/api/intakes/?format=json&limit=5000', // host + '/base/api/intakes/?format=json',
     set: host + '/base/api/intakes/'
   },
+  licenseJson: {
+    get: host + '/base/api/license?format=json&limit=5000',
+    set: host + '/base/api/license/'
+  },
   search: host + '/fts/api/fts/?search=',
   // sectionsJson: {
   //   get: host + '/base/api/sections/?format=json&limit=300',
