@@ -43,7 +43,7 @@ export default {
         } else if (type === 'Polygon' || type === 'MultiPolygon') {
           this.coordinates = event.coordinate
           if (model === 'fields') tooltipText += add('Месторождение', name || '-')
-          if (model === 'intake') tooltipText += add('Владелец ВЗУ', name)
+          if (model === 'intakes') tooltipText += add('Владелец ВЗУ', name)
           if (model === 'license') tooltipText += add('Номер Лицензии', name)
         }
       })

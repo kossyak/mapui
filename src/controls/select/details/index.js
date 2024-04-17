@@ -8,35 +8,35 @@ export default {
       view: (selected) => coordinatesHTML(selected.coordinates)
     },
     {
-      key: 'protocol',
+      key: 'protocol_count',
       title: 'Протокол',
       view: (selected, config) => {
         return new MS({ url: config.services.protocol(selected) }).iframe
       }
     },
     {
-      key: 'balances',
+      key: 'balances_count',
       title: 'Запасы',
       view: (selected, config) => {
         return new MS({ url: config.services.balances(selected) }).iframe
       }
     },
     {
-      key: 'plan',
+      key: 'plan_count',
       title: 'План подсчета запасов',
       view: (selected, config) => {
         return new MS({ url: config.services.plan(selected) }).iframe
       }
     },
     {
-      key: 'report',
+      key: 'report_count',
       title: 'Отчет по оценке запасов',
       view: (selected, config) => {
         return new MS({ url: config.services.report(selected) }).iframe
       }
     },
     {
-      key: 'documents',
+      key: 'docs_count',
       title: 'Документы',
       view: (selected, config) => {
         return new MS({ url: config.services.documents(selected) }).iframe
@@ -56,7 +56,7 @@ export default {
       }
     },
     {
-      key: 'wells',
+      key: 'wells_count',
       title: 'Список скважин',
       view: (selected, config) => {
         return new MS({ url: config.services.wells(selected) }).iframe
