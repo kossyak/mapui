@@ -38,6 +38,7 @@ import { platformModifierKeyOnly } from 'ol/events/condition'
 
 import pointActive from './pointLayers/active'
 import loader from "./loader"
+import el from "../static/main";
 
 export default {
   animate(map) {
@@ -163,6 +164,7 @@ export default {
       } else console.error('wells and switcher do not correspond')
     })
     const switcherElement = switcherModule.create(switcher, groups)
+    ui.info.content(switcherElement)
     // menu
     
     const menuElement = menuModule.create({
@@ -215,10 +217,8 @@ export default {
       },
       switchBtn: {
         content: '☰',
-        onclick: (active) => {
-          ui.info.content(switcherElement)
-          ui.info.visible(true)
-        }
+        toggle: true,
+        onclick: (isActive) => ui.info.visible(isActive)
       },
       refresh: {
         content: '↺',
@@ -228,31 +228,33 @@ export default {
         }
       }
     })
+    ui.info.on('close', () => menuElement.children[4].active(false))
     pointActive.create(bus)
-    const selectControl = selectControlModule.create(ui, config, pointActive)
+    
     const select = new Select({
       layers: Object.values(allLayers)
     })
+    const selectControl = selectControlModule.create(ui, config, pointActive, select)
     const selectedFeatures = select.getFeatures()
     const dragBox = new DragBox({ condition: platformModifierKeyOnly })
     select.on('select', (e) => {
       pointActive.remove()
-      selectControl.update(selectedFeatures.getArray())
+      selectControl.update()
     })
     select.getFeatures().on('add', (e) => {
-      selectControl.update(selectedFeatures.getArray())
+      selectControl.update()
     })
     dragBox.on('boxend', () => {
       const extent = dragBox.getGeometry().getExtent()
       const boxFeatures = []
-      for (const key in wellsSource) {
+      for (const key in wellsSource) { // wellsFeatures
         wellsSource[key].forEachFeatureIntersectingExtent(extent, (feature) => {
           const target = switcher.at(0).children.find((el) => el.typo === feature.getProperties().typo.id)
           target?.visible && !feature._hidden && boxFeatures.push(feature)
         })
       }
       selectedFeatures.extend(boxFeatures)
-      selectControl.update(selectedFeatures.getArray())
+      selectControl.update()
     })
     dragBox.on('boxstart', () => {
       selectedFeatures.clear()
@@ -291,12 +293,13 @@ export default {
     const hidden_filters = switcher.find(el => el.hidden_filters).hidden_filters
     const filterByAquifer = () => {
       const extent = map.getView().calculateExtent(map.getSize())
-      const unique = [{
-        id: 0,
-        name: 'нд',
-        index: 'нд',
-        color: "#ffffff"
-      }]
+      // const unique = [{
+      //   id: 0,
+      //   name: 'нд',
+      //   index: 'нд',
+      //   color: "#ffffff"
+      // }]
+      const unique = []
       wellsFeatures.forEach((feature) => {
         if (containsCoordinate(extent, feature.getGeometry().getCoordinates())) {
           const aquifer_usage = feature.getProperties().aquifer_usage
@@ -370,6 +373,13 @@ export default {
     const tooltip = tooltipOverlay.create(map)
     map.addInteraction(dragBox)
     map.addOverlay(tooltip)
+    config.onmessage = (data) => {
+      if (data.name === 'wells') {
+        const selectedFeatures = select.getFeatures()
+        const boxFeatures = wellsFeatures.filter((feature) => data.value.includes(feature.id_) )
+        selectedFeatures.extend(boxFeatures)
+      }
+    }
     // this.animate(map)
     // map.getInteractions().extend([selectInteraction]);
   }

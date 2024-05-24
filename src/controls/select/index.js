@@ -4,14 +4,16 @@ import editor from './editor'
 import tap from '../../ui/components/tap'
 import list from '../../ui/components/list'
 import mapping from '../../utils/mapping'
-import MS from '../../microservice'
+import ms from '../../microservice'
 import models from '../../options/models'
 
 export default {
   selected: {},
   selectedAll: [],
   config: {},
-  create(ui, config, pointActive) {
+  create(ui, config, pointActive, select) {
+    console.log(select)
+    this.select = select
     this.config = config
     this.pointActive = pointActive
     const infoPanel = this.infoElement()
@@ -19,16 +21,17 @@ export default {
     const exportBtn = tap.create({
       html: `Экспорт ⤇`,
       onclick: (v) => {
-        const ms = new MS({
+        const iframe = ms({
           url: config.services.export(),
           entry: {
             data: this.selectedAll,
             models: models,
-            config
-          }
+            config // remove
+          },
+          config
         })
         ui.navigate.extension.setTitle('Экспорт')
-        ui.navigate.extension.content(ms.iframe)
+        ui.navigate.extension.content(iframe)
         return true
       }
     })
@@ -37,7 +40,7 @@ export default {
       ui.navigate.extension.setTitle('')
       this.openExtension(ui)
     })
-    return { infoPanel, update: (select) => this.update(select, infoPanel, ui) }
+    return { infoPanel, update: () => this.update(infoPanel, ui) }
   },
   infoElement() {
     const container = document.createElement('div')
@@ -78,10 +81,10 @@ export default {
     fields.forEach((el) => html += add(el.label, el.value))
     return html + '</div>'
   },
-  getNavigate(selectedAll) {
+  getNavigate(selectedArr) {
     const list = []
     this.selectedAll = []
-    selectedAll.forEach((s) => {
+    selectedArr.forEach((s) => {
       const selected = mapping(s)
       this.selectedAll.push(selected)
       const add = (label, text) => text ? `<div><span>${label}: </span>${text || '-'}</div>` : ''
@@ -117,22 +120,20 @@ export default {
         ui.navigate.extension.setTitle(item.title)
         const content = details[this.selected.model][index].view?.(this.selected, this.config)
         if (content) {
-          if (content.tagName === 'IFRAME') {
-            ui.navigate.extension.classList.add('spinner')
-            content.addEventListener('load', () => {
-              ui.navigate.extension.classList.remove('spinner')
-            }, true)
-          }
           ui.navigate.extension.content(content)
+          if (content.tagName === 'IFRAME') {
+            content.parentElement.classList.add('spinner')
+          }
         }
       }
     })
     ui.navigate.extension.addContent(listEx)
   },
-  update(selectedAll, infoPanel, ui) {
+  update(infoPanel, ui) {
+    const selectedArr = this.select.getFeatures().getArray()
     ui.navigate.extension.content('')
-    if (selectedAll?.length) {
-      const listNavigate = this.getNavigate(selectedAll)
+    if (selectedArr?.length) {
+      const listNavigate = this.getNavigate(selectedArr)
       const l = list.create({
         list: listNavigate,
         onclick: (v) => {

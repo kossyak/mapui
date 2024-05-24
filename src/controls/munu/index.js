@@ -26,8 +26,9 @@ export default {
     btn.title = options.title || ''
     btn.className = 'btn'
     btn.addEventListener('click', () => {
-      if (options.toggle)  btn.classList.toggle('active')
+      if (options.toggle) btn.classList.toggle('active')
     })
+    btn.active = (v) => v ? btn.classList.add('active') : btn.classList.remove('active')
     return btn
   }
 }

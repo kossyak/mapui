@@ -1,5 +1,5 @@
 import coordinatesHTML from '../../../utils/coordinatesHTML'
-import MS from '../../../microservice'
+import ms from '../../../microservice'
 
 export default {
   fields: [
@@ -11,35 +11,35 @@ export default {
       key: 'protocol_count',
       title: 'Протокол',
       view: (selected, config) => {
-        return new MS({ url: config.services.protocol(selected) }).iframe
+        return ms({ url: config.services.protocol(selected) })
       }
     },
     {
       key: 'balances_count',
       title: 'Запасы',
       view: (selected, config) => {
-        return new MS({ url: config.services.balances(selected) }).iframe
+        return ms({ url: config.services.balances(selected) })
       }
     },
     {
       key: 'plan_count',
       title: 'План подсчета запасов',
       view: (selected, config) => {
-        return new MS({ url: config.services.plan(selected) }).iframe
+        return ms({ url: config.services.plan(selected) })
       }
     },
     {
       key: 'report_count',
       title: 'Отчет по оценке запасов',
       view: (selected, config) => {
-        return new MS({ url: config.services.report(selected) }).iframe
+        return ms({ url: config.services.report(selected) })
       }
     },
     {
       key: 'docs_count',
       title: 'Документы',
       view: (selected, config) => {
-        return new MS({ url: config.services.documents(selected) }).iframe
+        return ms({ url: config.services.documents(selected) })
       }
     },
   ],
@@ -52,28 +52,28 @@ export default {
       key: 'license',
       title: 'Лицензия',
       view: (selected, config) => {
-        return new MS({ url: config.services.license(selected) }).iframe
+        return ms({ url: config.services.license(selected) })
       }
     },
     {
       key: 'wells_count',
       title: 'Список скважин',
-      view: (selected, config) => {
-        return new MS({ url: config.services.wells(selected) }).iframe
+      view(selected, config) {
+        return ms({ url: config.services.wells(selected), config })
       }
     },
     {
       key: 'deadlines',
       title: 'Сроки выполнения условий недропользования',
       view: (selected, config) => {
-        return new MS({ url: config.services.deadlines(selected) }).iframe
+        return ms({ url: config.services.deadlines(selected) })
       }
     },
     {
       key: 'withdrawal',
       title: 'Водоотбор',
       view: (selected, config) => {
-        return new MS({ url: config.services.withdrawal(selected) }).iframe
+        return ms({ url: config.services.withdrawal(selected) })
       }
     },
   ],
@@ -89,43 +89,50 @@ export default {
     },
     {
       key: 'regime_count',
-      title: 'График режимных наблюдений',
+      title: 'Режимные наблюдения',
       view: (selected, config) => {
-        return new MS({ url: config.services.reg(selected) }).iframe
+        return ms({ url: config.services.reg(selected) })
       }
     },
     {
       key: 'lithology_count',
-      title: 'Разрез скважины',
+      title: 'Разрез и конструкция',
       view: (selected, config) => {
-        return new MS({ url: config.services.ws(selected) }).iframe
+        return ms({ url: config.services.ws(selected) })
       }
     },
     {
       key: 'geophysics_count',
-      title: 'Данные ГИС',
+      title: 'ГИС',
       view: (selected, config) => {
-        return new MS({ url: config.services.gis(selected) }).iframe
+        return ms({ url: config.services.gis(selected) })
       }
     },
     {
       key: 'efw_count',
-      title: 'Данные по ОФР',
+      title: 'ОФР',
       view: (selected, config) => {
-        return new MS({ url: config.services.efw(selected) }).iframe
+        return ms({ url: config.services.efw(selected) })
       }
     },
     {
       key: 'sample_count',
-      title: 'Химический анализ',
+      title: 'Химические анализы',
       view: (selected, config) => {
-        return new MS({ url: config.services.chem(selected) }).iframe
+        return ms({ url: config.services.chem(selected) })
       }
     },
     {
-      title: 'Датчик мониторинга уровня',
+      key: 'docs_count',
+      title: 'Документы',
       view: (selected, config) => {
-        return new MS({ url: config.services.mon(selected) }).iframe
+        return ms({ url: config.services.docs(selected) })
+      }
+    },
+    {
+      title: 'Связанное оборудование',
+      view: (selected, config) => {
+        return ms({ url: config.services.mon(selected) })
       }
   }]
 }

@@ -23,6 +23,10 @@
 .mui button[disabled], .mui fieldset[disabled] {
   opacity: .4;
 }
+.mui button {
+  padding: 0;
+}
+
 .mui aside button, .mui-li {
   background-color: transparent;
   text-align: left;
@@ -35,6 +39,7 @@
   color: inherit;
   cursor: pointer;
   font-size: 13.5px;
+  padding: 8px;
 }
 .mui-map {
   flex: 1;
@@ -234,4 +239,31 @@ aside.mui-navigate > div.mui-content {
   /*z-index: 100;*/
   /*background-color: white;*/
   /*overflow-y: auto;*/
+}
+
+.mui-user {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 30px;
+  margin: 16px 26px;
+  display: flex;
+  align-items: center;
+}
+.mui aside .mui-user span {
+  max-width: 10ch;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 8px;
+  line-height: 1;
+}
+.mui aside .mui-user button:hover {
+  color: white;
+}
+
+i.mui-user-icon {
+  background: url("/icons/user.svg") no-repeat;
+  width: 20px;
+  height: 20px;
 }

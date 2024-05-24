@@ -1,4 +1,4 @@
-.spinner:before {
+.spinner:after {
   position: absolute;
   content: '';
   mask: url(preload.svg);

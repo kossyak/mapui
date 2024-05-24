@@ -57,7 +57,7 @@ export default [
     hidden_aquifers: new Set()
   },
   {
-    title: 'Фильтрация',
+    title: 'Данные',
     key: 'filters',
     visible: true,
     hidden_filters: new Set()

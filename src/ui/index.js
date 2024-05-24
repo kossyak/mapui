@@ -14,6 +14,7 @@ export default {
     const map = element.create({ parent: target, name: 'map' })
     const search = this.search(target)
     const info = this.aside(target, 'info')
+    this.user(info)
     return { map, navigate, info, search }
   },
   debounce(func, ms) {
@@ -22,6 +23,12 @@ export default {
       clearTimeout(timeout)
       timeout = setTimeout(() => func.apply(this, arguments), ms)
     }
+  },
+  user(info) {
+    const login = 'Gast'
+    const user = element.create({ name: 'user' })
+    user.innerHTML = `<i class="mui-user-icon"></i><span>${login}</span>/<button>Выход</button>`
+    info.prepend(user)
   },
   search(target) {
     let index = filterSearch.findIndex(e => e.active)
