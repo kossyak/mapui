@@ -145,9 +145,9 @@ aside.mui-info > div.mui-content {
   text-overflow: ellipsis;
   overflow: hidden;
 }
-.mui-back:has(div:empty) i {
-  display: none;
-}
+/*.mui-back:has(div:empty) i {*/
+/*  display: none;*/
+/*}*/
 
 .mui aside .mui-close:hover {
   background-color: var(--white100);

@@ -13,6 +13,7 @@ export default {
       v instanceof Element ? cont.append(v) : cont.innerHTML = v || ''
       return cont
     }
+    el.contentElement = cont
     el.addContent = (v) => {
       v instanceof Element ? cont.append(v) : cont.insertAdjacentHTML('beforeEnd', v)
       return cont

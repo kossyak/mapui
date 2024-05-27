@@ -7,12 +7,12 @@ export default {
   projection: 'EPSG:4326', // Проекция отображения координат (WGS-84)
   onmessage: () => {}, // set in main.js
   services: {
-    export: () => host + '/static/services/export/index.html',
+    export: () => host + '/static/services/export/index.html', // http://localhost:1234/export/index.html',
     choosen_chem: (selected) => host + `/base/api/chem/${selected.map(e => e.id)}/choosen_table/`,
     reg: ({ id }) => host + '/base/api/regime/' + id + '/plot/',
     gis: ({ id }) => host + '/base/api/gph/' + id + '/list/',
     efw: ({ id }) => host + '/base/api/efw/' + id + '/list/',
-    docs: ({ id }) => host + '/base/api/docs/' + id + '/list/',
+    docs: ({ id }) => host + '/base/api/wells/' + id + '/documents/',
     chem: ({ id }) => host + '/base/api/chem/' + id + '/list/',
     ws: ({ id }) => host + '/base/api/ws/' + id + '/plot/',
     mon: (selected) => 'https://openweathermap.org/weathermap?basemap=map&cities=false&layer=precipitation&lat=0&lon=0&zoom=2',

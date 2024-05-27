@@ -1,5 +1,4 @@
 export default function ({ target, url, entry, onload, config, width = '100%', height = '100%'}) {
-  const spinner = (v) => v ? iframe.parentElement.classList.add('spinner') : iframe.parentElement.classList.remove('spinner')
   const iframe = document.createElement('iframe')
   iframe.sandbox = 'allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox allow-downloads'
   iframe.src = url
@@ -29,12 +28,12 @@ export default function ({ target, url, entry, onload, config, width = '100%', h
   //   }
   // }, true)
   // iframe.onerror = () => error()
-  iframe.onload = () => spinner(false)
+  iframe.onload = () => iframe.parentElement.spinner(false)
   window.onmessage = (event) => {
     if (event.origin !== window.location.origin) return
     if (event.source === iframe.contentWindow) {
       const data = JSON.parse(event.data)
-      if (data.hasOwnProperty('spinner')) return spinner(data.spinner)
+      if (data.hasOwnProperty('spinner')) return iframe.parentElement.spinner(data.spinner)
       config.onmessage?.(data)
     }
   }

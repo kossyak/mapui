@@ -37,8 +37,13 @@ export default {
     })
     ui.navigate.append(exportBtn)
     ui.navigate.on('back', () => {
-      ui.navigate.extension.setTitle('')
-      this.openExtension(ui)
+      if (ui.navigate.extension.getTitle()) {
+        ui.navigate.extension.setTitle('')
+        this.openExtension(ui)
+      } else {
+        ui.navigate.extension.content('')
+      }
+      ui.navigate.extension.contentElement.spinner(false)
     })
     return { infoPanel, update: () => this.update(infoPanel, ui) }
   },
@@ -131,7 +136,8 @@ export default {
   },
   update(infoPanel, ui) {
     const selectedArr = this.select.getFeatures().getArray()
-    ui.navigate.extension.content('')
+    // ui.navigate.extension.content('')
+    console.log(2)
     if (selectedArr?.length) {
       const listNavigate = this.getNavigate(selectedArr)
       const l = list.create({

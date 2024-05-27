@@ -112,6 +112,8 @@ export default {
       ex.classList.toggle('full')
     }
     ex.setTitle = (v) => back.children[1].textContent = v
+    ex.getTitle = () => back.children[1].textContent
+    ex.contentElement.spinner = (v) => v ? ex.contentElement.classList.add('spinner') : ex.contentElement.classList.remove('spinner')
     navigate.extension = ex
     return ex
   },

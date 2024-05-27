@@ -38,7 +38,6 @@ import { platformModifierKeyOnly } from 'ol/events/condition'
 
 import pointActive from './pointLayers/active'
 import loader from "./loader"
-import el from "../static/main";
 
 export default {
   animate(map) {
@@ -240,9 +239,11 @@ export default {
     select.on('select', (e) => {
       pointActive.remove()
       selectControl.update()
+      console.log(1)
     })
     select.getFeatures().on('add', (e) => {
       selectControl.update()
+      console.log(1)
     })
     dragBox.on('boxend', () => {
       const extent = dragBox.getGeometry().getExtent()
