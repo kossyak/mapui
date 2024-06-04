@@ -8,7 +8,7 @@ export default {
       const model = el.model
       const item = result[model + 'Json']?.find(o => o.id === id)
       const { color, label, name } = this[model]?.(item)
-      html += `<button data-id="${id}" name="${name}" data-model="${model}" title="${label}" style="--color: ${color};">${label || 'н/д' }</button>`
+      html += `<button data-id="${id}" name="${name}" data-model="${model}" title="${label?.replace(/"/g, "'")}" style="--color: ${color};">${label || 'н/д' }</button>`
     })
     return html
   },

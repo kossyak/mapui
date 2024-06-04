@@ -54,18 +54,16 @@ export default {
     return container
   },
   getFields(selected) {
-    const { model, gvk, name, typo, head, intake, field, aquifer_usage } = selected
+    const { model, gvk, name, typo, intake, field, aquifer_usage } = selected
+    console.log({ model, gvk, name, typo, intake, field, aquifer_usage })
     if (model === 'wells') {
       return [
-        { label: 'Номер ГВК', value: gvk, type: 'number', name: 'n1' },
-        { label: 'Внутренний номер', value: name, type: 'number', name: 'n2'  },
-        { label: 'Тип', value: typo?.name, name: 'n3'  },
-        { label: 'А.О. устья', value: head, name: 'n4'  },
-        { label: 'Водозабор', value: intake?.name, name: 'n5'  },
-        { label: 'Месторождение', value: field?.name, name: 'n6'  },
-        { label: 'Целевой горизонт', value: aquifer_usage?.map(el => el.name), name: 'n7'  },
-        // { label: 'С.Ш', value: coordinates[0][0], type: 'number', name: 'n7'  },
-        // { label: 'В.Д', value: coordinates[0][1], type: 'number', name: 'n8'  },
+        { label: 'Номер ГВК', value: gvk, type: 'input', name: 'gvk' },
+        { label: 'Внутренний номер', value: name, type: 'input', name: 'name' },
+        { label: 'Тип', value: typo?.name, type: 'select', name: 'typo' },
+        { label: 'Водозабор', value: intake?.name, type: 'search', name: 'intake', content_types: '28' },
+        { label: 'Месторождение', value: field?.name, type: 'search', name: 'field', content_types: '27' },
+        { label: 'Целевой горизонт', value: aquifer_usage?.map(el => el.name), type: 'search', name: 'aquifer', content_types: '' }
       ]
     } else if (model === 'fields') {
       return [{ label: 'Наименование', value: name, name: 'n9'  }]
@@ -108,7 +106,7 @@ export default {
     const editBtn = tap.create({
       html: 'Редактировать <i>✎</i>',
       onclick: (v) => {
-        const form = editor.create(fields, this.selected.coordinates)
+        const form = editor.create(fields, this.selected.coordinates, this.config)
         ui.navigate.extension.content(form)
         ui.navigate.extension.setTitle('Редактирование')
       }

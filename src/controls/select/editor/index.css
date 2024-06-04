@@ -3,7 +3,7 @@
   font-weight: bold;
   margin-bottom: 5px;
 }
-.editor .mui-input  {
+.editor > div {
   margin-bottom: 16px;
 }
 

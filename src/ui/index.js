@@ -2,11 +2,13 @@ import './index.css'
 import './components/arrowIcon/index.css'
 import './components/search/index.css'
 import element from './components/element'
+import select from './components/select'
 import list from './components/list'
 import filterSearch from '../options/filterSearch'
+import api from '../../api/index'
 
 export default {
-  create(target) {
+  create(target, user) {
     target.classList.add('mui')
     target.innerHTML = ''
     const navigate = this.aside(target, 'navigate')
@@ -14,72 +16,48 @@ export default {
     const map = element.create({ parent: target, name: 'map' })
     const search = this.search(target)
     const info = this.aside(target, 'info')
-    this.user(info)
+    this.user(info, user)
     return { map, navigate, info, search }
   },
-  debounce(func, ms) {
-    let timeout;
-    return function() {
-      clearTimeout(timeout)
-      timeout = setTimeout(() => func.apply(this, arguments), ms)
-    }
-  },
-  user(info) {
-    const login = 'Gast'
-    const user = element.create({ name: 'user' })
-    user.innerHTML = `<i class="mui-user-icon"></i><span>${login}</span>/<button>Выход</button>`
-    info.prepend(user)
+  user(info, user) {
+    const userEl = element.create({ name: 'user' })
+    const login = user?.username
+    userEl.innerHTML = login ? `<i class="mui-user-icon"></i><span>${login}</span>/<a href="${api.logout}">Выход</a>` : `<a href="${api.login}">Вход</a>`
+    info.prepend(userEl)
   },
   search(target) {
     let index = filterSearch.findIndex(e => e.active)
-    const handler = () => {
-      const customEvent = new CustomEvent('action', { detail: { value: input.value, tab: filterSearch[index] }})
-      dropdown.style.display = 'grid'
+    const input = (event) => {
+      const customEvent = new CustomEvent('action', { detail: { value: search.getValue(), tab: filterSearch[index] }})
       search.dispatchEvent(customEvent)
     }
-    
-    const search = element.create({ parent: target, name: 'search' })
+    const change = (event) => {
+      const id = +event.target.dataset.id
+      const model = event.target.dataset.model
+      const customEvent = new CustomEvent('active', { bubbles: true, cancelable: true, detail: { id, model } })
+      search.dispatchEvent(customEvent)
+    }
+    const search = select.create({ parent: target, name:'search', type:'search', onchange: change, oninput: input })
+    search.classList.add('searchBar')
+    search.on = (event, handler) => search.addEventListener(event, handler, false)
+
     const tabs = list.create({
       parent: search,
       list: filterSearch,
       name: 'search-tabs',
       onclick: (l, i) => {
         index = i
-        handler()
-        input.focus()
+        input()
+        search.focus()
       }
     })
-    const wr = element.create({ parent: search, name: 'search-wr' })
-    const input = element.create({ parent: wr, name: 'search-input', tag: 'input' })
-    const dropdown = element.create({ parent: wr, name: 'dropdown' })
-    dropdown.innerHTML = '<i>пусто..</i>'
-    input.type = 'search'
-    
-    search.on = (event, handler) => search.addEventListener(event, handler, false)
-    input.oninput = this.debounce(handler, 200)
-    input.onfocus = () => {
-      dropdown.style.display = 'grid'
-    }
-    document.body.addEventListener('click', (event) => {
-      if (!event.target.closest('.mui-search')) dropdown.style.display = 'none'
-    })
-    search.dropdown = (list) => {
-      dropdown.innerHTML = list || '<i>пусто..</i>'
-    }
-    search.focus = () => input.focus()
-    dropdown.onclick = (event) => {
-      if (!event.target.closest('.mui-dropdown > button')) return
-      const id = +event.target.dataset.id
-      const model = event.target.dataset.model
-      const customEvent = new CustomEvent('active', { bubbles: true, cancelable: true, detail: { id, model } })
-      search.dispatchEvent(customEvent)
-    }
+    search.prepend(tabs)
     search.hidden = true
     document.addEventListener('keydown', (event) => {
       if (event.ctrlKey && event.key === 'f') {
         event.preventDefault()
         search.hidden = false
-        input.focus()
+        search.focus()
       }
     })
     return search

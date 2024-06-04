@@ -1,12 +1,14 @@
 import './index.css'
 import input from '../../../ui/components/input'
+import select from '../../../ui/components/select'
 import coordinatesHTML from '../../../utils/coordinatesHTML'
 
 export default {
-  create(fields, coordinates) {
+  create(fields, coordinates, config) {
     const form = this.form()
     const inputs = this.fields(fields, form)
-    this.coordinates(coordinates, form)
+    this.config = config
+    // this.coordinates(coordinates, form)
     this.submit(form, () => {
       const data = {}
       inputs.forEach((input) => data[input.name] = input.value)
@@ -16,6 +18,51 @@ export default {
     })
     return form
   },
+  renderWellTypes() {
+    let html = ''
+    this.config.wellTypes.map(el => {
+      const { id, name } = el
+      html += `<button data-id="${ id }" title="${ name }">${ name }</button>`
+    })
+    return html
+  },
+  input(el) {
+    return input.create({
+      value: el.value,
+      name: el.name,
+      // type: el.type
+    })
+  },
+  select(el) {
+    const change = (v) => {
+      search.setValue(v.target.title)
+      search.close()
+    }
+    const click = async () => {
+      const html = this.renderWellTypes()
+      search.dropdown(html)
+    }
+    const search = select.create({ name:'search', type:'search', onchange: change, onclick: click })
+    search.setValue(el.value)
+    return search
+  },
+  search(el) {
+    const change = (event) => {
+      const id = +event.target.dataset.id
+      const model = event.target.dataset.model
+      const item = this.config.getFeatureById(id, model)
+      search.setValue(item.values_.name)
+      search.close()
+    }
+    const input = async () => {
+      const value = search.getValue()
+      const html = await this.config.searchResults(value, el.content_types)
+      search.dropdown(html)
+    }
+    const search = select.create({ name:'search', type:'search', onchange: change, oninput: input })
+    search.setValue(el.value)
+    return search
+  },
   fields(fields, form) {
     const inputs = []
     fields.forEach((el) => {
@@ -23,13 +70,9 @@ export default {
       const label = document.createElement('label')
       label.textContent = el.label
       wr.append(label)
-      const inp = input.create({
-        value: el.value,
-        name: el.name,
-        type: el.type
-      })
-      inputs.push(inp)
-      wr.append(inp)
+      const field =  this[el.type](el)
+      inputs.push(field)
+      wr.append(field)
       form.append(wr)
     })
     return inputs

@@ -4,7 +4,7 @@ const host = config.host
 export default {
   wellsJson: {
     get: host + '/base/api/wells/?format=json&limit=5000', // 'https://darcydb.ru/base/api/wells/?format=json&limit=300', // '/wells.json', // host + '/base/api/wells/?format=json&limit=300', //'https://darcydb.ru/base/api/wells/?format=json&limit=5000', // host + '/base/api/wells/?format=json&limit=5000',
-    set: host + '/base/api/wells/'
+    set: host + '/base/api/wells/update/'
   },
   fieldsJson: {
     get: host + '/base/api/fields/?format=json&limit=5000', // host + '/base/api/fields/?format=json',
@@ -19,6 +19,10 @@ export default {
     set: host + '/base/api/license/'
   },
   search: host + '/fts/api/fts/?search=',
+  wellTypesUrl: host + '/base/api/dictentities/?entity=2',
+  user: host + '/api/users/me/',
+  login: host + '/accounts/login/',
+  logout: host + '/accounts/logout/',
   // sectionsJson: {
   //   get: host + '/base/api/sections/?format=json&limit=300',
   //   set: host + '/base/api/sections/'

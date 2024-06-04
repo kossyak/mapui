@@ -27,6 +27,12 @@
   padding: 0;
 }
 
+.mui a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
 .mui aside button, .mui-li {
   background-color: transparent;
   text-align: left;
@@ -140,7 +146,6 @@ aside.mui-info > div.mui-content {
 }
 .mui aside .mui-back > div {
   padding: 0 8px;
-  margin-top: -.2em;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -258,7 +263,11 @@ aside.mui-navigate > div.mui-content {
   padding: 8px;
   line-height: 1;
 }
-.mui aside .mui-user button:hover {
+.mui aside .mui-user a {
+  padding: 8px;
+  line-height: 1;
+}
+.mui aside .mui-user a:hover {
   color: white;
 }
 
@@ -266,4 +275,80 @@ i.mui-user-icon {
   background: url("/icons/user.svg") no-repeat;
   width: 20px;
   height: 20px;
+}
+
+.searchBar{
+  min-width: 360px;
+  max-width: 520px;
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  margin-left: -180px;
+
+}
+.searchBar .mui-search-input {
+  border-radius: 8px;
+}
+.searchBar .mui-search-wr {
+  width: inherit;
+  border-radius: 8px;
+}
+.searchBar .mui-dropdown{
+  border: 0;
+  border-radius: 0 0 8px 8px;
+  margin-top: -6px;
+  padding: 2px 0;
+}
+.searchBar .mui-dropdown i {
+  padding: .5em .8em;
+}
+.searchBar .mui-dropdown button{
+  padding: .5em .8em .5em 2.2em;
+}
+.mui-dropdown button:before {
+  top:.8em;
+  margin-left: .5em;
+}
+.mui-dropdown button:hover {
+  background-color: var(--gray100);
+  color: inherit;
+}
+.searchBar .mui-search-input {
+  padding: .8em 32px .8em 1em;
+  width: 100%;
+  border: 0;
+}
+.searchBar .mui-search-wr:before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: .8em;
+  top: .8em;
+  background: url("./components/search/search.svg") no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.mui-search-tabs {
+  display: flex;
+  transform: translateY(8px);
+}
+.mui .mui-search-tabs .mui-li {
+  width: auto;
+  padding: 8px 13px 14px;
+  color: white;
+  background-color: #000000aa;
+  border-radius: 8px 8px 0 0;
+  outline: 1px solid var(--gray100);
+}
+.mui .mui-search-tabs .mui-li.active {
+  background-color: white;
+  color: var(--black);
+}
+.mui .mui-search-tabs .mui-li:hover {
+  background-color: #f0f0f0;
+  color: var(--black);
+}
+.mui .mui-search-tabs i {
+  display: none;
 }

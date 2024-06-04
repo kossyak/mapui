@@ -10,9 +10,17 @@ export  default {
     this.progress.style.setProperty('--value', Math.floor((this.loaded / this.total) * 100) + '%');
     this.progress.dataset.label = `Loading ${label}...`
   },
-  async search(api, value, tab) {
-    const url = `${api.search + value}&limit=5${tab?.content_types ? '&content_type__in=' + tab.content_types + ',' : ''}`
-    console.log(url, api.search, value, tab)
+  async queryOne(url) {
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        // 'Authorization': secret.Authorization
+      }
+    })
+    return await response.json()
+  },
+  async query(url) {
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -21,6 +29,10 @@ export  default {
       }
     })
     return await response.json()
+  },
+  async search(api, value, content_types) {
+    const url = `${api.search + value}&limit=5${content_types ? '&content_type__in=' + content_types + ',' : ''}`
+    return this.query(url)
   },
   async init(target, api) {
     let results = {}

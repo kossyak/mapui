@@ -46,9 +46,14 @@ export default {
   },
   searchResults: [],
   async init(target, api, config, coordinate) {
+    const user = '' // await loader.queryOne(api.user)
+    const wellTypes = await loader.query(api.wellTypesUrl)
     const result = await loader.init(target, api)
+    config.wellTypes = wellTypes.results
+    console.log(wellTypes, config.wellTypes)
+    
     const bus = {}
-    const ui = UI.create(target) // { navigate, info }
+    const ui = UI.create(target, user) // { navigate, info }
 
     const zoom = 12
     const zoomLabel = 13
@@ -89,25 +94,33 @@ export default {
     const { mousePositionControl, scaleLineControl, selectControlModule } = controls
     
     // search
+  
+    config.searchResults = async (value, content_types) => {
+      const data = await loader.search(api, value, content_types)
+      return searchDropdown.render(data, result)
+    }
+    config.getFeatureById = (id, model) => {
+      const allFeatures = { fieldsFeatures, intakesFeatures, licenseFeatures, wellsFeatures }
+      return allFeatures[model + 'Features'].find(o => o.id_ === id)
+    }
+    
     ui.search.on('action', async (e) => {
+      console.log(e.type)
       if (e.type !== 'action') return
       const value = e.detail?.value
       const tab = e.detail?.tab
-      if (!value ||value.length < 2) return
-      const data = await loader.search(api, value, tab)
-      const html = searchDropdown.render(data, result)
+      // if (!value ||value.length < 2) return
+      const html = await config.searchResults(value, tab.content_types)
       ui.search.dropdown(html)
     })
     ui.search.on('active', async (e) => {
       if (e.type !== 'active') return
       const id = e.detail?.id
       const model = e.detail?.model
-      const allFeatures = { fieldsFeatures, intakesFeatures, licenseFeatures, wellsFeatures }
-      const item = allFeatures[model + 'Features'].find(o => o.id_ === id)
+      const item = config.getFeatureById(id, model)
       if (item) {
         const features = select.getFeatures()
-        console.log(features.getArray())
-        if (features.getArray().findIndex(o => o.id_ === id) === -1) features.push(item);
+        if (features.getArray().findIndex(o => o.id_ === id) === -1) features.push(item)
         // map.getView().setZoom(zoomLabel + 1)
         // map.getView().setCenter(item.getGeometry().getCoordinates())
         // console.log(item.geometry.bounds)
@@ -239,11 +252,11 @@ export default {
     select.on('select', (e) => {
       pointActive.remove()
       selectControl.update()
-      console.log(1)
+      console.log(8)
     })
     select.getFeatures().on('add', (e) => {
       selectControl.update()
-      console.log(1)
+      console.log(9)
     })
     dragBox.on('boxend', () => {
       const extent = dragBox.getGeometry().getExtent()

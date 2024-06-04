@@ -19,14 +19,14 @@ export default function ({ target, url, entry, onload, config, width = '100%', h
   // setTimeout(() => {
   //   timepast = true
   // }, 500)
-  // iframe.addEventListener('load',  async () => {
-  //   try {
-  //     await iframe.contentWindow.create?.(entry)
-  //     onload?.()
-  //   } catch (err) {
-  //     if (!timepast && !iframe.srcdoc) error()
-  //   }
-  // }, true)
+  iframe.addEventListener('load',  async () => {
+    try {
+      await iframe.contentWindow.create?.(entry)
+      onload?.()
+    } catch (err) {
+      if (!iframe.srcdoc) error()
+    }
+  }, true)
   // iframe.onerror = () => error()
   iframe.onload = () => iframe.parentElement.spinner(false)
   window.onmessage = (event) => {
