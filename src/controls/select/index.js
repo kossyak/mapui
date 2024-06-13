@@ -55,7 +55,6 @@ export default {
   },
   getFields(selected) {
     const { model, gvk, name, typo, intake, field, aquifer_usage } = selected
-    console.log({ model, gvk, name, typo, intake, field, aquifer_usage })
     if (model === 'wells') {
       return [
         { label: 'Номер ГВК', value: gvk, type: 'input', name: 'gvk' },
@@ -105,14 +104,16 @@ export default {
     const fields = this.getFields(this.selected)
     const editBtn = tap.create({
       html: 'Редактировать <i>✎</i>',
+      disabled: true, // !
       onclick: (v) => {
-        const form = editor.create(fields, this.selected.coordinates, this.config)
+        const form = editor.create(fields, this.selected, this.config)
         ui.navigate.extension.content(form)
         ui.navigate.extension.setTitle('Редактирование')
       }
     })
-    const html = this.fieldsToHTML(fields)
+    if (this.config.user?.permission?.includes(2)) editBtn.disabled = false
     ui.navigate.extension.content(editBtn)
+    const html = this.fieldsToHTML(fields)
     ui.navigate.extension.addContent(html)
     details[this.selected.model].forEach((el) => {
       if (el.key) el.disabled = !Boolean(this.selected[el.key])

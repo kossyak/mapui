@@ -34,7 +34,6 @@ export default {
 			dropdown.style.display = 'grid'
 		}
 		input.onblur = (event) => {
-			console.log(event)
 			const first = event.relatedTarget?.closest('.mui-' + name)
 			const second = event.target?.closest('.mui-' + name)
 			if (first === second) return

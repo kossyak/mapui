@@ -6,7 +6,9 @@
 .editor > div {
   margin-bottom: 16px;
 }
-
+.editor .mui-search input {
+  width: 248px;
+}
 .editor .submit  {
   margin-top: 16px;
   border-radius: 4px;

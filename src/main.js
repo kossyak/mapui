@@ -46,11 +46,11 @@ export default {
   },
   searchResults: [],
   async init(target, api, config, coordinate) {
-    const user = '' // await loader.queryOne(api.user)
+    const user = await loader.queryBase(api.user)
     const wellTypes = await loader.query(api.wellTypesUrl)
     const result = await loader.init(target, api)
     config.wellTypes = wellTypes.results
-    console.log(wellTypes, config.wellTypes)
+    config.user = user
     
     const bus = {}
     const ui = UI.create(target, user) // { navigate, info }
@@ -105,7 +105,6 @@ export default {
     }
     
     ui.search.on('action', async (e) => {
-      console.log(e.type)
       if (e.type !== 'action') return
       const value = e.detail?.value
       const tab = e.detail?.tab

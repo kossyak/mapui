@@ -10,12 +10,11 @@ export  default {
     this.progress.style.setProperty('--value', Math.floor((this.loaded / this.total) * 100) + '%');
     this.progress.dataset.label = `Loading ${label}...`
   },
-  async queryOne(url) {
+  async queryBase(url) {
     const response = await fetch(url, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
-        // 'Authorization': secret.Authorization
+        'Content-Type': 'application/json'
       }
     })
     return await response.json()
@@ -27,6 +26,17 @@ export  default {
         'Content-Type': 'application/json',
         'Authorization': secret.Authorization
       }
+    })
+    return await response.json()
+  },
+  async submit(url, data, method = 'POST') {
+    const response = await fetch(url, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': secret.Authorization
+      },
+      body: JSON.stringify(data)
     })
     return await response.json()
   },

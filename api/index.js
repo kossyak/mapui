@@ -20,9 +20,13 @@ export default {
   },
   search: host + '/fts/api/fts/?search=',
   wellTypesUrl: host + '/base/api/dictentities/?entity=2',
+  fieldSelect: host + '/base/api/fields/?format=json&limit=5&search=',
+  intakeSelect: host + '/base/api/intakes/?format=json&limit=5&search=',
+  aquiferSelect: host + '/base/api/aquifercodes/?format=json&limit=5&search=',
   user: host + '/api/users/me/',
   login: host + '/accounts/login/',
   logout: host + '/accounts/logout/',
+  updateWells: host + 'base/api/wells/update/'
   // sectionsJson: {
   //   get: host + '/base/api/sections/?format=json&limit=300',
   //   set: host + '/base/api/sections/'
@@ -31,16 +35,16 @@ export default {
   //   get: host + '/base/api/license/?format=json&limit=300',
   //   set: host + '/base/api/license/'
   // },
-  async updateCoordinates(featureId, coordinates, type) {
-    const url = `${this[type].set}${featureId}`
-    const data = { coordinates }
-    console.log(url)
-    console.log('Отправляемый запрос:', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-  }
+  // async updateCoordinates(featureId, coordinates, type) {
+  //   const url = `${this[type].set}${featureId}`
+  //   const data = { coordinates }
+  //   console.log(url)
+  //   console.log('Отправляемый запрос:', {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(data)
+  //   })
+  // }
 }

@@ -5,6 +5,7 @@ const test = `https://storage.yandexcloud.net/s3-for-groundwater-db/doc_1139/ana
 export default {
   host,
   projection: 'EPSG:4326', // Проекция отображения координат (WGS-84)
+  user: {},
   wellTypes: [], // in edit form
   onmessage: () => {}, // in main.js,
   searchResults: () => {}, // in global search and edit form

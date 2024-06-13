@@ -2,27 +2,28 @@ import './index.css'
 import input from '../../../ui/components/input'
 import select from '../../../ui/components/select'
 import coordinatesHTML from '../../../utils/coordinatesHTML'
+import loader from '../../../loader'
+import api from '../../../../api'
 
 export default {
-  create(fields, coordinates, config) {
+  create(fields, selected, config) {
     const form = this.form()
-    const inputs = this.fields(fields, form)
+    this.fields(fields, form)
     this.config = config
+    this.data = {}
     // this.coordinates(coordinates, form)
-    this.submit(form, () => {
-      const data = {}
-      inputs.forEach((input) => data[input.name] = input.value)
-      data.coordinates = coordinates
-      alert('Данные успешно отправлены ' + JSON.stringify(data))
-      // api
+    this.submit(form, async () => {
+      console.log(selected)
+      const res = await loader.submit(api.updateWells + selected.id, this.data, 'PUT')
+      console.log(res)
     })
     return form
   },
-  renderWellTypes() {
+  renderList(list) {
     let html = ''
-    this.config.wellTypes.map(el => {
-      const { id, name } = el
-      html += `<button data-id="${ id }" title="${ name }">${ name }</button>`
+    list.map(el => {
+      const { id, name, index } = el
+      html += `<button data-id="${ id }" title="${ name } ${ index ?? '' }">${ name } ${ index ?? '' }</button>`
     })
     return html
   },
@@ -30,16 +31,20 @@ export default {
     return input.create({
       value: el.value,
       name: el.name,
+      oninput: (e) => {
+        this.data[el.name] = e.target.value
+      }
       // type: el.type
     })
   },
   select(el) {
-    const change = (v) => {
-      search.setValue(v.target.title)
+    const change = (event) => {
+      search.setValue(event.target.title)
+      this.data[el.name] = +event.target.dataset.id
       search.close()
     }
     const click = async () => {
-      const html = this.renderWellTypes()
+      const html = this.renderList(this.config.wellTypes)
       search.dropdown(html)
     }
     const search = select.create({ name:'search', type:'search', onchange: change, onclick: click })
@@ -48,15 +53,26 @@ export default {
   },
   search(el) {
     const change = (event) => {
-      const id = +event.target.dataset.id
-      const model = event.target.dataset.model
-      const item = this.config.getFeatureById(id, model)
-      search.setValue(item.values_.name)
+      // const id = +event.target.dataset.id
+      // const model = event.target.dataset.model
+      this.data[el.name] = +event.target.dataset.id
+      search.setValue(event.target.title)
       search.close()
     }
     const input = async () => {
       const value = search.getValue()
-      const html = await this.config.searchResults(value, el.content_types)
+      const data = await loader.query(api[el.name + 'Select'] + value)
+      console.log(data)
+      let html = ''
+      if (el.name === 'aquifer') {
+        html = this.renderList(data.results.map(feature => {
+          return { id: feature.id, name: feature.name, index: feature.index  }
+        }))
+      } else {
+        html = this.renderList(data.results.features.map(feature => {
+          return { id: feature.id, name: feature.properties.name }
+        }))
+      }
       search.dropdown(html)
     }
     const search = select.create({ name:'search', type:'search', onchange: change, oninput: input })
