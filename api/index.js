@@ -26,7 +26,7 @@ export default {
   user: host + '/api/users/me/',
   login: host + '/accounts/login/',
   logout: host + '/accounts/logout/',
-  updateWells: host + 'base/api/wells/update/'
+  updateWells: host + '/base/api/wells/update/'
   // sectionsJson: {
   //   get: host + '/base/api/sections/?format=json&limit=300',
   //   set: host + '/base/api/sections/'

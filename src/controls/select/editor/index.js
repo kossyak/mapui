@@ -14,7 +14,7 @@ export default {
     // this.coordinates(coordinates, form)
     this.submit(form, async () => {
       console.log(selected)
-      const res = await loader.submit(api.updateWells + selected.id, this.data, 'PUT')
+      const res = await loader.submit(api.updateWells + selected.id + '/', this.data, 'PUT')
       console.log(res)
     })
     return form
