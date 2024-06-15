@@ -10,6 +10,21 @@ export  default {
     this.progress.style.setProperty('--value', Math.floor((this.loaded / this.total) * 100) + '%');
     this.progress.dataset.label = `Loading ${label}...`
   },
+  getCookie(name) {
+    let cookieValue = null
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';')
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim()
+        // Does this cookie string begin with the name we want?
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
+          break
+        }
+      }
+    }
+    return cookieValue
+  },
   async queryBase(url) {
     const response = await fetch(url, {
       method: 'GET',
@@ -30,11 +45,14 @@ export  default {
     return await response.json()
   },
   async submit(url, data, method = 'POST') {
+    const csrftoken = this.getCookie('csrftoken')
+    console.log(csrftoken)
     const response = await fetch(url, {
       method,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': secret.Authorization
+        'Authorization': secret.Authorization,
+        "X-CSRFToken": csrftoken
       },
       body: JSON.stringify(data)
     })
