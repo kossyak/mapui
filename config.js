@@ -1,4 +1,4 @@
-const host = 'https://darcydb.ru' // 'http://127.0.0.1:8080'
+const host = 'http://127.0.0.1:8080' // 'https://darcydb.ru'
 
 const test = `https://storage.yandexcloud.net/s3-for-groundwater-db/doc_1139/anal_3_1.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=YCAJExq0CJ58qDw1lmNtJrHdq%2F20240421%2Fru-central1%2Fs3%2Faws4_request&X-Amz-Date=20240421T120642Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=eabe02403a9a43e3b6bfddcd302878bf998788bbb4808e0919f9d79089d75abc`
 
