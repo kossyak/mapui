@@ -1,6 +1,5 @@
 import Translate from 'ol/interaction/Translate'
 import { transform } from "ol/proj"
-import api from '../../../api'
 
 export default {
   create(select) {
@@ -48,7 +47,7 @@ export default {
       //     type = 'vzu'
       //   }
       // }
-      api.updateCoordinates(featureId, coordinates, properties?.model)
+      // api.updateCoordinates(featureId, coordinates, properties?.model)
     })
   }
 }

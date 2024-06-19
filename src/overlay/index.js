@@ -40,11 +40,12 @@ export default {
             tooltipText += add('Номер', name) + add('Тип', typo?.name) + add('ГВК', gvk || 'Н/Д')
             tooltipSet.push(this.coordinates.toString())
           }
-        } else if (type === 'Polygon' || type === 'MultiPolygon') {
+        } else {
           this.coordinates = event.coordinate
           if (model === 'fields') tooltipText += add('Месторождение', name || '-')
           if (model === 'intakes') tooltipText += add('Владелец ВЗУ', name)
           if (model === 'license') tooltipText += add('Номер Лицензии', name)
+          if (model === 'section') tooltipText += add('Название линии', name)
         }
       })
       tooltip.setPosition(this.coordinates)

@@ -62,6 +62,18 @@ export  default {
     const url = `${api.search + value}&limit=5${content_types ? '&content_type__in=' + content_types + ',' : ''}`
     return this.query(url)
   },
+  // async updateCoordinates(featureId, coordinates, type) {
+  //   const url = `${this[type].set}${featureId}`
+  //   const data = { coordinates }
+  //   console.log(url)
+  //   console.log('Отправляемый запрос:', {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(data)
+  //   })
+  // }
   async init(target, api) {
     let results = {}
     target.innerHTML = progress.template

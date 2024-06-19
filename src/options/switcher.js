@@ -36,18 +36,33 @@ export default [
       {
         key: 'fields',
         title: 'Месторождения',
-        color: '#0080FFB3' // [0, 128, 255, 0.7]
+        color: '#0080FFB3', // [0, 128, 255, 0.7]
+        visible: true,
       },
       {
         key: 'intakes',
         title: 'Водозаборы',
-        color: '#00008066' // [0, 0, 128, 0.4]
+        color: '#00008066', // [0, 0, 128, 0.4]
+        visible: true,
       },
       {
         key: 'license',
         title: 'Лицензии',
-        color: '#99999999' // [0, 0, 128, 0.4]
+        color: '#99999999', // [0, 0, 128, 0.4]
+        visible: true,
       },
+    ]
+  },
+  {
+    title: 'Профиля',
+    key: 'section',
+    visible: true,
+    children: [
+      {
+        key: 'sections',
+        title: 'Разрезы',
+        visible: true
+      }
     ]
   },
   {

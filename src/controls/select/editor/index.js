@@ -3,7 +3,6 @@ import input from '../../../ui/components/input'
 import select from '../../../ui/components/select'
 import coordinatesHTML from '../../../utils/coordinatesHTML'
 import loader from '../../../loader'
-import api from '../../../../api'
 
 export default {
   create(fields, selected, config) {
@@ -13,9 +12,7 @@ export default {
     this.data = {}
     // this.coordinates(coordinates, form)
     this.submit(form, async () => {
-      console.log(selected)
-      const res = await loader.submit(api.updateWells + selected.id + '/', this.data, 'PUT')
-      console.log(res)
+      const res = await loader.submit(config.api.updateWells + selected.id + '/', this.data, 'PUT')
     })
     return form
   },

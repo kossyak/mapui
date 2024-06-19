@@ -22,5 +22,9 @@ export default {
   {
     key: 'licenseJson',
     label: 'license'
+  },
+  {
+    key: 'sectionsJson',
+    label: 'sections'
   }]
 }

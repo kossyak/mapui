@@ -75,6 +75,13 @@ export default {
         { label: 'Назначение', value: gw_purpose, name: 'n8'  },
         { label: 'Орган выдачи', value: department?.name, name: 'n9'  },
       ]
+    } else if (model === 'section') {
+      const { name, type_section, type_sediment } = selected
+      return [
+        { label: 'Название', value: name, name: 'n7' },
+        { label: 'Тип разреза', value: type_section, name: 'n8'  },
+        { label: 'Тип отложений', value: type_sediment, name: 'n9'  },
+      ]
     }
   },
   fieldsToHTML(fields) {
@@ -90,12 +97,13 @@ export default {
       const selected = mapping(s)
       this.selectedAll.push(selected)
       const add = (label, text) => text ? `<div><span>${label}: </span>${text || '-'}</div>` : ''
-      const { model, gvk, name, typo, aquifer_usage } = selected
+      const { model, gvk, name, typo, aquifer_usage, type_section, type_sediment } = selected
       let title = ''
       if (model === 'wells') title = add('Номер', name || 'б/н') + add('Номер ГВК', gvk || 'Н/Д') + add('Тип', typo?.name) + add('Горизонт', aquifer_usage?.map(el => el.index))
       if (model === 'intakes') title = add('Тип', 'Водозаборы') + add('Владелец', name)
       if (model === 'fields') title =  add('Тип', 'Месторождения') + add('Наименование', name)
       if (model === 'license') title =  add('Тип', 'Лицензия') + add('Номер', name)
+      if (model === 'section') title = add('Название', name) + add('Тип разреза', type_section) + add('Тип отложений', type_sediment)
       list.push({ selected, title })
     })
     return list

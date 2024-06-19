@@ -5,10 +5,9 @@ import element from './components/element'
 import select from './components/select'
 import list from './components/list'
 import filterSearch from '../options/filterSearch'
-import api from '../../api/index'
 
 export default {
-  create(target, user) {
+  create(target, user, api) {
     target.classList.add('mui')
     target.innerHTML = ''
     const navigate = this.aside(target, 'navigate')
@@ -16,10 +15,10 @@ export default {
     const map = element.create({ parent: target, name: 'map' })
     const search = this.search(target)
     const info = this.aside(target, 'info')
-    this.user(info, user)
+    this.user(info, user, api)
     return { map, navigate, info, search }
   },
-  user(info, user) {
+  user(info, user, api) {
     const userEl = element.create({ name: 'user' })
     const login = user?.username
     userEl.innerHTML = login ? `<i class="mui-user-icon"></i><span>${login}</span>/<a href="${api.logout}">Выход</a>` : `<a href="${api.login}">Вход</a>`

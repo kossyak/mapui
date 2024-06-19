@@ -83,6 +83,27 @@ export default {
       view: (selected) => coordinatesHTML(selected.coordinates)
     }
   ],
+  section: [
+    {
+      title: 'Координаты',
+      view: (selected) => coordinatesHTML(selected.coordinates)
+    }, {
+      title: 'Разрез',
+      view: (selected, config) => {
+        return ms({ url: config.services.source_file(selected) })
+      }
+    }, {
+      title: 'Список скважин',
+      view: (selected, config) => {
+        return ms({ url: config.services.pois(selected) })
+      }
+    }, {
+      title: 'Карта к разрезу',
+      view: (selected, config) => {
+        return ms({ url: config.services.map_ref(selected) })
+      }
+    }
+  ],
   wells: [{
       title: 'Координаты',
       view: (selected) => coordinatesHTML(selected.coordinates)

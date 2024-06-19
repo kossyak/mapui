@@ -2,7 +2,7 @@ import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import Modify from 'ol/interaction/Modify'
 import { transform } from "ol/proj"
-import { Fill, Stroke, Style } from 'ol/style'
+import { Stroke, Style } from 'ol/style'
 import GeoJSON from 'ol/format/GeoJSON'
 
 export default {
@@ -37,12 +37,9 @@ export default {
   polygonStyle(style) {
     if (style) {
       return new Style({
-        fill: new Fill({
-          color: style.fillColor
-        }),
         stroke: new Stroke({
           color: style.strokeColor,
-          width: 1
+          width: 2
         })
       })
     } else return {}

@@ -1,4 +1,4 @@
-const host = 'http://127.0.0.1:8080' // 'https://darcydb.ru'
+const host = 'https://darcydb.ru' // 'http://127.0.0.1:8080' //
 
 const test = `https://storage.yandexcloud.net/s3-for-groundwater-db/doc_1139/anal_3_1.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=YCAJExq0CJ58qDw1lmNtJrHdq%2F20240421%2Fru-central1%2Fs3%2Faws4_request&X-Amz-Date=20240421T120642Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=eabe02403a9a43e3b6bfddcd302878bf998788bbb4808e0919f9d79089d75abc`
 
@@ -28,6 +28,40 @@ export default {
     license: ({ id }) => host + '/base/api/intakes/' + id + '/license/',
     wells: ({ id }) => host + '/base/api/intakes/' + id + '/wells/',
     deadlines: ({ id }) => host + '/base/api/intakes/' + id + '/deadlines/',
-    withdrawal: ({ id }) => host + '/base/api/intakes/' + id + '/withdrawal/'
+    withdrawal: ({ id }) => host + '/base/api/intakes/' + id + '/withdrawal/',
+    source_file: (selected) => 'https://openweathermap.org/weathermap?basemap=map&cities=false&layer=precipitation&lat=0&lon=0&zoom=2',
+    pois: (selected) => 'https://openweathermap.org/weathermap?basemap=map&cities=false&layer=precipitation&lat=0&lon=0&zoom=2',
+    map_ref: (selected) => 'https://openweathermap.org/weathermap?basemap=map&cities=false&layer=precipitation&lat=0&lon=0&zoom=2',
+  },
+  api: {
+    wellsJson: {
+      get: host + '/base/api/wells/?format=json&limit=5000', // 'https://darcydb.ru/base/api/wells/?format=json&limit=300', // '/wells.json', // host + '/base/api/wells/?format=json&limit=300', //'https://darcydb.ru/base/api/wells/?format=json&limit=5000', // host + '/base/api/wells/?format=json&limit=5000',
+      set: host + '/base/api/wells/update/'
+    },
+    fieldsJson: {
+      get: host + '/base/api/fields/?format=json&limit=5000', // host + '/base/api/fields/?format=json',
+      set: host + '/base/api/fields/',
+    },
+    intakesJson: {
+      get: host + '/base/api/intakes/?format=json&limit=5000', // host + '/base/api/intakes/?format=json',
+      set: host + '/base/api/intakes/'
+    },
+    licenseJson: {
+      get: host + '/base/api/license?format=json&limit=5000',
+      set: host + '/base/api/license/'
+    },
+    sectionsJson: {
+      get: host + '/base/api/sections?format=json&limit=5000',
+      set: host + '/base/api/sections/'
+    },
+    search: host + '/fts/api/fts/?search=',
+    wellTypesUrl: host + '/base/api/dictentities/?entity=2',
+    fieldSelect: host + '/base/api/fields/?format=json&limit=5&search=',
+    intakeSelect: host + '/base/api/intakes/?format=json&limit=5&search=',
+    aquiferSelect: host + '/base/api/aquifercodes/?format=json&limit=5&search=',
+    user: host + '/api/users/me/',
+    login: host + '/accounts/login/',
+    logout: host + '/accounts/logout/',
+    updateWells: host + '/base/api/wells/update/'
   }
 }

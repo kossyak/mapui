@@ -14,6 +14,8 @@ import tooltipOverlay from './overlay'
 import Control from 'ol/control/Control'
 
 import polygons from './interactions/polygons'
+import sections from './interactions/sections'
+
 import controls from './controls'
 import measureModule from './controls/measure'
 
@@ -45,7 +47,8 @@ export default {
     window.requestAnimationFrame(() => this.animate(map))
   },
   searchResults: [],
-  async init(target, api, config, coordinate) {
+  async init(target, config, coordinate) {
+    const api = config.api
     const user = await loader.queryBase(api.user)
     const wellTypes = await loader.query(api.wellTypesUrl)
     const result = await loader.init(target, api)
@@ -53,11 +56,11 @@ export default {
     config.user = user
     
     const bus = {}
-    const ui = UI.create(target, user) // { navigate, info }
+    const ui = UI.create(target, user, api) // { navigate, info }
 
     const zoom = 12
     const zoomLabel = 13
-    const { wellsJson, fieldsJson, intakesJson, licenseJson } = result
+    const { wellsJson, fieldsJson, intakesJson, licenseJson, sectionsJson } = result
     const fieldsPolygon = polygons.create({
       featuresJSON: fieldsJson,
       type: 'fields',
@@ -82,14 +85,22 @@ export default {
         fillColor: '#99999999'
       }
     })
+    const sectionsMultiLine = sections.create({
+      featuresJSON: sectionsJson,
+      type: 'sections',
+      style: {
+        strokeColor: '#00008066'
+      }
+    })
     const fieldsFeatures = fieldsPolygon.features
     const intakesFeatures = intakesPolygon.features
     const licenseFeatures = licensePolygon.features
+    const sectionsFeatures = sectionsMultiLine.features
     
     const { wellsSource, wellsFeatures } = pointSources.getPointSource(wells, wellsJson)
     const layers = pointLayers.create(wellsSource, wells, wellsFeatures)
     const layersClusters = pointClusters.create(wells, wellsJson)
-    const allLayers = { fields: fieldsPolygon.layer, intakes: intakesPolygon.layer, license: licensePolygon.layer, ...layers }
+    const allLayers = { fields: fieldsPolygon.layer, intakes: intakesPolygon.layer, license: licensePolygon.layer, sections: sectionsMultiLine.layer, ...layers }
     const groups = groupsModule.create(allLayers)
     const { mousePositionControl, scaleLineControl, selectControlModule } = controls
     
@@ -100,7 +111,7 @@ export default {
       return searchDropdown.render(data, result)
     }
     config.getFeatureById = (id, model) => {
-      const allFeatures = { fieldsFeatures, intakesFeatures, licenseFeatures, wellsFeatures }
+      const allFeatures = { fieldsFeatures, intakesFeatures, licenseFeatures, sectionsFeatures, wellsFeatures }
       return allFeatures[model + 'Features'].find(o => o.id_ === id)
     }
     
@@ -215,12 +226,14 @@ export default {
             fieldsPolygon.interaction.setActive(true)
             intakesPolygon.interaction.setActive(true)
             licensePolygon.interaction.setActive(true)
+            sectionsMultiLine.interaction.setActive(true)
             map.removeOverlay(tooltip)
           } else {
             translate.setActive(false)
             fieldsPolygon.interaction.setActive(false)
             intakesPolygon.interaction.setActive(false)
             licensePolygon.interaction.setActive(true)
+            sectionsMultiLine.interaction.setActive(true)
             select.getFeatures().clear()
             map.addOverlay(tooltip)
           }
@@ -286,7 +299,7 @@ export default {
     select.setActive(true)
     
     const map = new Map({
-      interactions: defaultInteractions().extend([intakesPolygon.interaction, fieldsPolygon.interaction, licensePolygon.interaction, select, translate]),
+      interactions: defaultInteractions().extend([intakesPolygon.interaction, fieldsPolygon.interaction, licensePolygon.interaction, sectionsMultiLine.interaction, select, translate]),
       controls: defaults().extend([mousePositionControl, scaleLineControl, menuControl, infoControl]),
       layers: [...Object.values(groups), layersClusters],
       view: new View({ center: transform(coordinate || [36.1874, 51.7373], 'EPSG:4326', 'EPSG:3857'), zoom }),
