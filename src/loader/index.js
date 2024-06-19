@@ -11,19 +11,19 @@ export  default {
     this.progress.dataset.label = `Loading ${label}...`
   },
   getCookie(name) {
-    let cookieValue = null
+    let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
-      const cookies = document.cookie.split(';')
+      const cookies = document.cookie.split(';');
       for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim()
-        // Does this cookie string begin with the name we want?
+        const cookie = cookies[i].trim();
+        // Проверка, начинается ли строка куки с имени, которое мы хотим найти
         if (cookie.substring(0, name.length + 1) === (name + '=')) {
-          cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
-          break
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
         }
       }
     }
-    return cookieValue
+    return cookieValue;
   },
   async queryBase(url) {
     const response = await fetch(url, {
@@ -45,8 +45,7 @@ export  default {
     return await response.json()
   },
   async submit(url, data, method = 'POST') {
-    const csrftoken = this.getCookie('csrftoken')
-    console.log(csrftoken)
+    const csrftoken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     const response = await fetch(url, {
       method,
       headers: {
