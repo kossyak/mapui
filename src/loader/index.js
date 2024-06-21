@@ -82,6 +82,7 @@ export  default {
     progress.data.forEach(el => {
       promises.push(
         new Promise((resolve, reject) => {
+          console.time("for loop " + el.key)
           fetch(api[el.key].get, {
             method: 'GET',
             headers: {
@@ -93,6 +94,7 @@ export  default {
               const data = await response.json()
               results[el.key] = data.results?.features || []
               this.update(el.label)
+              console.timeEnd("for loop " + el.key)
               resolve()
             } else {
               results[el.key] = null
@@ -107,9 +109,8 @@ export  default {
     if (data) {
       return await JSON.parse(data)
     }
-    console.time("for loop");
+    
     await Promise.all(promises)
-    console.timeEnd("for loop");
     
     localStorage.setItem('data', JSON.stringify(results))
     // await new Promise(r => setTimeout(r, 50))

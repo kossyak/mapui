@@ -100,7 +100,7 @@ export default {
     const { wellsSource, wellsFeatures } = pointSources.getPointSource(wells, wellsJson)
     const layers = pointLayers.create(wellsSource, wells, wellsFeatures)
     const layersClusters = pointClusters.create(wells, wellsJson)
-    const allLayers = { fields: fieldsPolygon.layer, intakes: intakesPolygon.layer, license: licensePolygon.layer, sections: sectionsMultiLine.layer, ...layers }
+    const allLayers = { fields: fieldsPolygon.layer, intakes: intakesPolygon.layer, license: licensePolygon.layer, section: sectionsMultiLine.layer, ...layers }
     const groups = groupsModule.create(allLayers)
     const { mousePositionControl, scaleLineControl, selectControlModule } = controls
     
