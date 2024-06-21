@@ -85,7 +85,7 @@ export default {
         fillColor: '#99999999'
       }
     })
-    const sectionsMultiLine = sections.create({
+    const sectionMultiLine = sections.create({
       featuresJSON: sectionJson,
       type: 'section',
       style: {
@@ -95,12 +95,12 @@ export default {
     const fieldsFeatures = fieldsPolygon.features
     const intakesFeatures = intakesPolygon.features
     const licenseFeatures = licensePolygon.features
-    const sectionsFeatures = sectionsMultiLine.features
+    const sectionFeatures = sectionMultiLine.features
     
     const { wellsSource, wellsFeatures } = pointSources.getPointSource(wells, wellsJson)
     const layers = pointLayers.create(wellsSource, wells, wellsFeatures)
     const layersClusters = pointClusters.create(wells, wellsJson)
-    const allLayers = { fields: fieldsPolygon.layer, intakes: intakesPolygon.layer, license: licensePolygon.layer, section: sectionsMultiLine.layer, ...layers }
+    const allLayers = { fields: fieldsPolygon.layer, intakes: intakesPolygon.layer, license: licensePolygon.layer, section: sectionMultiLine.layer, ...layers }
     const groups = groupsModule.create(allLayers)
     const { mousePositionControl, scaleLineControl, selectControlModule } = controls
     
@@ -111,7 +111,7 @@ export default {
       return searchDropdown.render(data, result)
     }
     config.getFeatureById = (id, model) => {
-      const allFeatures = { fieldsFeatures, intakesFeatures, licenseFeatures, sectionsFeatures, wellsFeatures }
+      const allFeatures = { fieldsFeatures, intakesFeatures, licenseFeatures, sectionFeatures, wellsFeatures }
       return allFeatures[model + 'Features'].find(o => o.id_ === id)
     }
     
@@ -227,14 +227,14 @@ export default {
             fieldsPolygon.interaction.setActive(true)
             intakesPolygon.interaction.setActive(true)
             licensePolygon.interaction.setActive(true)
-            sectionsMultiLine.interaction.setActive(true)
+            sectionMultiLine.interaction.setActive(true)
             map.removeOverlay(tooltip)
           } else {
             translate.setActive(false)
             fieldsPolygon.interaction.setActive(false)
             intakesPolygon.interaction.setActive(false)
             licensePolygon.interaction.setActive(false)
-            sectionsMultiLine.interaction.setActive(false)
+            sectionMultiLine.interaction.setActive(false)
             select.getFeatures().clear()
             map.addOverlay(tooltip)
           }
@@ -300,7 +300,7 @@ export default {
     select.setActive(true)
     
     const map = new Map({
-      interactions: defaultInteractions().extend([intakesPolygon.interaction, fieldsPolygon.interaction, licensePolygon.interaction, sectionsMultiLine.interaction, select, translate]),
+      interactions: defaultInteractions().extend([intakesPolygon.interaction, fieldsPolygon.interaction, licensePolygon.interaction, sectionMultiLine.interaction, select, translate]),
       controls: defaults().extend([mousePositionControl, scaleLineControl, menuControl, infoControl]),
       layers: [...Object.values(groups), layersClusters],
       view: new View({ center: transform(coordinate || [36.1874, 51.7373], 'EPSG:4326', 'EPSG:3857'), zoom }),
