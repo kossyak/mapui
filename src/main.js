@@ -39,7 +39,7 @@ import DragBox from 'ol/interaction/DragBox'
 import { platformModifierKeyOnly } from 'ol/events/condition'
 
 import pointActive from './pointLayers/active'
-import loader from "./loader"
+import loader from './loader'
 
 export default {
   animate(map) {
@@ -221,6 +221,7 @@ export default {
         title: 'Редактировать',
         toggle: true,
         onclick: (isActive) => {
+          console.log(isActive)
           if (isActive) {
             translate.setActive(true)
             fieldsPolygon.interaction.setActive(true)
@@ -232,8 +233,8 @@ export default {
             translate.setActive(false)
             fieldsPolygon.interaction.setActive(false)
             intakesPolygon.interaction.setActive(false)
-            licensePolygon.interaction.setActive(true)
-            sectionsMultiLine.interaction.setActive(true)
+            licensePolygon.interaction.setActive(false)
+            sectionsMultiLine.interaction.setActive(false)
             select.getFeatures().clear()
             map.addOverlay(tooltip)
           }

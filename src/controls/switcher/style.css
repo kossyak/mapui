@@ -32,6 +32,17 @@
     rotate: 0deg;
 }
 
+.mui-accordion[name="section"] .mui-content button.active:before,
+.searchBar .mui-dropdown [name="section"]:before {
+    top: 13px;
+    height: 1px;
+    width: 11px;
+    background-color: var(--color);
+    outline: 1px solid var(--white100);
+    border: 0;
+    rotate: 45deg;
+}
+
 .switcher-controls .mui-content button:hover {
     background-color: var(--ol-subtle-background-color);
     outline: 0;

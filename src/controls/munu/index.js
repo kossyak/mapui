@@ -6,10 +6,6 @@ export default {
     const customControls = this.customControls()
     for (const key in buttons) {
       const btn = this.btn(buttons[key])
-      btn.onclick = () => {
-        const isActive = btn.classList.contains('active')
-        buttons[key].onclick?.(isActive)
-      }
       customControls.appendChild(btn)
       btns[key] = btn
     }
@@ -25,9 +21,11 @@ export default {
     btn.innerHTML = options.content
     btn.title = options.title || ''
     btn.className = 'btn'
-    btn.addEventListener('click', () => {
+    btn.onclick = (e) => {
       if (options.toggle) btn.classList.toggle('active')
-    })
+      const isActive = btn.classList.contains('active')
+      options.onclick?.(isActive)
+    }
     btn.active = (v) => v ? btn.classList.add('active') : btn.classList.remove('active')
     return btn
   }

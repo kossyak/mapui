@@ -35,5 +35,11 @@ export default {
     const label = [name, gw_purpose, department?.name ].join(', ')
     const color = switcher[1].children[2].color
     return { color, label, name: 'polygons' }
+  },
+  section(item) {
+    const { name, type_section, type_sediment } = item.properties
+    const label = [name, type_section.name || 'н/д', type_sediment.name || 'н/д', ].join(', ')
+    const color = type_section.color
+    return { color, label, name: 'section' }
   }
 }

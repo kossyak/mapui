@@ -61,6 +61,7 @@ export default [
       {
         key: 'sections',
         title: 'Разрезы',
+        color: '#0080FFB3',
         visible: true
       }
     ]
