@@ -59,7 +59,7 @@ export default [
     visible: true,
     children: [
       {
-        key: 'sections',
+        key: 'section',
         title: 'Разрезы',
         color: '#0080FFB3',
         visible: true

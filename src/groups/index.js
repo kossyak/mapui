@@ -19,7 +19,7 @@ export default {
       fields,
       intakes,
       license,
-      sections
+      section
     } = layers
     return {
       OSM: new TileLayer({ source: new OSM() }),
@@ -57,9 +57,9 @@ export default {
         visible: true,
         layers: [license]
       }),
-      sections: new GroupLayer({
+      section: new GroupLayer({
         visible: true,
-        layers: [sections]
+        layers: [section]
       }),
       p26: new GroupLayer({
         visible: false,

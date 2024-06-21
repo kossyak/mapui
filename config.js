@@ -50,7 +50,7 @@ export default {
       get: host + '/base/api/license?format=json&limit=5000',
       set: host + '/base/api/license/'
     },
-    sectionsJson: {
+    sectionJson: {
       get: host + '/base/api/sections?format=json&limit=5000',
       set: host + '/base/api/sections/'
     },

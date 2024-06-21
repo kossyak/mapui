@@ -60,7 +60,7 @@ export default {
 
     const zoom = 12
     const zoomLabel = 13
-    const { wellsJson, fieldsJson, intakesJson, licenseJson, sectionsJson } = result
+    const { wellsJson, fieldsJson, intakesJson, licenseJson, sectionJson } = result
     const fieldsPolygon = polygons.create({
       featuresJSON: fieldsJson,
       type: 'fields',
@@ -86,8 +86,8 @@ export default {
       }
     })
     const sectionsMultiLine = sections.create({
-      featuresJSON: sectionsJson,
-      type: 'sections',
+      featuresJSON: sectionJson,
+      type: 'section',
       style: {
         strokeColor: '#00008066'
       }
