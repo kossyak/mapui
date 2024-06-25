@@ -79,8 +79,8 @@ export default {
       const { name, type_section, type_sediment } = selected
       return [
         { label: 'Название', value: name, name: 'n7' },
-        { label: 'Тип разреза', value: type_section, name: 'n8'  },
-        { label: 'Тип отложений', value: type_sediment, name: 'n9'  },
+        { label: 'Тип разреза', value: type_section.name, name: 'n8'  },
+        { label: 'Тип отложений', value: type_sediment.name, name: 'n9'  },
       ]
     }
   },
@@ -103,7 +103,7 @@ export default {
       if (model === 'intakes') title = add('Тип', 'Водозаборы') + add('Владелец', name)
       if (model === 'fields') title =  add('Тип', 'Месторождения') + add('Наименование', name)
       if (model === 'license') title =  add('Тип', 'Лицензия') + add('Номер', name)
-      if (model === 'section') title = add('Название', name) + add('Тип разреза', type_section) + add('Тип отложений', type_sediment)
+      if (model === 'section') title = add('Название', name) + add('Тип разреза', type_section.name) + add('Тип отложений', type_sediment.name)
       list.push({ selected, title })
     })
     return list

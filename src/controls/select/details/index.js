@@ -88,16 +88,19 @@ export default {
       title: 'Координаты',
       view: (selected) => coordinatesHTML(selected.coordinates)
     }, {
+      key: 'source_file',
       title: 'Разрез',
       view: (selected, config) => {
         return ms({ url: config.services.source_file(selected) })
       }
     }, {
+      key: 'pois',
       title: 'Список скважин',
       view: (selected, config) => {
         return ms({ url: config.services.pois(selected) })
       }
     }, {
+      key: 'map_ref',
       title: 'Карта к разрезу',
       view: (selected, config) => {
         return ms({ url: config.services.map_ref(selected) })

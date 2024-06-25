@@ -58,7 +58,7 @@ export default {
     }
     const input = async () => {
       const value = search.getValue()
-      const data = await loader.query(api[el.name + 'Select'] + value)
+      const data = await loader.query(this.config.api[el.name + 'Select'] + value)
       console.log(data)
       let html = ''
       if (el.name === 'aquifer') {
