@@ -49,7 +49,7 @@ export default {
       view: (selected) => coordinatesHTML(selected.coordinates)
     },
     {
-      key: 'license',
+      key: 'licenses_count',
       title: 'Лицензия',
       view: (selected, config) => {
         return ms({ url: config.services.license(selected) })
