@@ -91,19 +91,19 @@ export default {
       key: 'source_file',
       title: 'Разрез',
       view: (selected, config) => {
-        return ms({ url: config.services.source_file(selected) })
+        return ms({ url: config.services.source_file(selected), config })
       }
     }, {
       key: 'pois',
       title: 'Список скважин',
       view: (selected, config) => {
-        return ms({ url: config.services.pois(selected) })
+        return ms({ url: config.services.pois(selected), config })
       }
     }, {
       key: 'map_ref',
       title: 'Карта к разрезу',
       view: (selected, config) => {
-        return ms({ url: config.services.map_ref(selected) })
+        return ms({ url: config.services.map_ref(selected), config })
       }
     }
   ],
