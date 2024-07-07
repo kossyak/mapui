@@ -31,7 +31,7 @@ body {
   height: 100%;
 }
 
-.mui input, .mui button {
+.mui input, .mui button, .mui textarea {
   font-family: inherit;
   font-size: inherit;
   line-height: normal;

@@ -71,7 +71,7 @@ export default {
       const { name, gw_purpose, department } = selected
       return [
         { label: 'Номер', value: name, type: 'input', name: 'name' },
-        { label: 'Назначение', value: gw_purpose, type: 'input', name: 'gw_purpose'  },
+        { label: 'Назначение', value: gw_purpose, type: 'textarea', name: 'gw_purpose'  },
         // { label: 'Орган выдачи', value: department?.name, name: 'n9'  },
       ]
     } else if (model === 'section') {
@@ -118,7 +118,7 @@ export default {
         ui.navigate.extension.setTitle('Редактирование')
       }
     })
-    if (!this.config.user?.permission?.includes(2)) editBtn.disabled = false // !
+    if (this.config.user?.permission?.includes(2)) editBtn.disabled = false // !
     ui.navigate.extension.content(editBtn)
     const html = this.fieldsToHTML(fields)
     ui.navigate.extension.addContent(html)

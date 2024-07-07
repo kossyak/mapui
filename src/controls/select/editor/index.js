@@ -1,4 +1,5 @@
 import './index.css'
+import textarea from '../../../ui/components/textarea'
 import input from '../../../ui/components/input'
 import select from '../../../ui/components/select'
 import coordinatesHTML from '../../../utils/coordinatesHTML'
@@ -26,6 +27,16 @@ export default {
   },
   input(el) {
     return input.create({
+      value: el.value,
+      name: el.name,
+      oninput: (e) => {
+        this.data[el.name] = e.target.value
+      }
+      // type: el.type
+    })
+  },
+  textarea(el) {
+    return textarea.create({
       value: el.value,
       name: el.name,
       oninput: (e) => {
