@@ -49,7 +49,7 @@ export default {
       view: (selected) => coordinatesHTML(selected.coordinates)
     },
     {
-      key: 'license',
+      key: 'licenses_count',
       title: 'Лицензия',
       view: (selected, config) => {
         return ms({ url: config.services.license(selected) })
@@ -90,17 +90,17 @@ export default {
     }, {
       title: 'Разрез',
       view: (selected, config) => {
-        return ms({ url: config.services.source_file(selected) })
+        return ms({ url: config.services.source_file(selected), config })
       }
     }, {
       title: 'Список скважин',
       view: (selected, config) => {
-        return ms({ url: config.services.pois(selected) })
+        return ms({ url: config.services.pois(selected), config })
       }
     }, {
       title: 'Карта к разрезу',
       view: (selected, config) => {
-        return ms({ url: config.services.map_ref(selected) })
+        return ms({ url: config.services.map_ref(selected), config })
       }
     }
   ],

@@ -50,9 +50,7 @@ export default {
   async init(target, config, coordinate) {
     const api = config.api
     const user = await loader.queryBase(api.user)
-    const wellTypes = await loader.query(api.wellTypesUrl)
-    const result = await loader.init(target, api)
-    config.wellTypes = wellTypes.results
+    const result = await loader.init(target, config)
     config.user = user
     
     const bus = {}
@@ -60,6 +58,7 @@ export default {
 
     const zoom = 12
     const zoomLabel = 13
+    const { wellTypes, sectionTypes, sedimentTypes } = result
     const { wellsJson, fieldsJson, intakesJson, licenseJson, sectionJson } = result
     const fieldsPolygon = polygons.create({
       featuresJSON: fieldsJson,
@@ -108,7 +107,7 @@ export default {
   
     config.searchResults = async (value, content_types) => {
       const data = await loader.search(api, value, content_types)
-      return searchDropdown.render(data, result)
+      return searchDropdown.render(data, { wellsJson, fieldsJson, intakesJson, licenseJson, sectionJson })
     }
     config.getFeatureById = (id, model) => {
       const allFeatures = { fieldsFeatures, intakesFeatures, licenseFeatures, sectionFeatures, wellsFeatures }
@@ -259,7 +258,7 @@ export default {
     const select = new Select({
       layers: Object.values(allLayers)
     })
-    const selectControl = selectControlModule.create(ui, config, pointActive, select)
+    const selectControl = selectControlModule.create(ui, config, pointActive, select, result)
     const selectedFeatures = select.getFeatures()
     const dragBox = new DragBox({ condition: platformModifierKeyOnly })
     select.on('select', (e) => {

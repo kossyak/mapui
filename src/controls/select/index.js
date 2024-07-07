@@ -11,8 +11,7 @@ export default {
   selected: {},
   selectedAll: [],
   config: {},
-  create(ui, config, pointActive, select) {
-    console.log(select)
+  create(ui, config, pointActive, select, result) {
     this.select = select
     this.config = config
     this.pointActive = pointActive
@@ -39,13 +38,13 @@ export default {
     ui.navigate.on('back', () => {
       if (ui.navigate.extension.getTitle()) {
         ui.navigate.extension.setTitle('')
-        this.openExtension(ui)
+        this.openExtension(ui, result)
       } else {
         ui.navigate.extension.content('')
       }
       ui.navigate.extension.contentElement.spinner(false)
     })
-    return { infoPanel, update: () => this.update(infoPanel, ui) }
+    return { infoPanel, update: () => this.update(infoPanel, ui, result) }
   },
   infoElement() {
     const container = document.createElement('div')
@@ -65,22 +64,22 @@ export default {
         { label: 'Целевой горизонт', value: aquifer_usage?.map(el => el.name), type: 'search', name: 'aquifer', content_types: '' }
       ]
     } else if (model === 'fields') {
-      return [{ label: 'Наименование', value: name, name: 'n9'  }]
+      return [{ label: 'Наименование', value: name, type: 'input', name: 'name' }]
     } else if (model === 'intakes') {
-      return [{ label: 'Владелец', value: name, name: 'n10'  }]
+      return [{ label: 'Владелец', value: name, type: 'input', name: 'name' }]
     } else if (model === 'license') {
       const { name, gw_purpose, department } = selected
       return [
-        { label: 'Номер', value: name, type: 'number', name: 'n7' },
-        { label: 'Назначение', value: gw_purpose, name: 'n8'  },
-        { label: 'Орган выдачи', value: department?.name, name: 'n9'  },
+        { label: 'Номер', value: name, type: 'input', name: 'name' },
+        { label: 'Назначение', value: gw_purpose, type: 'input', name: 'gw_purpose'  },
+        // { label: 'Орган выдачи', value: department?.name, name: 'n9'  },
       ]
     } else if (model === 'section') {
       const { name, type_section, type_sediment } = selected
       return [
-        { label: 'Название', value: name, name: 'n7' },
-        { label: 'Тип разреза', value: type_section, name: 'n8'  },
-        { label: 'Тип отложений', value: type_sediment, name: 'n9'  },
+        { label: 'Название', value: name, type: 'input', name: 'name' },
+        { label: 'Тип разреза', value: type_section.name, type: 'select', name: 'type_section'  },
+        { label: 'Тип отложений', value: type_sediment.name, type: 'select', name: 'type_sediment'  },
       ]
     }
   },
@@ -103,23 +102,23 @@ export default {
       if (model === 'intakes') title = add('Тип', 'Водозаборы') + add('Владелец', name)
       if (model === 'fields') title =  add('Тип', 'Месторождения') + add('Наименование', name)
       if (model === 'license') title =  add('Тип', 'Лицензия') + add('Номер', name)
-      if (model === 'section') title = add('Название', name) + add('Тип разреза', type_section) + add('Тип отложений', type_sediment)
+      if (model === 'section') title = add('Название', name) + add('Тип разреза', type_section.name) + add('Тип отложений', type_sediment.name)
       list.push({ selected, title })
     })
     return list
   },
-  openExtension(ui) {
+  openExtension(ui, result) {
     const fields = this.getFields(this.selected)
     const editBtn = tap.create({
       html: 'Редактировать <i>✎</i>',
       disabled: true, // !
       onclick: (v) => {
-        const form = editor.create(fields, this.selected, this.config)
+        const form = editor.create(fields, this.selected, this.config, result)
         ui.navigate.extension.content(form)
         ui.navigate.extension.setTitle('Редактирование')
       }
     })
-    if (this.config.user?.permission?.includes(2)) editBtn.disabled = false
+    if (!this.config.user?.permission?.includes(2)) editBtn.disabled = false // !
     ui.navigate.extension.content(editBtn)
     const html = this.fieldsToHTML(fields)
     ui.navigate.extension.addContent(html)
@@ -141,7 +140,7 @@ export default {
     })
     ui.navigate.extension.addContent(listEx)
   },
-  update(infoPanel, ui) {
+  update(infoPanel, ui, result) {
     const selectedArr = this.select.getFeatures().getArray()
     // ui.navigate.extension.content('')
     console.log(2)
@@ -151,7 +150,7 @@ export default {
         list: listNavigate,
         onclick: (v) => {
           this.selected = v.selected
-          this.openExtension(ui)
+          this.openExtension(ui, result)
           if (!v.selected.geometry) return
           const coordinates = v.selected.geometry.getCoordinates()
           this.pointActive.move(coordinates)

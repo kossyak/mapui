@@ -33,32 +33,52 @@ export default {
     pois: (selected) => 'https://openweathermap.org/weathermap?basemap=map&cities=false&layer=precipitation&lat=0&lon=0&zoom=2',
     map_ref: (selected) => 'https://openweathermap.org/weathermap?basemap=map&cities=false&layer=precipitation&lat=0&lon=0&zoom=2',
   },
-  api: {
+  store: {
     wellsJson: {
       get: host + '/base/api/wells/?format=json&limit=5000', // 'https://darcydb.ru/base/api/wells/?format=json&limit=300', // '/wells.json', // host + '/base/api/wells/?format=json&limit=300', //'https://darcydb.ru/base/api/wells/?format=json&limit=5000', // host + '/base/api/wells/?format=json&limit=5000',
-      set: host + '/base/api/wells/update/'
+      set: host + '/base/api/wells/update/',
+      label: 'wells'
     },
     fieldsJson: {
       get: host + '/base/api/fields/?format=json&limit=5000', // host + '/base/api/fields/?format=json',
       set: host + '/base/api/fields/',
+      label: 'fields'
     },
     intakesJson: {
       get: host + '/base/api/intakes/?format=json&limit=5000', // host + '/base/api/intakes/?format=json',
-      set: host + '/base/api/intakes/'
+      set: host + '/base/api/intakes/',
+      label: 'intakes'
     },
     licenseJson: {
       get: host + '/base/api/license?format=json&limit=5000',
-      set: host + '/base/api/license/'
+      set: host + '/base/api/license/',
+      label: 'license'
     },
     sectionJson: {
       get: host + '/base/api/sections?format=json&limit=5000',
-      set: host + '/base/api/sections/'
+      set: host + '/base/api/sections/',
+      label: 'section'
     },
+    typo: {
+      get: host + '/base/api/dictentities/?entity=2',
+      label: 'well types'
+    },
+    type_section: {
+      get: host + '/base/api/dictentities/?entity=21',
+      label: 'section types'
+    },
+    type_sediment: {
+      get: host +  '/base/api/dictentities/?entity=22',
+      label: 'sediment types'
+    }
+  },
+  search: {
+    field: host + '/base/api/fields/?format=json&limit=5&search=',
+    intake: host + '/base/api/intakes/?format=json&limit=5&search=',
+    aquifer: host + '/base/api/aquifercodes/?format=json&limit=5&search=',
+  },
+  api: {
     search: host + '/fts/api/fts/?search=',
-    wellTypesUrl: host + '/base/api/dictentities/?entity=2',
-    fieldSelect: host + '/base/api/fields/?format=json&limit=5&search=',
-    intakeSelect: host + '/base/api/intakes/?format=json&limit=5&search=',
-    aquiferSelect: host + '/base/api/aquifercodes/?format=json&limit=5&search=',
     user: host + '/api/users/me/',
     login: host + '/accounts/login/',
     logout: host + '/accounts/logout/',

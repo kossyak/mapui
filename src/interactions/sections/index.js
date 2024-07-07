@@ -21,7 +21,7 @@ export default {
     const source = new VectorSource({ features })
     const layer = new VectorLayer({
       source: source,
-      style: this.polygonStyle(style)
+      style: (feature) => this.polygonStyle(style, feature)
     })
     const interaction = this.addModify(layer, type)
     return { layer, features, interaction }
@@ -34,11 +34,12 @@ export default {
     interaction.setActive(false)
     return interaction
   },
-  polygonStyle(style) {
+  polygonStyle(style, feature) {
     if (style) {
+      const { type_section } = feature.getProperties()
       return new Style({
         stroke: new Stroke({
-          color: style.strokeColor,
+          color: type_section.color || style.strokeColor,
           width: 2
         })
       })

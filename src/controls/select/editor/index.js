@@ -5,9 +5,9 @@ import coordinatesHTML from '../../../utils/coordinatesHTML'
 import loader from '../../../loader'
 
 export default {
-  create(fields, selected, config) {
+  create(fields, selected, config, result) {
     const form = this.form()
-    this.fields(fields, form)
+    this.fields(fields, form, result)
     this.config = config
     this.data = {}
     // this.coordinates(coordinates, form)
@@ -34,14 +34,14 @@ export default {
       // type: el.type
     })
   },
-  select(el) {
+  select(el, result) {
     const change = (event) => {
       search.setValue(event.target.title)
       this.data[el.name] = +event.target.dataset.id
       search.close()
     }
     const click = async () => {
-      const html = this.renderList(this.config.wellTypes)
+      const html = this.renderList(result[el.name])
       search.dropdown(html)
     }
     const search = select.create({ name:'search', type:'search', onchange: change, onclick: click })
@@ -58,7 +58,7 @@ export default {
     }
     const input = async () => {
       const value = search.getValue()
-      const data = await loader.query(api[el.name + 'Select'] + value)
+      const data = await loader.query(this.config.search[el.name] + value)
       console.log(data)
       let html = ''
       if (el.name === 'aquifer') {
@@ -76,14 +76,14 @@ export default {
     search.setValue(el.value)
     return search
   },
-  fields(fields, form) {
+  fields(fields, form, result) {
     const inputs = []
     fields.forEach((el) => {
       const wr = document.createElement('div')
       const label = document.createElement('label')
       label.textContent = el.label
       wr.append(label)
-      const field =  this[el.type](el)
+      const field =  this[el.type](el, result)
       inputs.push(field)
       wr.append(field)
       form.append(wr)
