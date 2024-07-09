@@ -30,9 +30,9 @@ export default {
     wells: ({ id }) => host + '/base/api/intakes/' + id + '/wells/',
     deadlines: ({ id }) => host + '/base/api/intakes/' + id + '/deadlines/',
     withdrawal: ({ id }) => host + '/base/api/intakes/' + id + '/withdrawal/',
-    source_file: (selected) => 'https://openweathermap.org/weathermap?basemap=map&cities=false&layer=precipitation&lat=0&lon=0&zoom=2',
-    pois: (selected) => 'https://openweathermap.org/weathermap?basemap=map&cities=false&layer=precipitation&lat=0&lon=0&zoom=2',
-    map_ref: (selected) => 'https://openweathermap.org/weathermap?basemap=map&cities=false&layer=precipitation&lat=0&lon=0&zoom=2',
+    source_file: ({ id }) => host + '/base/api/sections/' + id + '/file/',
+    pois: ({ id }) => host + '/base/api/sections/' + id + '/wells/',
+    map_ref: ({ id }) => host + '/base/api/sections/' + id + '/mapref/',
   },
   store: {
     wellsJson: {
@@ -69,7 +69,7 @@ export default {
       label: 'section types'
     },
     type_sediment: {
-      get: host +  '/base/api/dictentities/?entity=22',
+      get: host + '/base/api/dictentities/?entity=22',
       label: 'sediment types'
     }
   },
@@ -82,7 +82,6 @@ export default {
     search: host + '/fts/api/fts/?search=',
     user: host + '/api/users/me/',
     login: host + '/accounts/login/',
-    logout: host + '/accounts/logout/',
-    
+    logout: host + '/accounts/logout/'
   }
 }
