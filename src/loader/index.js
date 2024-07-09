@@ -45,17 +45,21 @@ export  default {
     return await response.json()
   },
   async submit(url, data, method = 'POST') {
-    const csrftoken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-    const response = await fetch(url, {
-      method,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': secret.Authorization,
-        "X-CSRFToken": csrftoken
-      },
-      body: JSON.stringify(data)
-    })
-    return await response.json()
+    try {
+      const csrftoken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      const response = await fetch(url, {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': secret.Authorization,
+          "X-CSRFToken": csrftoken
+        },
+        body: JSON.stringify(data)
+      })
+      return await response.json()
+    } catch (error) {
+      return { detail: error }
+    }
   },
   async search(api, value, content_types) {
     const url = `${api.search + value}&limit=5${content_types ? '&content_type__in=' + content_types + ',' : ''}`

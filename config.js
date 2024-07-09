@@ -6,8 +6,9 @@ export default {
   host,
   projection: 'EPSG:4326', // Проекция отображения координат (WGS-84)
   user: {},
-  wellTypes: [], // in edit form
-  onmessage: () => {}, // in main.js,
+  update: (type, id) => host + `/base/api/${type}/update/${id}/`,
+  notice: () => {}, // in main.js
+  onmessage: () => {}, // in main.js
   searchResults: () => {}, // in global search and edit form
   getFeatureById: () => {}, // in global search and edit form
   services: {
@@ -82,6 +83,6 @@ export default {
     user: host + '/api/users/me/',
     login: host + '/accounts/login/',
     logout: host + '/accounts/logout/',
-    updateWells: host + '/base/api/wells/update/'
+    
   }
 }

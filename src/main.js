@@ -40,6 +40,7 @@ import { platformModifierKeyOnly } from 'ol/events/condition'
 
 import pointActive from './pointLayers/active'
 import loader from './loader'
+import notice from './ui/components/notice'
 
 export default {
   animate(map) {
@@ -55,10 +56,10 @@ export default {
     
     const bus = {}
     const ui = UI.create(target, user, api) // { navigate, info }
-
+    notice.init({ target })
+    config.notice = (v) => notice.add(v)
     const zoom = 12
     const zoomLabel = 13
-    const { wellTypes, sectionTypes, sedimentTypes } = result
     const { wellsJson, fieldsJson, intakesJson, licenseJson, sectionJson } = result
     const fieldsPolygon = polygons.create({
       featuresJSON: fieldsJson,
@@ -242,7 +243,9 @@ export default {
       switchBtn: {
         content: '☰',
         toggle: true,
-        onclick: (isActive) => ui.info.visible(isActive)
+        onclick: (isActive) => {
+          ui.info.visible(isActive)
+        }
       },
       refresh: {
         content: '↺',

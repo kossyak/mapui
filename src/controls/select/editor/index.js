@@ -4,6 +4,7 @@ import input from '../../../ui/components/input'
 import select from '../../../ui/components/select'
 import coordinatesHTML from '../../../utils/coordinatesHTML'
 import loader from '../../../loader'
+import { delay } from '../../../utils/delay'
 
 export default {
   create(fields, selected, config, result) {
@@ -12,8 +13,14 @@ export default {
     this.config = config
     this.data = {}
     // this.coordinates(coordinates, form)
-    this.submit(form, async () => {
-      const res = await loader.submit(config.api.updateWells + selected.id + '/', this.data, 'PUT')
+    const submit = this.submit(form, async () => {
+      const url = config.update()
+      const res = await loader.submit(url, this.data, 'PUT')
+      let type = 'success'
+      if (res.status !== 200) type = 'error'
+      config.notice({ type, content: res?.detail || 'error' })
+      submit.disabled = true
+      delay(2000).then(() => submit.disabled = false)
     })
     return form
   },
