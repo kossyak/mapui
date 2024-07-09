@@ -14,8 +14,9 @@ export default {
     this.data = {}
     // this.coordinates(coordinates, form)
     const submit = this.submit(form, async () => {
-      const url = config.update()
+      const url = config.update(selected)
       const res = await loader.submit(url, this.data, 'PUT')
+      debugger
       let type = 'success'
       if (res.status !== 200) type = 'error'
       config.notice({ type, content: res?.detail || 'error' })

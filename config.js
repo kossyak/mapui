@@ -6,7 +6,7 @@ export default {
   host,
   projection: 'EPSG:4326', // Проекция отображения координат (WGS-84)
   user: {},
-  update: (type, id) => host + `/base/api/${type}/update/${id}/`,
+  update: ({ model, id }) => host + `/base/api/${model}/update/${id}/`,
   notice: () => {}, // in main.js
   onmessage: () => {}, // in main.js
   searchResults: () => {}, // in global search and edit form
