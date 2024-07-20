@@ -4,6 +4,7 @@ import XYZ from 'ol/source/XYZ'
 import OSM from 'ol/source/OSM'
 import secret from '../../secret.js'
 import { pointStyle } from '../pointLayers/style'
+import TileWMS from 'ol/source/TileWMS.js'
 
 export default {
   create(layers) {
@@ -30,6 +31,21 @@ export default {
           maxZoom: 19, // Уровень максимального масштаба
         })
       }),
+      OSM: new TileLayer({ source: new OSM() }),
+        geoserver_sp: new TileLayer({
+          visible: !1,
+          source: new TileWMS({
+            url: 'https://geoserver.darcydb.ru/geoserver/N37-25000/wms',
+            maxZoom: 19,
+            params: {
+              'LAYERS': 'N37-25000:N-37_25000',
+              'authkey': `${secret?.geoserverAuthToken || ''}`
+            },
+            serverType: 'geoserver',
+            transition: 0,
+            preload: 0,
+          }),
+        }),
       google_sp: new TileLayer({
         visible: false,
         source: new XYZ({
@@ -37,6 +53,7 @@ export default {
           maxZoom: 20,
         })
       }),
+      
       terrain: new TileLayer({
         visible: false,
         source: new XYZ({

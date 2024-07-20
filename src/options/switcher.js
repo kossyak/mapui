@@ -79,8 +79,15 @@ export default [
     hidden_filters: new Set()
   },
   {
-    title: 'Геологические и гидрогеологические карты',
-    visible: false
+    title: 'Подложки',
+    visible: false,
+    type: 'tile',
+    children: [
+      {
+        key: 'geoserver_sp',
+        title: 'N-37 топо 1:25 000'
+      },
+    ],
   },
   {
     title: 'Карта высот',
