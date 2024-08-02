@@ -87,6 +87,10 @@ export default [
         key: 'geoserver_sp',
         title: 'N-37 топо 1:25 000'
       },
+      {
+        key: 'GeoserverMap_25000_VEC_2',
+        title: 'М-36-VI четвертичные 1:200 000'
+      },
     ],
   },
   {

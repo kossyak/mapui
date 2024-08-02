@@ -36,7 +36,7 @@ export default {
           visible: !1,
           source: new TileWMS({
             url: 'https://geoserver.darcydb.ru/geoserver/N37-25000/wms',
-            maxZoom: 19,
+            // maxZoom: 19,
             params: {
               'LAYERS': 'N37-25000:N-37_25000',
               'authkey': `${secret?.geoserverAuthToken || ''}`
@@ -44,6 +44,16 @@ export default {
             serverType: 'geoserver',
             transition: 0,
             preload: 0,
+          }),
+        }),
+        GeoserverMap_25000_VEC_2: new TileLayer({
+          source: new TileWMS({
+            url: 'https://geoserver.darcydb.ru/geoserver/relief/wms',
+            params: {
+              'LAYERS': '  relief:ГГК_200_1_M_36_VI_Карта_четвертичных_отложений_modified',
+              'authkey': `${secret?.geoserverAuthToken || ''}`
+            },
+            serverType: 'geoserver',
           }),
         }),
       google_sp: new TileLayer({
