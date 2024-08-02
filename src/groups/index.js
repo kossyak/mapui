@@ -47,6 +47,7 @@ export default {
           }),
         }),
         GeoserverMap_25000_VEC_2: new TileLayer({
+          visible: !1,
           source: new TileWMS({
             url: 'https://geoserver.darcydb.ru/geoserver/relief/wms',
             params: {
@@ -54,6 +55,8 @@ export default {
               'authkey': `${secret?.geoserverAuthToken || ''}`
             },
             serverType: 'geoserver',
+            transition: 0,
+            preload: 0,
           }),
         }),
       google_sp: new TileLayer({
